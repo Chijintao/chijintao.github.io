@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="自定义分页器针对批量插入的数据，我们在前端展示的时候发现一个很严重的问题，一页展示了所有的数据，数据量太大，查看不方便 针对数据量大但又需要全部展示给用户观看的情况下，我们统一做法都是做分页处理 分页推导123456789101112131415161718192021222324252627282930313233343536首先我们需要明确的时候，get请求也是可以携带参数的，所以我们在朝后端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django基础之自定义分页器">
+<meta property="og:url" content="http://example.com/2019/05/11/Django%E5%9F%BA%E7%A1%80%E4%B9%8B%E8%87%AA%E5%AE%9A%E4%B9%89%E5%88%86%E9%A1%B5%E5%99%A8/index.html">
+<meta property="og:site_name" content="池劲涛的博客">
+<meta property="og:description" content="自定义分页器针对批量插入的数据，我们在前端展示的时候发现一个很严重的问题，一页展示了所有的数据，数据量太大，查看不方便 针对数据量大但又需要全部展示给用户观看的情况下，我们统一做法都是做分页处理 分页推导123456789101112131415161718192021222324252627282930313233343536首先我们需要明确的时候，get请求也是可以携带参数的，所以我们在朝后端">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-05-10T23:20:25.000Z">
+<meta property="article:modified_time" content="2019-06-01T04:22:34.000Z">
+<meta property="article:author" content="池劲涛">
+<meta property="article:tag" content="Python Linux Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2019/05/11/Django%E5%9F%BA%E7%A1%80%E4%B9%8B%E8%87%AA%E5%AE%9A%E4%B9%89%E5%88%86%E9%A1%B5%E5%99%A8/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2019/05/11/Django%E5%9F%BA%E7%A1%80%E4%B9%8B%E8%87%AA%E5%AE%9A%E4%B9%89%E5%88%86%E9%A1%B5%E5%99%A8/","path":"2019/05/11/Django基础之自定义分页器/","title":"Django基础之自定义分页器"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Django基础之自定义分页器 | 池劲涛的博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">池劲涛的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%88%86%E9%A1%B5%E5%99%A8"><span class="nav-number">1.</span> <span class="nav-text">自定义分页器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E9%A1%B5%E6%8E%A8%E5%AF%BC"><span class="nav-number">1.1.</span> <span class="nav-text">分页推导</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%80%BB%E9%A1%B5%E9%9D%A2%E8%8E%B7%E5%8F%96"><span class="nav-number">1.2.</span> <span class="nav-text">数据总页面获取</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E7%BD%AE%E6%96%B9%E6%B3%95%E4%B9%8Bdivmod"><span class="nav-number">1.2.1.</span> <span class="nav-text">内置方法之divmod</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%88%E6%9E%81%E5%A4%A7%E6%B3%95"><span class="nav-number">1.3.</span> <span class="nav-text">终极大法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%88%86%E9%A1%B5%E5%99%A8%E4%BD%BF%E7%94%A8"><span class="nav-number">1.4.</span> <span class="nav-text">自定义分页器使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8E%E7%AB%AF"><span class="nav-number">1.4.1.</span> <span class="nav-text">后端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF"><span class="nav-number">1.4.2.</span> <span class="nav-text">前端</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="池劲涛"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">池劲涛</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/05/11/Django%E5%9F%BA%E7%A1%80%E4%B9%8B%E8%87%AA%E5%AE%9A%E4%B9%89%E5%88%86%E9%A1%B5%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="池劲涛">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="池劲涛的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Django基础之自定义分页器
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-05-11 07:20:25" itemprop="dateCreated datePublished" datetime="2019-05-11T07:20:25+08:00">2019-05-11</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2019-06-01 12:22:34" itemprop="dateModified" datetime="2019-06-01T12:22:34+08:00">2019-06-01</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Django%E7%B3%BB%E5%88%97/" itemprop="url" rel="index"><span itemprop="name">Django系列</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="自定义分页器"><a href="#自定义分页器" class="headerlink" title="自定义分页器"></a>自定义分页器</h1><p><strong>针对批量插入的数据，我们在前端展示的时候发现一个很严重的问题，一页展示了所有的数据，数据量太大，查看不方便</strong></p>
+<p><strong>针对数据量大但又需要全部展示给用户观看的情况下，我们统一做法都是做分页处理</strong></p>
+<h2 id="分页推导"><a href="#分页推导" class="headerlink" title="分页推导"></a>分页推导</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">首先我们需要明确的时候，get请求也是可以携带参数的，所以我们在朝后端发送查看数据的同时可以携带一个参数告诉后端我们想看第几页的数据</span><br><span class="line"></span><br><span class="line">其次我们还需要知道一个点，queryset对象是支持索引取值和切片操作的，但是不支持负数索引情况</span><br><span class="line"></span><br><span class="line">接下来我们就可以推导我们的自定义分页器步骤了</span><br><span class="line"></span><br><span class="line">current_page = request.GET.get(<span class="string">&quot;page&quot;</span>,<span class="number">1</span>)  <span class="comment"># 获取用户想访问的页码  如果没有 默认展示第一页</span></span><br><span class="line"><span class="keyword">try</span>:  <span class="comment"># 由于后端接受到的前端数据是字符串类型所以我们这里做类型转换处理加异常捕获</span></span><br><span class="line">  current_page = <span class="built_in">int</span>(current_page)</span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">  current_page = <span class="number">1</span></span><br><span class="line"><span class="comment"># 还需要定义页面到底展示几条数据</span></span><br><span class="line">per_page_num = <span class="number">10</span>  <span class="comment"># 一页展示10条数据</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 需要对总数据进行切片操作 需要确定切片起始位置和终止位置</span></span><br><span class="line">start_page = ? </span><br><span class="line">end_page = ?</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">下面需要研究current_page、per_page_num、start_page、end_page四个参数之间的数据关系</span></span><br><span class="line"><span class="string">per_page_num = 10</span></span><br><span class="line"><span class="string">current_page                start_page                  end_page</span></span><br><span class="line"><span class="string">    1                           0                           10</span></span><br><span class="line"><span class="string">    2                           10                          20</span></span><br><span class="line"><span class="string">    3                           20                          30  </span></span><br><span class="line"><span class="string">    4                           30                          40</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">per_page_num = 5</span></span><br><span class="line"><span class="string">current_page                start_page                  end_page</span></span><br><span class="line"><span class="string">    1                           0                           5</span></span><br><span class="line"><span class="string">    2                           5                           10</span></span><br><span class="line"><span class="string">    3                           10                          15  </span></span><br><span class="line"><span class="string">    4                           15                          20</span></span><br><span class="line"><span class="string">可以很明显的看出规律</span></span><br><span class="line"><span class="string">start_page = (current_page - 1) * per_page_num</span></span><br><span class="line"><span class="string">end_page =  current_page* per_page_num</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="数据总页面获取"><a href="#数据总页面获取" class="headerlink" title="数据总页面获取"></a>数据总页面获取</h2><p><strong>当我问你下面几个问题的时候，你的内心肯定是鄙视的，不信的话那就请听题</strong></p>
+<p><strong>问题1:总数据有100条，每页展示10条，总共需要几页？</strong></p>
+<p><strong>答案:10条</strong></p>
+<p><strong>问题2:总数据有101条，每页展示10条，总共需要几页?</strong></p>
+<p><strong>答案:11条</strong></p>
+<p><strong>问题3:如何通过代码算出到底需要多少条？</strong></p>
+<p><strong>答案:去你妹的，不会！！！</strong></p>
+<h3 id="内置方法之divmod"><a href="#内置方法之divmod" class="headerlink" title="内置方法之divmod"></a>内置方法之divmod</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">divmod</span>(<span class="number">100</span>,<span class="number">10</span>)</span><br><span class="line">(<span class="number">10</span>, <span class="number">0</span>)  <span class="comment"># 10页</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">divmod</span>(<span class="number">101</span>,<span class="number">10</span>)</span><br><span class="line">(<span class="number">10</span>, <span class="number">1</span>)  <span class="comment"># 11页</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">divmod</span>(<span class="number">99</span>,<span class="number">10</span>)</span><br><span class="line">(<span class="number">9</span>, <span class="number">9</span>)  <span class="comment"># 10页</span></span><br><span class="line"><span class="comment"># 余数只要不是0就需要在第一个数字上加一</span></span><br><span class="line">我们可以判断元祖的第二个数字是否为<span class="number">0</span>从而确定到底需要多少页来展示数据</span><br><span class="line"></span><br><span class="line">book_queryset = models.Book.objects.<span class="built_in">all</span>()</span><br><span class="line">all_count = book_queryset.count()  <span class="comment"># 数据总条数</span></span><br><span class="line">all_pager, more = <span class="built_in">divmod</span>(all_count, per_page_num)</span><br><span class="line"><span class="keyword">if</span> more:  <span class="comment"># 有余数则总页数加一</span></span><br><span class="line">  all_pager += <span class="number">1</span></span><br><span class="line">至此分页器大致的功能及思路我们就已经大致清楚了</span><br><span class="line"></span><br><span class="line">最后我们只需要利用start_page和end_page对总数据进行切片取值再传入前端页面就能够实现分页展示</span><br><span class="line"></span><br><span class="line">book_list = models.Book.objects.<span class="built_in">all</span>()[start_page:end_page]</span><br><span class="line"><span class="keyword">return</span> render(request,<span class="string">&#x27;booklist.html&#x27;</span>,<span class="built_in">locals</span>())</span><br><span class="line">接下来就是前端页面的代码编写了</span><br><span class="line"></span><br><span class="line">&#123;% <span class="keyword">for</span> book <span class="keyword">in</span> book_list %&#125;</span><br><span class="line">    &lt;p&gt;&#123;&#123; book.title &#125;&#125;&lt;/p&gt;</span><br><span class="line">&#123;% endfor %&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>现在我们实现了最简单的分页，但是前端没有按钮去让用户点击需要看第几页，所以我们需要渲染分页器相关代码，这里我们不做要求直接去bootstrap框架拷贝代码即可</strong></p>
+<h2 id="终极大法"><a href="#终极大法" class="headerlink" title="终极大法"></a>终极大法</h2><p>上面是自定义分页器开发流程的基本思路，我们不需要掌握代码的编写，只需要掌握基本用法即可</p>
+<p>自定义分页器封装代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pagination</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, current_page, all_count, per_page_num=<span class="number">2</span>, pager_count=<span class="number">11</span></span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        封装分页相关数据</span></span><br><span class="line"><span class="string">        :param current_page: 当前页</span></span><br><span class="line"><span class="string">        :param all_count:    数据库中的数据总条数</span></span><br><span class="line"><span class="string">        :param per_page_num: 每页显示的数据条数</span></span><br><span class="line"><span class="string">        :param pager_count:  最多显示的页码个数</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            current_page = <span class="built_in">int</span>(current_page)</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            current_page = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> current_page &lt; <span class="number">1</span>:</span><br><span class="line">            current_page = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        self.current_page = current_page</span><br><span class="line"></span><br><span class="line">        self.all_count = all_count</span><br><span class="line">        self.per_page_num = per_page_num</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 总页码</span></span><br><span class="line">        all_pager, tmp = <span class="built_in">divmod</span>(all_count, per_page_num)</span><br><span class="line">        <span class="keyword">if</span> tmp:</span><br><span class="line">            all_pager += <span class="number">1</span></span><br><span class="line">        self.all_pager = all_pager</span><br><span class="line"></span><br><span class="line">        self.pager_count = pager_count</span><br><span class="line">        self.pager_count_half = <span class="built_in">int</span>((pager_count - <span class="number">1</span>) / <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> (self.current_page - <span class="number">1</span>) * self.per_page_num</span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">end</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.current_page * self.per_page_num</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">page_html</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># 如果总页码 &lt; 11个：</span></span><br><span class="line">        <span class="keyword">if</span> self.all_pager &lt;= self.pager_count:</span><br><span class="line">            pager_start = <span class="number">1</span></span><br><span class="line">            pager_end = self.all_pager + <span class="number">1</span></span><br><span class="line">        <span class="comment"># 总页码  &gt; 11</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># 当前页如果&lt;=页面上最多显示11/2个页码</span></span><br><span class="line">            <span class="keyword">if</span> self.current_page &lt;= self.pager_count_half:</span><br><span class="line">                pager_start = <span class="number">1</span></span><br><span class="line">                pager_end = self.pager_count + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># 当前页大于5</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="comment"># 页码翻到最后</span></span><br><span class="line">                <span class="keyword">if</span> (self.current_page + self.pager_count_half) &gt; self.all_pager:</span><br><span class="line">                    pager_end = self.all_pager + <span class="number">1</span></span><br><span class="line">                    pager_start = self.all_pager - self.pager_count + <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    pager_start = self.current_page - self.pager_count_half</span><br><span class="line">                    pager_end = self.current_page + self.pager_count_half + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        page_html_list = []</span><br><span class="line">        <span class="comment"># 添加前面的nav和ul标签</span></span><br><span class="line">        page_html_list.append(<span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">                    &lt;nav aria-label=&#x27;Page navigation&gt;&#x27;</span></span><br><span class="line"><span class="string">                    &lt;ul class=&#x27;pagination&#x27;&gt;</span></span><br><span class="line"><span class="string">                &#x27;&#x27;&#x27;</span>)</span><br><span class="line">        first_page = <span class="string">&#x27;&lt;li&gt;&lt;a href=&quot;?page=%s&quot;&gt;首页&lt;/a&gt;&lt;/li&gt;&#x27;</span> % (<span class="number">1</span>)</span><br><span class="line">        page_html_list.append(first_page)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> self.current_page &lt;= <span class="number">1</span>:</span><br><span class="line">            prev_page = <span class="string">&#x27;&lt;li class=&quot;disabled&quot;&gt;&lt;a href=&quot;#&quot;&gt;上一页&lt;/a&gt;&lt;/li&gt;&#x27;</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            prev_page = <span class="string">&#x27;&lt;li&gt;&lt;a href=&quot;?page=%s&quot;&gt;上一页&lt;/a&gt;&lt;/li&gt;&#x27;</span> % (self.current_page - <span class="number">1</span>,)</span><br><span class="line"></span><br><span class="line">        page_html_list.append(prev_page)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(pager_start, pager_end):</span><br><span class="line">            <span class="keyword">if</span> i == self.current_page:</span><br><span class="line">                temp = <span class="string">&#x27;&lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;?page=%s&quot;&gt;%s&lt;/a&gt;&lt;/li&gt;&#x27;</span> % (i, i,)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                temp = <span class="string">&#x27;&lt;li&gt;&lt;a href=&quot;?page=%s&quot;&gt;%s&lt;/a&gt;&lt;/li&gt;&#x27;</span> % (i, i,)</span><br><span class="line">            page_html_list.append(temp)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> self.current_page &gt;= self.all_pager:</span><br><span class="line">            next_page = <span class="string">&#x27;&lt;li class=&quot;disabled&quot;&gt;&lt;a href=&quot;#&quot;&gt;下一页&lt;/a&gt;&lt;/li&gt;&#x27;</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            next_page = <span class="string">&#x27;&lt;li&gt;&lt;a href=&quot;?page=%s&quot;&gt;下一页&lt;/a&gt;&lt;/li&gt;&#x27;</span> % (self.current_page + <span class="number">1</span>,)</span><br><span class="line">        page_html_list.append(next_page)</span><br><span class="line"></span><br><span class="line">        last_page = <span class="string">&#x27;&lt;li&gt;&lt;a href=&quot;?page=%s&quot;&gt;尾页&lt;/a&gt;&lt;/li&gt;&#x27;</span> % (self.all_pager,)</span><br><span class="line">        page_html_list.append(last_page)</span><br><span class="line">        <span class="comment"># 尾部添加标签</span></span><br><span class="line">        page_html_list.append(<span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">                                           &lt;/nav&gt;</span></span><br><span class="line"><span class="string">                                           &lt;/ul&gt;</span></span><br><span class="line"><span class="string">                                       &#x27;&#x27;&#x27;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(page_html_list)</span><br></pre></td></tr></table></figure>
+
+<h2 id="自定义分页器使用"><a href="#自定义分页器使用" class="headerlink" title="自定义分页器使用"></a>自定义分页器使用</h2><h3 id="后端"><a href="#后端" class="headerlink" title="后端"></a>后端</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_book</span>(<span class="params">request</span>):</span></span><br><span class="line">  book_list = models.Book.objects.<span class="built_in">all</span>()</span><br><span class="line">  current_page = request.GET.get(<span class="string">&quot;page&quot;</span>,<span class="number">1</span>)</span><br><span class="line">  all_count = book_list.count()</span><br><span class="line">  page_obj = Pagination(current_page=current_page,all_count=all_count,per_page_num=<span class="number">10</span>)</span><br><span class="line">  page_queryset = book_list[page_obj.start:page_obj.end]</span><br><span class="line">  <span class="keyword">return</span> render(request,<span class="string">&#x27;booklist.html&#x27;</span>,<span class="built_in">locals</span>())</span><br></pre></td></tr></table></figure>
+
+<h3 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="class"><span class="keyword">class</span>=&quot;<span class="title">container</span>&quot;&gt;</span></span><br><span class="line"><span class="class">    &lt;<span class="title">div</span> <span class="title">class</span>=&quot;<span class="title">row</span>&quot;&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">div</span> <span class="title">class</span>=&quot;<span class="title">col</span>-<span class="title">md</span>-8 <span class="title">col</span>-<span class="title">md</span>-<span class="title">offset</span>-2&quot;&gt;</span></span><br><span class="line"><span class="class">            &#123;% <span class="title">for</span> <span class="title">book</span> <span class="title">in</span> <span class="title">page_queryset</span> %&#125;</span></span><br><span class="line"><span class="class">            &lt;<span class="title">p</span>&gt;&#123;&#123; <span class="title">book</span>.<span class="title">title</span> &#125;&#125;&lt;/<span class="title">p</span>&gt;</span></span><br><span class="line"><span class="class">            &#123;% <span class="title">endfor</span> %&#125;</span></span><br><span class="line"><span class="class">            &#123;&#123; <span class="title">page_obj</span>.<span class="title">page_html</span>|<span class="title">safe</span> &#125;&#125;</span></span><br><span class="line"><span class="class">        &lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="class">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/05/11/Django%E5%9F%BA%E7%A1%80%E4%B9%8B%E8%B7%AF%E7%94%B1%E5%B1%82/" rel="prev" title="Django基础之路由层">
+                  <i class="fa fa-chevron-left"></i> Django基础之路由层
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/05/11/Django%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%A8%A1%E6%9D%BF%E5%B1%82/" rel="next" title="Django基础之模板层">
+                  Django基础之模板层 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">池劲涛</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

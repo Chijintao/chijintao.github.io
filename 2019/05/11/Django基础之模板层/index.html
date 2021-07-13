@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="内容概要 模板层(模板语法) 1234567模板语法传值模板语法过滤器(内置方法)模板语法标签(流程控制)自定义过滤器和标签(了解) 模板的导入与继承(面向对象)   内容详细模板层之模板语法传值123456789101112131415161718192021222324252627282930313233343536https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Dominic-Ji&#x2F;arti">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django基础之模板层">
+<meta property="og:url" content="http://example.com/2019/05/11/Django%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%A8%A1%E6%9D%BF%E5%B1%82/index.html">
+<meta property="og:site_name" content="池劲涛的博客">
+<meta property="og:description" content="内容概要 模板层(模板语法) 1234567模板语法传值模板语法过滤器(内置方法)模板语法标签(流程控制)自定义过滤器和标签(了解) 模板的导入与继承(面向对象)   内容详细模板层之模板语法传值123456789101112131415161718192021222324252627282930313233343536https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Dominic-Ji&#x2F;arti">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-05-10T23:20:25.000Z">
+<meta property="article:modified_time" content="2019-06-01T04:22:34.000Z">
+<meta property="article:author" content="池劲涛">
+<meta property="article:tag" content="Python Linux Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2019/05/11/Django%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%A8%A1%E6%9D%BF%E5%B1%82/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2019/05/11/Django%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%A8%A1%E6%9D%BF%E5%B1%82/","path":"2019/05/11/Django基础之模板层/","title":"Django基础之模板层"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Django基础之模板层 | 池劲涛的博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">池劲涛的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%85%E5%AE%B9%E6%A6%82%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">内容概要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%85%E5%AE%B9%E8%AF%A6%E7%BB%86"><span class="nav-number">2.</span> <span class="nav-text">内容详细</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E5%B1%82%E4%B9%8B%E6%A8%A1%E6%9D%BF%E8%AF%AD%E6%B3%95%E4%BC%A0%E5%80%BC"><span class="nav-number">2.0.1.</span> <span class="nav-text">模板层之模板语法传值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E8%AF%AD%E6%B3%95%E5%8F%96%E5%80%BC"><span class="nav-number">2.0.2.</span> <span class="nav-text">模板语法取值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E8%AF%AD%E6%B3%95%E4%B9%8B%E8%BF%87%E6%BB%A4%E5%99%A8-%E5%86%85%E7%BD%AE%E6%96%B9%E6%B3%95"><span class="nav-number">2.0.3.</span> <span class="nav-text">模板语法之过滤器(内置方法)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E8%AF%AD%E6%B3%95%E4%B9%8B%E6%A0%87%E7%AD%BE-%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="nav-number">2.0.4.</span> <span class="nav-text">模板语法之标签(流程控制)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%BF%87%E6%BB%A4%E5%99%A8%E3%80%81%E6%A0%87%E7%AD%BE%E3%80%81inclusion-tag"><span class="nav-number">2.0.5.</span> <span class="nav-text">自定义过滤器、标签、inclusion_tag</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E7%9A%84%E7%BB%A7%E6%89%BF-%E4%BD%BF%E7%94%A8%E9%A2%91%E7%8E%87%E8%BE%83%E9%AB%98"><span class="nav-number">2.0.6.</span> <span class="nav-text">模板的继承(使用频率较高)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%AF%BC%E5%85%A5"><span class="nav-number">2.0.7.</span> <span class="nav-text">模板的导入</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="池劲涛"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">池劲涛</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/05/11/Django%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%A8%A1%E6%9D%BF%E5%B1%82/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="池劲涛">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="池劲涛的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Django基础之模板层
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-05-11 07:20:25" itemprop="dateCreated datePublished" datetime="2019-05-11T07:20:25+08:00">2019-05-11</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2019-06-01 12:22:34" itemprop="dateModified" datetime="2019-06-01T12:22:34+08:00">2019-06-01</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Django%E7%B3%BB%E5%88%97/" itemprop="url" rel="index"><span itemprop="name">Django系列</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="内容概要"><a href="#内容概要" class="headerlink" title="内容概要"></a>内容概要</h1><ul>
+<li><p>模板层(模板语法)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">模板语法传值</span><br><span class="line"></span><br><span class="line">模板语法过滤器(内置方法)</span><br><span class="line"></span><br><span class="line">模板语法标签(流程控制)</span><br><span class="line"></span><br><span class="line">自定义过滤器和标签(了解)</span><br></pre></td></tr></table></figure></li>
+<li><p>模板的导入与继承(面向对象)</p>
+</li>
+</ul>
+<h1 id="内容详细"><a href="#内容详细" class="headerlink" title="内容详细"></a>内容详细</h1><h3 id="模板层之模板语法传值"><a href="#模板层之模板语法传值" class="headerlink" title="模板层之模板语法传值"></a>模板层之模板语法传值</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">https://www.cnblogs.com/Dominic-Ji/articles/<span class="number">11109067.</span>html<span class="comment">#_label15</span></span><br><span class="line">    </span><br><span class="line">注释</span><br><span class="line">    &lt;!--HTML注释--&gt;   浏览器能够查看</span><br><span class="line">    &#123;<span class="comment">#模板语法注释#&#125;    浏览器查看不了</span></span><br><span class="line">        </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reg</span>(<span class="params">request</span>):</span></span><br><span class="line">    <span class="comment"># python基本数据类型</span></span><br><span class="line">    f = <span class="number">1.1</span></span><br><span class="line">    i = <span class="number">11</span></span><br><span class="line">    s = <span class="string">&#x27;hello world&#x27;</span></span><br><span class="line">    l = [<span class="number">11</span>,<span class="number">22</span>,<span class="number">33</span>,<span class="number">44</span>]</span><br><span class="line">    d = &#123;<span class="string">&#x27;username&#x27;</span>:<span class="string">&quot;jason&quot;</span>,<span class="string">&#x27;password&#x27;</span>:<span class="number">123</span>&#125;</span><br><span class="line">    t = (<span class="number">11</span>,<span class="number">22</span>,<span class="number">33</span>,<span class="number">44</span>,<span class="number">55</span>,<span class="number">66</span>,<span class="number">77</span>)</span><br><span class="line">    se = &#123;<span class="number">11</span>,<span class="number">22</span>,<span class="number">33</span>,<span class="number">44</span>,<span class="number">55</span>,<span class="number">66</span>&#125;</span><br><span class="line">    b = <span class="literal">True</span></span><br><span class="line">    <span class="comment"># 函数(自动加括号调用函数 展示的是函数的返回值)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">func</span>(<span class="params">args</span>):</span>  <span class="comment"># 模板语法不支持给函数传递额外的参数</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;from func&#x27;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;下午有点困&#x27;</span></span><br><span class="line">    <span class="comment"># 面向对象</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">MyClass</span>(<span class="params"><span class="built_in">object</span></span>):</span>  <span class="comment"># 自动加括号实例化产生对象</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">get_obj</span>(<span class="params">self</span>):</span></span><br><span class="line">            <span class="keyword">return</span> <span class="string">&#x27;from obj&#x27;</span></span><br><span class="line"><span class="meta">        @classmethod</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">get_cls</span>(<span class="params">cls</span>):</span></span><br><span class="line">            <span class="keyword">return</span> <span class="string">&#x27;from cls&#x27;</span></span><br><span class="line"><span class="meta">        @staticmethod</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">get_func</span>():</span></span><br><span class="line">            <span class="keyword">return</span> <span class="string">&#x27;from func&#x27;</span></span><br><span class="line">    obj = MyClass()</span><br><span class="line">    <span class="comment"># 1.指名道姓的传(需要传的值较少)</span></span><br><span class="line">    <span class="comment"># return render(request,&#x27;reg.html&#x27;,&#123;...&#125;)</span></span><br><span class="line">    <span class="comment"># 2.一次性批量传(效率偏低)  为了教学方便我们使用locals居多</span></span><br><span class="line">    <span class="comment"># return render(request, &#x27;reg.html&#x27;,locals())</span></span><br><span class="line">    <span class="keyword">return</span> render(request,<span class="string">&#x27;reg.html&#x27;</span>,<span class="built_in">locals</span>())</span><br></pre></td></tr></table></figure>
+
+<h3 id="模板语法取值"><a href="#模板语法取值" class="headerlink" title="模板语法取值"></a>模板语法取值</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">取值只能使用句点符(.)</span><br><span class="line">&lt;p&gt;&#123;&#123; l<span class="number">.0</span> &#125;&#125;&lt;/p&gt;</span><br><span class="line">&lt;p&gt;&#123;&#123; d.username &#125;&#125;&lt;/p&gt;</span><br><span class="line">&lt;p&gt;&#123;&#123; d.hobby<span class="number">.3</span>.addr &#125;&#125;&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="模板语法之过滤器-内置方法"><a href="#模板语法之过滤器-内置方法" class="headerlink" title="模板语法之过滤器(内置方法)"></a>模板语法之过滤器(内置方法)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;过滤器:  管道符 左侧当做过滤器的第一个参数 右侧有时候还可以支持再传一个参数(冒号开头)&lt;/p&gt;</span><br><span class="line">&lt;p&gt;统计长度:&#123;&#123; l|length &#125;&#125;&lt;/p&gt;</span><br><span class="line">&lt;p&gt;自增运算:&#123;&#123; i|add:<span class="number">123</span> &#125;&#125;、拼接操作:&#123;&#123; s|add:<span class="string">&#x27;去你妹的&#x27;</span> &#125;&#125;&lt;/p&gt;</span><br><span class="line">&lt;p&gt;日期转换:&#123;&#123; ctime &#125;&#125;、&#123;&#123; ctime|date:<span class="string">&#x27;Y-m-d&#x27;</span> &#125;&#125;&lt;/p&gt;</span><br><span class="line">&lt;p&gt;文件大小:&#123;&#123; file_size|filesizeformat &#125;&#125;&lt;/p&gt;</span><br><span class="line">&lt;p&gt;截取字符(三个点也算):&#123;&#123; desc|truncatechars:<span class="number">6</span> &#125;&#125;&lt;/p&gt;</span><br><span class="line">&lt;p&gt;截取单词(三个点不算):&#123;&#123; desc|truncatewords:<span class="number">3</span> &#125;&#125;&lt;/p&gt;</span><br><span class="line">&lt;p&gt;切片操作:&#123;&#123; s|<span class="built_in">slice</span>:<span class="string">&#x27;0:4&#x27;</span> &#125;&#125;&lt;/p&gt;</span><br><span class="line">&lt;p&gt;默认值(判断布尔值):&#123;&#123; b|default:<span class="string">&#x27;这个东西布尔值是False&#x27;</span> &#125;&#125;&lt;/p&gt;</span><br><span class="line">&lt;p&gt;文本转义:&#123;&#123; ht|safe &#125;&#125;&lt;/p&gt;</span><br><span class="line">&lt;p&gt;文本转义:&#123;&#123; xss &#125;&#125;&lt;/p&gt;</span><br><span class="line">&lt;p&gt;文本转义:&#123;&#123; ht1 &#125;&#125;&lt;/p&gt;</span><br><span class="line">    </span><br><span class="line">后端转义</span><br><span class="line"><span class="keyword">from</span> django.utils.safestring <span class="keyword">import</span> mark_safe</span><br><span class="line">ht1 = <span class="string">&#x27;&lt;h1&gt;一级标题&lt;/h1&gt;&#x27;</span></span><br><span class="line">ht1 = mark_safe(ht1)</span><br></pre></td></tr></table></figure>
+
+<h3 id="模板语法之标签-流程控制"><a href="#模板语法之标签-流程控制" class="headerlink" title="模板语法之标签(流程控制)"></a>模板语法之标签(流程控制)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;&#125;&#125;    变量相关(引用变量值)</span><br><span class="line">&#123;%%&#125;    逻辑相关(流程控制 模块方法)</span><br><span class="line"></span><br><span class="line">&lt;p&gt;标签: 流程控制&lt;/p&gt;</span><br><span class="line">&#123;% <span class="keyword">for</span> i <span class="keyword">in</span> lll %&#125;</span><br><span class="line">    &#123;% <span class="keyword">if</span> forloop.first %&#125;</span><br><span class="line">        &lt;p&gt;这是我的第一次循环&lt;/p&gt;</span><br><span class="line">    &#123;% <span class="keyword">elif</span> forloop.last %&#125;</span><br><span class="line">        &lt;p&gt;这是我的最后一次循环&lt;/p&gt;</span><br><span class="line">    &#123;% <span class="keyword">else</span> %&#125;</span><br><span class="line">        &lt;p&gt;&#123;&#123; i &#125;&#125;&lt;/p&gt;</span><br><span class="line">    &#123;% endif %&#125;</span><br><span class="line">    &#123;% empty %&#125;</span><br><span class="line">        &lt;p&gt;该对象里面没有值&lt;/p&gt;</span><br><span class="line">&#123;% endfor %&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="自定义过滤器、标签、inclusion-tag"><a href="#自定义过滤器、标签、inclusion-tag" class="headerlink" title="自定义过滤器、标签、inclusion_tag"></a>自定义过滤器、标签、inclusion_tag</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>在应用下创建一个名字必须叫templatetags文件夹</span><br><span class="line"><span class="number">2.</span>在该文件夹内创建一个任意名称的py文件</span><br><span class="line"><span class="number">3.</span>在py文件内必须要书写两行固定的代码</span><br><span class="line">    <span class="keyword">from</span> django.template <span class="keyword">import</span> Library</span><br><span class="line">     register = Library()</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 自定义过滤器</span></span><br><span class="line"><span class="meta">@register.filter(<span class="params">is_safe=<span class="literal">False</span>,name=<span class="string">&#x27;aaa&#x27;</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">my_plus</span>(<span class="params">a,b</span>):</span></span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 自定义标签(自定义函数)</span></span><br><span class="line"><span class="meta">@register.simple_tag(<span class="params">name=<span class="string">&#x27;bbb&#x27;</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span>(<span class="params">a,b,c,d</span>):</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;%s-%s-%s-%s&#x27;</span>%(a,b,c,d)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 自定义inclusion_tag(自行概括)</span></span><br><span class="line"><span class="meta">@register.inclusion_tag(<span class="params">filename=<span class="string">&#x27;ccc.html&#x27;</span>,name=<span class="string">&#x27;myinc&#x27;</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span>(<span class="params">n</span>):</span></span><br><span class="line">    new_l = [<span class="string">&#x27;第%s页&#x27;</span>%i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,n+<span class="number">1</span>)]</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">locals</span>()</span><br></pre></td></tr></table></figure>
+
+<h3 id="模板的继承-使用频率较高"><a href="#模板的继承-使用频率较高" class="headerlink" title="模板的继承(使用频率较高)"></a>模板的继承(使用频率较高)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">需求</span><br><span class="line">    页面主体不变 部分区域变化</span><br><span class="line"></span><br><span class="line">模板继承</span><br><span class="line">    <span class="number">1.</span>需要现在母版中使用block提前划定区域</span><br><span class="line">        &#123;% block 区域名称 %&#125;</span><br><span class="line">        &#123;% endblock %&#125;</span><br><span class="line">    <span class="number">2.</span>在子版中先继承再局部替换</span><br><span class="line">        &#123;% extends <span class="string">&#x27;模版.html&#x27;</span> %&#125;</span><br><span class="line">        &#123;% block 区域名称 %&#125;</span><br><span class="line">            </span><br><span class="line">        &#123;% endblock %&#125;</span><br><span class="line"></span><br><span class="line">总结</span><br><span class="line">    模板一般情况下都应该至少含有三个区域</span><br><span class="line">        css区域</span><br><span class="line">        content区域</span><br><span class="line">        js区域</span><br><span class="line">    </span><br><span class="line">补充</span><br><span class="line">    &#123;&#123; block.<span class="built_in">super</span> &#125;&#125;  调用模版内容</span><br></pre></td></tr></table></figure>
+
+<h3 id="模板的导入"><a href="#模板的导入" class="headerlink" title="模板的导入"></a>模板的导入</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% include <span class="string">&#x27;myform.html&#x27;</span> %&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/05/11/Django%E5%9F%BA%E7%A1%80%E4%B9%8B%E8%87%AA%E5%AE%9A%E4%B9%89%E5%88%86%E9%A1%B5%E5%99%A8/" rel="prev" title="Django基础之自定义分页器">
+                  <i class="fa fa-chevron-left"></i> Django基础之自定义分页器
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/05/11/Django%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%A8%A1%E5%9E%8B%E5%B1%82/" rel="next" title="Django基础之模型层">
+                  Django基础之模型层 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">池劲涛</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
