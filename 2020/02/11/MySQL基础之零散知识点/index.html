@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="内容概要 表字段操作补充 python操作MySQL 视图 触发器 存储过程 事务 内置函数 流程控制 索引  内容详细表字段操作补充123456789101112131415# 1 添加表字段alter table 表名 add 字段名 字段类型 约束条件; # 默认尾部追加alter table 表名 add 字段名 字段类型 约束条件 after 已经存在的字段名;alter table 表">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL基础之零散知识点">
+<meta property="og:url" content="http://example.com/2020/02/11/MySQL%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%9B%B6%E6%95%A3%E7%9F%A5%E8%AF%86%E7%82%B9/index.html">
+<meta property="og:site_name" content="池劲涛的博客">
+<meta property="og:description" content="内容概要 表字段操作补充 python操作MySQL 视图 触发器 存储过程 事务 内置函数 流程控制 索引  内容详细表字段操作补充123456789101112131415# 1 添加表字段alter table 表名 add 字段名 字段类型 约束条件; # 默认尾部追加alter table 表名 add 字段名 字段类型 约束条件 after 已经存在的字段名;alter table 表">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-02-10T23:20:25.000Z">
+<meta property="article:modified_time" content="2020-03-01T04:22:34.000Z">
+<meta property="article:author" content="池劲涛">
+<meta property="article:tag" content="Python Linux Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2020/02/11/MySQL%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%9B%B6%E6%95%A3%E7%9F%A5%E8%AF%86%E7%82%B9/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2020/02/11/MySQL%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%9B%B6%E6%95%A3%E7%9F%A5%E8%AF%86%E7%82%B9/","path":"2020/02/11/MySQL基础之零散知识点/","title":"MySQL基础之零散知识点"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>MySQL基础之零散知识点 | 池劲涛的博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">池劲涛的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%85%E5%AE%B9%E6%A6%82%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">内容概要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%85%E5%AE%B9%E8%AF%A6%E7%BB%86"><span class="nav-number">2.</span> <span class="nav-text">内容详细</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A8%E5%AD%97%E6%AE%B5%E6%93%8D%E4%BD%9C%E8%A1%A5%E5%85%85"><span class="nav-number">2.1.</span> <span class="nav-text">表字段操作补充</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python%E6%93%8D%E4%BD%9Cmysql"><span class="nav-number">2.2.</span> <span class="nav-text">python操作mysql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sql%E6%B3%A8%E5%85%A5"><span class="nav-number">2.3.</span> <span class="nav-text">sql注入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E6%93%8D%E4%BD%9C"><span class="nav-number">2.4.</span> <span class="nav-text">其他操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%86%E5%9B%BE"><span class="nav-number">2.5.</span> <span class="nav-text">视图</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%A7%86%E5%9B%BE"><span class="nav-number">2.5.0.1.</span> <span class="nav-text">什么是视图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E8%A7%86%E5%9B%BE"><span class="nav-number">2.5.0.2.</span> <span class="nav-text">为什么要用视图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E7%94%A8%E8%A7%86%E5%9B%BE"><span class="nav-number">2.5.0.3.</span> <span class="nav-text">如何用视图</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="nav-number">2.6.</span> <span class="nav-text">触发器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BD%95%E8%A6%81%E7%94%A8%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="nav-number">2.6.0.1.</span> <span class="nav-text">为何要用触发器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E8%A7%A6%E5%8F%91%E5%99%A8%E8%AF%AD%E6%B3%95"><span class="nav-number">2.6.0.2.</span> <span class="nav-text">创建触发器语法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1"><span class="nav-number">2.7.</span> <span class="nav-text">事务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BA%8B%E5%8A%A1"><span class="nav-number">2.7.0.1.</span> <span class="nav-text">什么是事务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">2.7.0.2.</span> <span class="nav-text">事务的作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E7%94%A8"><span class="nav-number">2.7.0.3.</span> <span class="nav-text">如何用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B"><span class="nav-number">2.8.</span> <span class="nav-text">存储过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-number">2.9.</span> <span class="nav-text">基本使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E7%A7%8D%E5%BC%80%E5%8F%91%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.10.</span> <span class="nav-text">三种开发模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%A7%8D"><span class="nav-number">2.10.1.</span> <span class="nav-text">第一种</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%A7%8D"><span class="nav-number">2.10.2.</span> <span class="nav-text">第二种</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%A7%8D"><span class="nav-number">2.10.3.</span> <span class="nav-text">第三种</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B"><span class="nav-number">2.11.</span> <span class="nav-text">创建存储过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E7%94%A8%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B"><span class="nav-number">2.11.1.</span> <span class="nav-text">如何用存储过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0"><span class="nav-number">2.12.</span> <span class="nav-text">函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="nav-number">2.13.</span> <span class="nav-text">流程控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95"><span class="nav-number">2.14.</span> <span class="nav-text">索引</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#b-%E6%A0%91"><span class="nav-number">2.14.0.1.</span> <span class="nav-text">b+树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%81%9A%E9%9B%86%E7%B4%A2%E5%BC%95-primary-key"><span class="nav-number">2.14.0.2.</span> <span class="nav-text">聚集索引(primary key)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%85%E5%8A%A9%E7%B4%A2%E5%BC%95-unique-index"><span class="nav-number">2.14.0.3.</span> <span class="nav-text">辅助索引(unique,index)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E7%B4%A2%E5%BC%95"><span class="nav-number">2.15.</span> <span class="nav-text">测试索引</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%86%E5%A4%87"><span class="nav-number">2.15.1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%81%94%E5%90%88%E7%B4%A2%E5%BC%95"><span class="nav-number">2.15.2.</span> <span class="nav-text">联合索引</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">2.16.</span> <span class="nav-text">总结:</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="池劲涛"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">池劲涛</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/02/11/MySQL%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%9B%B6%E6%95%A3%E7%9F%A5%E8%AF%86%E7%82%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="池劲涛">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="池劲涛的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MySQL基础之零散知识点
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-02-11 07:20:25" itemprop="dateCreated datePublished" datetime="2020-02-11T07:20:25+08:00">2020-02-11</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-03-01 12:22:34" itemprop="dateModified" datetime="2020-03-01T12:22:34+08:00">2020-03-01</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/MySQL%E7%B3%BB%E5%88%97/" itemprop="url" rel="index"><span itemprop="name">MySQL系列</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="内容概要"><a href="#内容概要" class="headerlink" title="内容概要"></a>内容概要</h1><ul>
+<li>表字段操作补充</li>
+<li>python操作MySQL</li>
+<li>视图</li>
+<li>触发器</li>
+<li>存储过程</li>
+<li>事务</li>
+<li>内置函数</li>
+<li>流程控制</li>
+<li>索引</li>
+</ul>
+<h1 id="内容详细"><a href="#内容详细" class="headerlink" title="内容详细"></a>内容详细</h1><h2 id="表字段操作补充"><a href="#表字段操作补充" class="headerlink" title="表字段操作补充"></a>表字段操作补充</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1 添加表字段</span></span><br><span class="line">alter table 表名 add 字段名 字段类型 约束条件; <span class="comment"># 默认尾部追加</span></span><br><span class="line">alter table 表名 add 字段名 字段类型 约束条件 after 已经存在的字段名;</span><br><span class="line">alter table 表名 add 字段名 字段类型 约束条件 first; <span class="comment"># 了解</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2 修改字段</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;modify只能修改字段数据类型完整约束，不能修改字段名，但是change二者都可以修改&#x27;&#x27;&#x27;</span></span><br><span class="line">ALTER TABLE 表名 </span><br><span class="line">                          MODIFY  字段名 数据类型 [完整性约束条件…];</span><br><span class="line">ALTER TABLE 表名 </span><br><span class="line">                          CHANGE 旧字段名 新字段名 数据类型 [完整性约束条件…];</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.删除字段</span></span><br><span class="line">ALTER TABLE 表名 </span><br><span class="line">                          DROP 字段名;</span><br></pre></td></tr></table></figure>
+
+<h2 id="python操作mysql"><a href="#python操作mysql" class="headerlink" title="python操作mysql"></a>python操作mysql</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>下载模块</span><br><span class="line">    pip3 install pymysql</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">python默认下载模块的地址是国外的网站</span></span><br><span class="line"><span class="string">速度有时候会非常的慢 如果想要提升速度我们可以切换下载源</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">（<span class="number">1</span>）阿里云 http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">（<span class="number">2</span>）豆瓣http://pypi.douban.com/simple/</span><br><span class="line">（<span class="number">3</span>）清华大学 https://pypi.tuna.tsinghua.edu.cn/simple/</span><br><span class="line">（<span class="number">4</span>）中国科学技术大学 http://pypi.mirrors.ustc.edu.cn/simple/</span><br><span class="line">（<span class="number">5</span>）华中科技大学http://pypi.hustunique.com/</span><br><span class="line"><span class="comment"># 1.命令行切换源</span></span><br><span class="line">    pip3 install pymysql -i 源地址</span><br><span class="line"><span class="comment"># 2.pycharm永久切换</span></span><br><span class="line">    file</span><br><span class="line">        setting</span><br><span class="line">            interpreter</span><br><span class="line">                双击</span><br><span class="line">                    manage 仓库</span><br><span class="line">                    </span><br><span class="line"><span class="number">2</span> 基本使用</span><br><span class="line"><span class="keyword">import</span> pymysql</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建连接对象</span></span><br><span class="line">conn = pymysql.connect(</span><br><span class="line">    host = <span class="string">&#x27;127.0.0.1&#x27;</span>,</span><br><span class="line">    port = <span class="number">3306</span>,</span><br><span class="line">    user = <span class="string">&#x27;root&#x27;</span>,</span><br><span class="line">    password = <span class="string">&#x27;123&#x27;</span>,</span><br><span class="line">    database = <span class="string">&#x27;db4_29&#x27;</span>,</span><br><span class="line">    charset = <span class="string">&#x27;utf8&#x27;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成游标对象</span></span><br><span class="line">cursor = conn.cursor(cursor = pymysql.cursor.DictCursor) <span class="comment"># 括号内不写参数使元组组织不够明确</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义SQL语句</span></span><br><span class="line"><span class="comment"># sql = &#x27;show tables&#x27;</span></span><br><span class="line">sql = <span class="string">&#x27;select * from teacher&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 执行SQL语句</span></span><br><span class="line">affect_rows = cursor.execute(sql)</span><br><span class="line"><span class="built_in">print</span>(affect_rows) <span class="comment"># 执行SQL语句所影响的行数</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取结果</span></span><br><span class="line">res = cursor.fetchall()</span><br><span class="line"><span class="built_in">print</span>(res)</span><br></pre></td></tr></table></figure>
+
+<h2 id="sql注入"><a href="#sql注入" class="headerlink" title="sql注入"></a>sql注入</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">利用特殊符号的组合绕过相应的机制</span><br><span class="line"></span><br><span class="line">如何解决</span><br><span class="line">    不要自己手动处理敏感数据</span><br><span class="line"> </span><br><span class="line">sql = <span class="string">&quot;select * from userinfo where name=%s and password=%s&quot;</span></span><br><span class="line"><span class="comment"># 执行sql语句</span></span><br><span class="line">cursor.execute(sql,(username,password))  <span class="comment"># 交由execute自动拼接 自动筛选</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="其他操作"><a href="#其他操作" class="headerlink" title="其他操作"></a>其他操作</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">针对增删改查</span><br><span class="line">    查的重要程度很低，无需二次确认</span><br><span class="line">    增改删重要程度很高，都需要二次确认</span><br><span class="line">    </span><br><span class="line">    conn = pymysql.connect(</span><br><span class="line">        host=<span class="string">&#x27;127.0.0.1&#x27;</span>,</span><br><span class="line">        port=<span class="number">3306</span>,</span><br><span class="line">        user=<span class="string">&#x27;root&#x27;</span>,</span><br><span class="line">        password=<span class="string">&#x27;1&#x27;</span>,</span><br><span class="line">        database=<span class="string">&#x27;db5&#x27;</span>,</span><br><span class="line">        charset=<span class="string">&#x27;utf8&#x27;</span>,</span><br><span class="line">        autocommit=<span class="literal">True</span>  <span class="comment"># 自动二次确认</span></span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
+
+<h2 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h2><h4 id="什么是视图"><a href="#什么是视图" class="headerlink" title="什么是视图"></a>什么是视图</h4><p><strong>视图就是通过查询得到一张虚拟表，然后保存下来，下次直接使用即可</strong></p>
+<h4 id="为什么要用视图"><a href="#为什么要用视图" class="headerlink" title="为什么要用视图"></a>为什么要用视图</h4><p><strong>如果要频繁使用一张虚拟表，可以不用重复查询</strong></p>
+<h4 id="如何用视图"><a href="#如何用视图" class="headerlink" title="如何用视图"></a>如何用视图</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">create view teacher2course <span class="keyword">as</span></span><br><span class="line">select * <span class="keyword">from</span> teacher inner join course on teacher.tid = course.teacher_id;</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">创建好了之后 验证它的存在navicat验证 cmd终端验证</span></span><br><span class="line"><span class="string">最后文件验证 得出下面的结论 视图只有表结构数据还是来源于之前的表</span></span><br><span class="line"><span class="string">delete from teacher2course where id=1;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>强调</strong> 1、在硬盘中，视图只有表结构文件，没有表数据文件 2、视图通常是用于查询，尽量不要修改视图中的数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop view teacher2course;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>思考:开发过程中会不会去使用视图？</strong></p>
+<p>不会！视图是mysql的功能，如果你的项目里面大量的使用到了视图，那意味着你后期想要扩张某个功能的时候这个功能恰巧又需要对视图进行修改，意味着你需要先在mysql这边将视图先修改一下，然后再去应用程序中修改对应的sql语句，这就涉及到跨部门沟通的问题，所以通常不会使用视图，而是通过重新修改sql语句来扩展功能</p>
+<h2 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h2><p><strong>在满足对某张表数据的增、删、改的情况下，自动触发的功能称之为触发器</strong></p>
+<h4 id="为何要用触发器"><a href="#为何要用触发器" class="headerlink" title="为何要用触发器"></a>为何要用触发器</h4><p><strong>触发器专门针对我们对某一张表数据增insert、删delete、改update的行为，这类行为一旦执行</strong><br><strong>就会触发触发器的执行，即自动运行另外一段sql代码</strong></p>
+<h4 id="创建触发器语法"><a href="#创建触发器语法" class="headerlink" title="创建触发器语法"></a>创建触发器语法</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;语法结构</span></span><br><span class="line"><span class="string">create trigger 触发器的名字 before/after insert/update/delete on 表名 for each row</span></span><br><span class="line"><span class="string">begin</span></span><br><span class="line"><span class="string">    sql语句</span></span><br><span class="line"><span class="string">end</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 针对插入</span></span><br><span class="line">create trigger tri_after_insert_t1 after insert on 表名 <span class="keyword">for</span> each row</span><br><span class="line">begin</span><br><span class="line">    sql代码。。。</span><br><span class="line">end </span><br><span class="line">create trigger tri_after_insert_t2 before insert on 表名 <span class="keyword">for</span> each row</span><br><span class="line">begin</span><br><span class="line">    sql代码。。。</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"><span class="comment"># 针对删除</span></span><br><span class="line">create trigger tri_after_delete_t1 after delete on 表名 <span class="keyword">for</span> each row</span><br><span class="line">begin</span><br><span class="line">    sql代码。。。</span><br><span class="line">end</span><br><span class="line">create trigger tri_after_delete_t2 before delete on 表名 <span class="keyword">for</span> each row</span><br><span class="line">begin</span><br><span class="line">    sql代码。。。</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"><span class="comment"># 针对修改</span></span><br><span class="line">create trigger tri_after_update_t1 after update on 表名 <span class="keyword">for</span> each row</span><br><span class="line">begin</span><br><span class="line">    sql代码。。。</span><br><span class="line">end</span><br><span class="line">create trigger tri_after_update_t2 before update on 表名 <span class="keyword">for</span> each row</span><br><span class="line">begin</span><br><span class="line">    sql代码。。。</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">需要注意 在书写sql代码的时候结束符是; 而整个触发器的结束也需要分号;</span></span><br><span class="line"><span class="string">这就会出现语法冲突 需要我们临时修改结束符号</span></span><br><span class="line"><span class="string">delimiter $$</span></span><br><span class="line"><span class="string">delimiter ; </span></span><br><span class="line"><span class="string">该语法只在当前窗口有效  </span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 案例</span></span><br><span class="line">CREATE TABLE cmd (</span><br><span class="line">    <span class="built_in">id</span> INT PRIMARY KEY auto_increment,</span><br><span class="line">    USER CHAR (<span class="number">32</span>),</span><br><span class="line">    priv CHAR (<span class="number">10</span>),</span><br><span class="line">    cmd CHAR (<span class="number">64</span>),</span><br><span class="line">    sub_time datetime, <span class="comment">#提交时间</span></span><br><span class="line">    success enum (<span class="string">&#x27;yes&#x27;</span>, <span class="string">&#x27;no&#x27;</span>) <span class="comment">#0代表执行失败</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">CREATE TABLE errlog (</span><br><span class="line">    <span class="built_in">id</span> INT PRIMARY KEY auto_increment,</span><br><span class="line">    err_cmd CHAR (<span class="number">64</span>),</span><br><span class="line">    err_time datetime</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">delimiter $$  <span class="comment"># 将mysql默认的结束符由;换成$$</span></span><br><span class="line">create trigger tri_after_insert_cmd after insert on cmd <span class="keyword">for</span> each row</span><br><span class="line">begin</span><br><span class="line">    <span class="keyword">if</span> NEW.success = <span class="string">&#x27;no&#x27;</span> then  <span class="comment"># 新记录都会被MySQL封装成NEW对象</span></span><br><span class="line">        insert into errlog(err_cmd,err_time) values(NEW.cmd,NEW.sub_time);</span><br><span class="line">    end <span class="keyword">if</span>;</span><br><span class="line">end $$</span><br><span class="line">delimiter ;  <span class="comment"># 结束之后记得再改回来，不然后面结束符就都是$$了</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#往表cmd中插入记录，触发触发器，根据IF的条件决定是否插入错误日志</span></span><br><span class="line">INSERT INTO cmd (</span><br><span class="line">    USER,</span><br><span class="line">    priv,</span><br><span class="line">    cmd,</span><br><span class="line">    sub_time,</span><br><span class="line">    success</span><br><span class="line">)</span><br><span class="line">VALUES</span><br><span class="line">    (<span class="string">&#x27;egon&#x27;</span>,<span class="string">&#x27;0755&#x27;</span>,<span class="string">&#x27;ls -l /etc&#x27;</span>,NOW(),<span class="string">&#x27;yes&#x27;</span>),</span><br><span class="line">    (<span class="string">&#x27;egon&#x27;</span>,<span class="string">&#x27;0755&#x27;</span>,<span class="string">&#x27;cat /etc/passwd&#x27;</span>,NOW(),<span class="string">&#x27;no&#x27;</span>),</span><br><span class="line">    (<span class="string">&#x27;egon&#x27;</span>,<span class="string">&#x27;0755&#x27;</span>,<span class="string">&#x27;useradd xxx&#x27;</span>,NOW(),<span class="string">&#x27;no&#x27;</span>),</span><br><span class="line">    (<span class="string">&#x27;egon&#x27;</span>,<span class="string">&#x27;0755&#x27;</span>,<span class="string">&#x27;ps aux&#x27;</span>,NOW(),<span class="string">&#x27;yes&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询errlog表记录</span></span><br><span class="line">select * <span class="keyword">from</span> errlog;</span><br><span class="line"><span class="comment"># 删除触发器</span></span><br><span class="line">drop trigger tri_after_insert_cmd;</span><br></pre></td></tr></table></figure>
+
+<h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><h4 id="什么是事务"><a href="#什么是事务" class="headerlink" title="什么是事务"></a>什么是事务</h4><p><strong>开启一个事务可以包含一些sql语句，这些sql语句要么同时成功</strong><br><strong>要么一个都别想成功，称之为事务的原子性</strong></p>
+<h4 id="事务的作用"><a href="#事务的作用" class="headerlink" title="事务的作用"></a>事务的作用</h4><p>保证了对数据操作的数据安全性</p>
+<p>案例:用交行的卡操作建行ATM机给工商的账户转钱</p>
+<p><strong>事务应该具有4个属性：</strong>原子性、一致性、隔离性、持久性。这四个属性通常称为<strong>ACID特性</strong>。</p>
+<p>原子性（atomicity）。一个事务是一个不可分割的工作单位，事务中包括的诸操作要么都做，要么都不做。</p>
+<p>一致性（consistency）。事务必须是使数据库从一个一致性状态变到另一个一致性状态。一致性与原子性是密切相关的。</p>
+<p>隔离性（isolation）。一个事务的执行不能被其他事务干扰。即一个事务内部的操作及使用的数据对并发的其他事务是隔离的，并发执行的各个事务之间不能互相干扰。</p>
+<p>持久性（durability）。持久性也称永久性（permanence），指一个事务一旦提交，它对数据库中数据的改变就应该是永久性的。接下来的其他操作或故障不应该对其有任何影响。</p>
+<h4 id="如何用"><a href="#如何用" class="headerlink" title="如何用"></a>如何用</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 先介绍事务的三个关键字 再去用表实际展示效果</span></span><br><span class="line"></span><br><span class="line">create table user(</span><br><span class="line"><span class="built_in">id</span> <span class="built_in">int</span> primary key auto_increment,</span><br><span class="line">name char(<span class="number">32</span>),</span><br><span class="line">balance <span class="built_in">int</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">insert into user(name,balance)</span><br><span class="line">values</span><br><span class="line">(<span class="string">&#x27;jason&#x27;</span>,<span class="number">1000</span>),</span><br><span class="line">(<span class="string">&#x27;egon&#x27;</span>,<span class="number">1000</span>),</span><br><span class="line">(<span class="string">&#x27;tank&#x27;</span>,<span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改数据之前先开启事务操作</span></span><br><span class="line">start transaction;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改操作</span></span><br><span class="line">update user <span class="built_in">set</span> balance=<span class="number">900</span> where name=<span class="string">&#x27;jason&#x27;</span>; <span class="comment">#买支付100元</span></span><br><span class="line">update user <span class="built_in">set</span> balance=<span class="number">1010</span> where name=<span class="string">&#x27;egon&#x27;</span>; <span class="comment">#中介拿走10元</span></span><br><span class="line">update user <span class="built_in">set</span> balance=<span class="number">1090</span> where name=<span class="string">&#x27;tank&#x27;</span>; <span class="comment">#卖家拿到90元</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 回滚到上一个状态</span></span><br><span class="line">rollback;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 开启事务之后，只要没有执行commit操作，数据其实都没有真正刷新到硬盘</span></span><br><span class="line">commit;</span><br><span class="line"><span class="string">&quot;&quot;&quot;开启事务检测操作是否完整，不完整主动回滚到上一个状态，如果完整就应该执行commit操作&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 站在python代码的角度，应该实现的伪代码逻辑，</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    update user <span class="built_in">set</span> balance=<span class="number">900</span> where name=<span class="string">&#x27;jason&#x27;</span>; <span class="comment">#买支付100元</span></span><br><span class="line">    update user <span class="built_in">set</span> balance=<span class="number">1010</span> where name=<span class="string">&#x27;egon&#x27;</span>; <span class="comment">#中介拿走10元</span></span><br><span class="line">    update user <span class="built_in">set</span> balance=<span class="number">1090</span> where name=<span class="string">&#x27;tank&#x27;</span>; <span class="comment">#卖家拿到90元</span></span><br><span class="line"><span class="keyword">except</span> 异常:</span><br><span class="line">    rollback;</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    commit;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h2><p><strong>存储过程包含了一系列可执行的sql语句，存储过程存放于MySQL中，通过调用它的名字可以执行其内部的一堆sql,类似于python中的自定义函数</strong></p>
+<h2 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">delimiter $$</span><br><span class="line">create procedure p1()</span><br><span class="line">begin</span><br><span class="line">    select * <span class="keyword">from</span> user;</span><br><span class="line">end $$</span><br><span class="line">delimiter ;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 调用</span></span><br><span class="line">call p1()</span><br></pre></td></tr></table></figure>
+
+<h2 id="三种开发模型"><a href="#三种开发模型" class="headerlink" title="三种开发模型"></a>三种开发模型</h2><h3 id="第一种"><a href="#第一种" class="headerlink" title="第一种"></a>第一种</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">应用程序：只需要开发应用程序的逻辑</span></span><br><span class="line"><span class="string">mysql:编写好存储过程，以供应用程序调用</span></span><br><span class="line"><span class="string">优点：开发效率，执行效率都高</span></span><br><span class="line"><span class="string">缺点：考虑到人为因素、跨部门沟通等问题，会导致扩展性差</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="第二种"><a href="#第二种" class="headerlink" title="第二种"></a>第二种</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">应用程序：除了开发应用程序的逻辑，还需要编写原生sql</span></span><br><span class="line"><span class="string">优点：比方式1，扩展性高(非技术性的)</span></span><br><span class="line"><span class="string">缺点：</span></span><br><span class="line"><span class="string">1、开发效率，执行效率都不如方式1</span></span><br><span class="line"><span class="string">2、编写原生sql太过于复杂，而且需要考虑到sql语句的优化问题</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="第三种"><a href="#第三种" class="headerlink" title="第三种"></a>第三种</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">应用程序：开发应用程序的逻辑，不需要编写原生sql，基于别人编写好的框架来处理数据，ORM</span></span><br><span class="line"><span class="string">优点：不用再编写纯生sql，这意味着开发效率比方式2高，同时兼容方式2扩展性高的好处</span></span><br><span class="line"><span class="string">缺点：执行效率连方式2都比不过</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="创建存储过程"><a href="#创建存储过程" class="headerlink" title="创建存储过程"></a>创建存储过程</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 介绍形参特点  再写具体功能</span></span><br><span class="line"></span><br><span class="line">delimiter $$</span><br><span class="line">create procedure p2(</span><br><span class="line">    <span class="keyword">in</span> m <span class="built_in">int</span>,  <span class="comment"># in表示这个参数必须只能是传入不能被返回出去</span></span><br><span class="line">    <span class="keyword">in</span> n <span class="built_in">int</span>,  </span><br><span class="line">    out res <span class="built_in">int</span>  <span class="comment"># out表示这个参数可以被返回出去</span></span><br><span class="line">)</span><br><span class="line">begin</span><br><span class="line">    select tname <span class="keyword">from</span> teacher where tid &gt; m <span class="keyword">and</span> tid &lt; n;</span><br><span class="line">    <span class="built_in">set</span> res=<span class="number">0</span>;  <span class="comment"># 用来标志存储过程是否执行</span></span><br><span class="line">end $$</span><br><span class="line">delimiter ;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 针对res需要先提前定义</span></span><br><span class="line"><span class="built_in">set</span> @res=<span class="number">10</span>;  定义</span><br><span class="line">select @res;  查看</span><br><span class="line">call p1(<span class="number">1</span>,<span class="number">5</span>,@res)  调用</span><br><span class="line">select @res  查看</span><br></pre></td></tr></table></figure>
+
+<h3 id="如何用存储过程"><a href="#如何用存储过程" class="headerlink" title="如何用存储过程"></a>如何用存储过程</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 大前提:存储过程在哪个库下面创建的只能在对应的库下面才能使用！！！</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1、直接在mysql中调用</span></span><br><span class="line"><span class="built_in">set</span> @res=<span class="number">10</span>  <span class="comment"># res的值是用来判断存储过程是否被执行成功的依据，所以需要先定义一个变量@res存储10</span></span><br><span class="line">call p1(<span class="number">2</span>,<span class="number">4</span>,<span class="number">10</span>);  <span class="comment"># 报错</span></span><br><span class="line">call p1(<span class="number">2</span>,<span class="number">4</span>,@res);  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看结果</span></span><br><span class="line">select @res;  <span class="comment"># 执行成功，@res变量值发生了变化</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2、在python程序中调用</span></span><br><span class="line">pymysql链接mysql</span><br><span class="line">产生的游表cursor.callproc(<span class="string">&#x27;p1&#x27;</span>,(<span class="number">2</span>,<span class="number">4</span>,<span class="number">10</span>))  <span class="comment"># 内部原理：@_p1_0=2,@_p1_1=4,@_p1_2=10;</span></span><br><span class="line">cursor.excute(<span class="string">&#x27;select @_p1_2;&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3、存储过程与事务使用举例(了解)</span></span><br><span class="line">delimiter //</span><br><span class="line">create PROCEDURE p5(</span><br><span class="line">    OUT p_return_code tinyint</span><br><span class="line">)</span><br><span class="line">BEGIN</span><br><span class="line">    DECLARE exit handler <span class="keyword">for</span> sqlexception</span><br><span class="line">    BEGIN</span><br><span class="line">        -- ERROR</span><br><span class="line">        <span class="built_in">set</span> p_return_code = <span class="number">1</span>;</span><br><span class="line">        rollback;</span><br><span class="line">    END;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  DECLARE exit handler <span class="keyword">for</span> sqlwarning</span><br><span class="line">  BEGIN</span><br><span class="line">      -- WARNING</span><br><span class="line">      <span class="built_in">set</span> p_return_code = <span class="number">2</span>;</span><br><span class="line">      rollback;</span><br><span class="line">  END;</span><br><span class="line"></span><br><span class="line">  START TRANSACTION;</span><br><span class="line">      update user <span class="built_in">set</span> balance=<span class="number">900</span> where <span class="built_in">id</span> =<span class="number">1</span>;</span><br><span class="line">      update user123 <span class="built_in">set</span> balance=<span class="number">1010</span> where <span class="built_in">id</span> = <span class="number">2</span>;</span><br><span class="line">      update user <span class="built_in">set</span> balance=<span class="number">1090</span> where <span class="built_in">id</span> =<span class="number">3</span>;</span><br><span class="line">  COMMIT;</span><br><span class="line"></span><br><span class="line">  -- SUCCESS</span><br><span class="line">  <span class="built_in">set</span> p_return_code = <span class="number">0</span>; <span class="comment">#0代表执行成功</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">END //</span><br><span class="line">delimiter ;</span><br></pre></td></tr></table></figure>
+
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>注意与存储过程的区别，mysql内置的函数只能在sql语句中使用！</p>
+<p>参考博客：<a target="_blank" rel="noopener" href="http://www.cnblogs.com/linhaifeng/articles/7495918.html#_label2">http://www.cnblogs.com/linhaifeng/articles/7495918.html#_label2</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE blog (</span><br><span class="line">    <span class="built_in">id</span> INT PRIMARY KEY auto_increment,</span><br><span class="line">    NAME CHAR (<span class="number">32</span>),</span><br><span class="line">    sub_time datetime</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">INSERT INTO blog (NAME, sub_time)</span><br><span class="line">VALUES</span><br><span class="line">    (<span class="string">&#x27;第1篇&#x27;</span>,<span class="string">&#x27;2015-03-01 11:31:21&#x27;</span>),</span><br><span class="line">    (<span class="string">&#x27;第2篇&#x27;</span>,<span class="string">&#x27;2015-03-11 16:31:21&#x27;</span>),</span><br><span class="line">    (<span class="string">&#x27;第3篇&#x27;</span>,<span class="string">&#x27;2016-07-01 10:21:31&#x27;</span>),</span><br><span class="line">    (<span class="string">&#x27;第4篇&#x27;</span>,<span class="string">&#x27;2016-07-22 09:23:21&#x27;</span>),</span><br><span class="line">    (<span class="string">&#x27;第5篇&#x27;</span>,<span class="string">&#x27;2016-07-23 10:11:11&#x27;</span>),</span><br><span class="line">    (<span class="string">&#x27;第6篇&#x27;</span>,<span class="string">&#x27;2016-07-25 11:21:31&#x27;</span>),</span><br><span class="line">    (<span class="string">&#x27;第7篇&#x27;</span>,<span class="string">&#x27;2017-03-01 15:33:21&#x27;</span>),</span><br><span class="line">    (<span class="string">&#x27;第8篇&#x27;</span>,<span class="string">&#x27;2017-03-01 17:32:21&#x27;</span>),</span><br><span class="line">    (<span class="string">&#x27;第9篇&#x27;</span>,<span class="string">&#x27;2017-03-01 18:31:21&#x27;</span>);</span><br><span class="line"></span><br><span class="line">select date_format(sub_time,<span class="string">&#x27;%Y-%m&#x27;</span>),count(<span class="built_in">id</span>) <span class="keyword">from</span> blog group by date_format(sub_time,<span class="string">&#x27;%Y-%m&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># if条件语句</span></span><br><span class="line">delimiter //</span><br><span class="line">CREATE PROCEDURE proc_if ()</span><br><span class="line">BEGIN</span><br><span class="line">    </span><br><span class="line">    declare i <span class="built_in">int</span> default <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> i = <span class="number">1</span> THEN</span><br><span class="line">        SELECT <span class="number">1</span>;</span><br><span class="line">    ELSEIF i = <span class="number">2</span> THEN</span><br><span class="line">        SELECT <span class="number">2</span>;</span><br><span class="line">    ELSE</span><br><span class="line">        SELECT <span class="number">7</span>;</span><br><span class="line">    END IF;</span><br><span class="line"></span><br><span class="line">END //</span><br><span class="line">delimiter ;</span><br><span class="line"><span class="comment"># while循环</span></span><br><span class="line">delimiter //</span><br><span class="line">CREATE PROCEDURE proc_while ()</span><br><span class="line">BEGIN</span><br><span class="line"></span><br><span class="line">    DECLARE num INT ;</span><br><span class="line">    SET num = <span class="number">0</span> ;</span><br><span class="line">    WHILE num &lt; <span class="number">10</span> DO</span><br><span class="line">        SELECT</span><br><span class="line">            num ;</span><br><span class="line">        SET num = num + <span class="number">1</span> ;</span><br><span class="line">    END WHILE ;</span><br><span class="line"></span><br><span class="line">END //</span><br><span class="line">delimiter ;</span><br></pre></td></tr></table></figure>
+
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><p>知识回顾:数据都是存在硬盘上的，那查询数据不可避免的需要进行IO操作</p>
+<p>索引就是一种数据结构，类似于书的目录。意味着以后再查数据应该先找目录再找数据，而不是用翻页的方式查询数据</p>
+<p><em>索引在MySQL中也叫做“键”，是存储引擎用于快速找到记录的一种数据结构。</em></p>
+<ul>
+<li>primary key</li>
+<li>unique key</li>
+<li>index key</li>
+</ul>
+<p>注意foreign key不是用来加速查询用的，不在我们研究范围之内,上面三种key前两种除了有加速查询的效果之外还有额外的约束条件(primary key:非空且唯一，unique key:唯一)，而index key没有任何约束功能只会帮你加速查询</p>
+<p><strong>本质都是：通过不断地缩小想要获取数据的范围来筛选出最终想要的结果，同时把随机的事件变成顺序的事件，也就是说，有了这种索引机制，我们可以总是用同一种查找方式来锁定数据。</strong></p>
+<p><strong>索引的影响:</strong></p>
+<ul>
+<li>在表中有大量数据的前提下，创建索引速度会很慢</li>
+<li>在索引创建完毕后，对表的查询性能会大幅度提升，但是写的性能会降低</li>
+</ul>
+<h4 id="b-树"><a href="#b-树" class="headerlink" title="b+树"></a>b+树</h4><p><a target="_blank" rel="noopener" href="https://images2017.cnblogs.com/blog/1036857/201709/1036857-20170912011123500-158121126.png">https://images2017.cnblogs.com/blog/1036857/201709/1036857-20170912011123500-158121126.png</a></p>
+<p>只有叶子结点存放真实数据，根和树枝节点存的仅仅是虚拟数据</p>
+<p>查询次数由树的层级决定，层级越低次数越少</p>
+<p>一个磁盘块儿的大小是一定的，那也就意味着能存的数据量是一定的。如何保证树的层级最低呢？一个磁盘块儿存放占用空间比较小的数据项</p>
+<p>思考我们应该给我们一张表里面的什么字段字段建立索引能够降低树的层级高度&gt;&gt;&gt; 主键id字段</p>
+<h4 id="聚集索引-primary-key"><a href="#聚集索引-primary-key" class="headerlink" title="聚集索引(primary key)"></a>聚集索引(primary key)</h4><p>聚集索引其实指的就是表的主键，innodb引擎规定一张表中必须要有主键。先来回顾一下存储引擎。</p>
+<p>myisam在建表的时候对应到硬盘有几个文件(三个)？</p>
+<p>innodb在建表的时候对应到硬盘有几个文件(两个)？frm文件只存放表结构，不可能放索引，也就意味着innodb的索引跟数据都放在idb表数据文件中。</p>
+<p>**特点:**叶子结点放的一条条完整的记录</p>
+<h4 id="辅助索引-unique-index"><a href="#辅助索引-unique-index" class="headerlink" title="辅助索引(unique,index)"></a>辅助索引(unique,index)</h4><p>辅助索引:查询数据的时候不可能都是用id作为筛选条件，也可能会用name，password等字段信息，那么这个时候就无法利用到聚集索引的加速查询效果。就需要给其他字段建立索引，这些索引就叫辅助索引</p>
+<p><strong>特点：</strong>叶子结点存放的是辅助索引字段对应的那条记录的主键的值(比如:按照name字段创建索引，那么叶子节点存放的是:{name对应的值:name所在的那条记录的主键值})</p>
+<p>select name from user where name=’jason’;</p>
+<p>上述语句叫覆盖索引:只在辅助索引的叶子节点中就已经找到了所有我们想要的数据</p>
+<p>select age from user where name=’jason’;</p>
+<p>上述语句叫非覆盖索引,虽然查询的时候命中了索引字段name，但是要查的是age字段，所以还需要利用主键才去查找</p>
+<h2 id="测试索引"><a href="#测试索引" class="headerlink" title="测试索引"></a>测试索引</h2><h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1. 准备表</span></span><br><span class="line">create table s1(</span><br><span class="line"><span class="built_in">id</span> <span class="built_in">int</span>,</span><br><span class="line">name varchar(<span class="number">20</span>),</span><br><span class="line">gender char(<span class="number">6</span>),</span><br><span class="line">email varchar(<span class="number">50</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">#2. 创建存储过程，实现批量插入记录</span></span><br><span class="line">delimiter $$ <span class="comment">#声明存储过程的结束符号为$$</span></span><br><span class="line">create procedure auto_insert1()</span><br><span class="line">BEGIN</span><br><span class="line">    declare i <span class="built_in">int</span> default <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(i&lt;<span class="number">3000000</span>)do</span><br><span class="line">        insert into s1 values(i,<span class="string">&#x27;jason&#x27;</span>,<span class="string">&#x27;male&#x27;</span>,concat(<span class="string">&#x27;jason&#x27;</span>,i,<span class="string">&#x27;@oldboy&#x27;</span>));</span><br><span class="line">        <span class="built_in">set</span> i=i+<span class="number">1</span>;</span><br><span class="line">    end <span class="keyword">while</span>;</span><br><span class="line">END$$ <span class="comment">#$$结束</span></span><br><span class="line">delimiter ; <span class="comment">#重新声明分号为结束符号</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#3. 查看存储过程</span></span><br><span class="line">show create procedure auto_insert1\G </span><br><span class="line"></span><br><span class="line"><span class="comment">#4. 调用存储过程</span></span><br><span class="line">call auto_insert1();</span><br><span class="line"><span class="comment"># 表没有任何索引的情况下</span></span><br><span class="line">select * <span class="keyword">from</span> s1 where <span class="built_in">id</span>=<span class="number">30000</span>;</span><br><span class="line"><span class="comment"># 避免打印带来的时间损耗</span></span><br><span class="line">select count(<span class="built_in">id</span>) <span class="keyword">from</span> s1 where <span class="built_in">id</span> = <span class="number">30000</span>;</span><br><span class="line">select count(<span class="built_in">id</span>) <span class="keyword">from</span> s1 where <span class="built_in">id</span> = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 给id做一个主键</span></span><br><span class="line">alter table s1 add primary key(<span class="built_in">id</span>);  <span class="comment"># 速度很慢</span></span><br><span class="line"></span><br><span class="line">select count(<span class="built_in">id</span>) <span class="keyword">from</span> s1 where <span class="built_in">id</span> = <span class="number">1</span>;  <span class="comment"># 速度相较于未建索引之前两者差着数量级</span></span><br><span class="line">select count(<span class="built_in">id</span>) <span class="keyword">from</span> s1 where name = <span class="string">&#x27;jason&#x27;</span>  <span class="comment"># 速度仍然很慢</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">范围问题</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="comment"># 并不是加了索引，以后查询的时候按照这个字段速度就一定快   </span></span><br><span class="line">select count(<span class="built_in">id</span>) <span class="keyword">from</span> s1 where <span class="built_in">id</span> &gt; <span class="number">1</span>;  <span class="comment"># 速度相较于id = 1慢了很多</span></span><br><span class="line">select count(<span class="built_in">id</span>) <span class="keyword">from</span> s1 where <span class="built_in">id</span> &gt;<span class="number">1</span> <span class="keyword">and</span> <span class="built_in">id</span> &lt; <span class="number">3</span>;</span><br><span class="line">select count(<span class="built_in">id</span>) <span class="keyword">from</span> s1 where <span class="built_in">id</span> &gt; <span class="number">1</span> <span class="keyword">and</span> <span class="built_in">id</span> &lt; <span class="number">10000</span>;</span><br><span class="line">select count(<span class="built_in">id</span>) <span class="keyword">from</span> s1 where <span class="built_in">id</span> != <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line">alter table s1 drop primary key;  <span class="comment"># 删除主键 单独再来研究name字段</span></span><br><span class="line">select count(<span class="built_in">id</span>) <span class="keyword">from</span> s1 where name = <span class="string">&#x27;jason&#x27;</span>;  <span class="comment"># 又慢了</span></span><br><span class="line"></span><br><span class="line">create index idx_name on s1(name);  <span class="comment"># 给s1表的name字段创建索引</span></span><br><span class="line">select count(<span class="built_in">id</span>) <span class="keyword">from</span> s1 where name = <span class="string">&#x27;jason&#x27;</span>  <span class="comment"># 仍然很慢！！！</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">再来看b+树的原理，数据需要区分度比较高，而我们这张表全是jason，根本无法区分</span></span><br><span class="line"><span class="string">那这个树其实就建成了“一根棍子”</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">select count(<span class="built_in">id</span>) <span class="keyword">from</span> s1 where name = <span class="string">&#x27;xxx&#x27;</span>;  </span><br><span class="line"><span class="comment"># 这个会很快，我就是一根棍，第一个不匹配直接不需要再往下走了</span></span><br><span class="line">select count(<span class="built_in">id</span>) <span class="keyword">from</span> s1 where name like <span class="string">&#x27;xxx&#x27;</span>;</span><br><span class="line">select count(<span class="built_in">id</span>) <span class="keyword">from</span> s1 where name like <span class="string">&#x27;xxx%&#x27;</span>;</span><br><span class="line">select count(<span class="built_in">id</span>) <span class="keyword">from</span> s1 where name like <span class="string">&#x27;%xxx&#x27;</span>;  <span class="comment"># 慢 最左匹配特性</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 区分度低的字段不能建索引</span></span><br><span class="line">drop index idx_name on s1;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 给id字段建普通的索引</span></span><br><span class="line">create index idx_id on s1(<span class="built_in">id</span>);</span><br><span class="line">select count(<span class="built_in">id</span>) <span class="keyword">from</span> s1 where <span class="built_in">id</span> = <span class="number">3</span>;  <span class="comment"># 快了</span></span><br><span class="line">select count(<span class="built_in">id</span>) <span class="keyword">from</span> s1 where <span class="built_in">id</span>*<span class="number">12</span> = <span class="number">3</span>;  <span class="comment"># 慢了  索引的字段一定不要参与计算</span></span><br><span class="line"></span><br><span class="line">drop index idx_id on s1;</span><br><span class="line">select count(<span class="built_in">id</span>) <span class="keyword">from</span> s1 where name=<span class="string">&#x27;jason&#x27;</span> <span class="keyword">and</span> gender = <span class="string">&#x27;male&#x27;</span> <span class="keyword">and</span> <span class="built_in">id</span> = <span class="number">3</span> <span class="keyword">and</span> email = <span class="string">&#x27;xxx&#x27;</span>;</span><br><span class="line"><span class="comment"># 针对上面这种连续多个and的操作，mysql会从左到右先找区分度比较高的索引字段，先将整体范围降下来再去比较其他条件</span></span><br><span class="line">create index idx_name on s1(name);</span><br><span class="line">select count(<span class="built_in">id</span>) <span class="keyword">from</span> s1 where name=<span class="string">&#x27;jason&#x27;</span> <span class="keyword">and</span> gender = <span class="string">&#x27;male&#x27;</span> <span class="keyword">and</span> <span class="built_in">id</span> = <span class="number">3</span> <span class="keyword">and</span> email = <span class="string">&#x27;xxx&#x27;</span>;  <span class="comment"># 并没有加速</span></span><br><span class="line"></span><br><span class="line">drop index idx_name on s1;</span><br><span class="line"><span class="comment"># 给name，gender这种区分度不高的字段加上索引并不难加快查询速度</span></span><br><span class="line"></span><br><span class="line">create index idx_id on s1(<span class="built_in">id</span>);</span><br><span class="line">select count(<span class="built_in">id</span>) <span class="keyword">from</span> s1 where name=<span class="string">&#x27;jason&#x27;</span> <span class="keyword">and</span> gender = <span class="string">&#x27;male&#x27;</span> <span class="keyword">and</span> <span class="built_in">id</span> = <span class="number">3</span> <span class="keyword">and</span> email = <span class="string">&#x27;xxx&#x27;</span>;  <span class="comment"># 快了  先通过id已经讲数据快速锁定成了一条了</span></span><br><span class="line">select count(<span class="built_in">id</span>) <span class="keyword">from</span> s1 where name=<span class="string">&#x27;jason&#x27;</span> <span class="keyword">and</span> gender = <span class="string">&#x27;male&#x27;</span> <span class="keyword">and</span> <span class="built_in">id</span> &gt; <span class="number">3</span> <span class="keyword">and</span> email = <span class="string">&#x27;xxx&#x27;</span>;  <span class="comment"># 慢了  基于id查出来的数据仍然很多，然后还要去比较其他字段</span></span><br><span class="line"></span><br><span class="line">drop index idx_id on s1</span><br><span class="line"></span><br><span class="line">create index idx_email on s1(email);</span><br><span class="line">select count(<span class="built_in">id</span>) <span class="keyword">from</span> s1 where name=<span class="string">&#x27;jason&#x27;</span> <span class="keyword">and</span> gender = <span class="string">&#x27;male&#x27;</span> <span class="keyword">and</span> <span class="built_in">id</span> &gt; <span class="number">3</span> <span class="keyword">and</span> email = <span class="string">&#x27;xxx&#x27;</span>;  <span class="comment"># 快 通过email字段一剑封喉 </span></span><br></pre></td></tr></table></figure>
+
+<h3 id="联合索引"><a href="#联合索引" class="headerlink" title="联合索引"></a>联合索引</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">select count(<span class="built_in">id</span>) <span class="keyword">from</span> s1 where name=<span class="string">&#x27;jason&#x27;</span> <span class="keyword">and</span> gender = <span class="string">&#x27;male&#x27;</span> <span class="keyword">and</span> <span class="built_in">id</span> &gt; <span class="number">3</span> <span class="keyword">and</span> email = <span class="string">&#x27;xxx&#x27;</span>;  </span><br><span class="line"><span class="comment"># 如果上述四个字段区分度都很高，那给谁建都能加速查询</span></span><br><span class="line"><span class="comment"># 给email加然而不用email字段</span></span><br><span class="line">select count(<span class="built_in">id</span>) <span class="keyword">from</span> s1 where name=<span class="string">&#x27;jason&#x27;</span> <span class="keyword">and</span> gender = <span class="string">&#x27;male&#x27;</span> <span class="keyword">and</span> <span class="built_in">id</span> &gt; <span class="number">3</span>; </span><br><span class="line"><span class="comment"># 给name加然而不用name字段</span></span><br><span class="line">select count(<span class="built_in">id</span>) <span class="keyword">from</span> s1 where gender = <span class="string">&#x27;male&#x27;</span> <span class="keyword">and</span> <span class="built_in">id</span> &gt; <span class="number">3</span>; </span><br><span class="line"><span class="comment"># 给gender加然而不用gender字段</span></span><br><span class="line">select count(<span class="built_in">id</span>) <span class="keyword">from</span> s1 where <span class="built_in">id</span> &gt; <span class="number">3</span>; </span><br><span class="line"></span><br><span class="line"><span class="comment"># 带来的问题是所有的字段都建了索引然而都没有用到，还需要花费四次建立的时间</span></span><br><span class="line">create index idx_all on s1(email,name,gender,<span class="built_in">id</span>);  <span class="comment"># 最左匹配原则，区分度高的往左放</span></span><br><span class="line">select count(<span class="built_in">id</span>) <span class="keyword">from</span> s1 where name=<span class="string">&#x27;jason&#x27;</span> <span class="keyword">and</span> gender = <span class="string">&#x27;male&#x27;</span> <span class="keyword">and</span> <span class="built_in">id</span> &gt; <span class="number">3</span> <span class="keyword">and</span> email = <span class="string">&#x27;xxx&#x27;</span>;  <span class="comment"># 速度变快</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结:"></a>总结:</h2><p>上面这些操作，你感兴趣可以敲一敲，不感兴趣你就可以不用敲了，权当看个乐呵。理论掌握了就行了</p>
+<p>慢查询日志</p>
+<p>设定一个时间检测所有超出该时间的sql语句，然后针对性的进行优化！</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/02/11/MySQL%E9%AB%98%E7%BA%A7/" rel="prev" title="MySQL高级">
+                  <i class="fa fa-chevron-left"></i> MySQL高级
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/02/11/MySQL%E5%9F%BA%E7%A1%80%E4%B9%8B%E7%BA%A6%E6%9D%9F%E6%9D%A1%E4%BB%B6/" rel="next" title="MySQL基础之约束条件">
+                  MySQL基础之约束条件 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">池劲涛</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

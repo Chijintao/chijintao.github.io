@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="链接管理1234567891011121314mysql-u      指定用户-p      指定密码-h      指定主机域-S      指定socket文件-P      指定端口-e      指定SQL语句# 配置优先级&#x2F;etc&#x2F;my.cnf                                     1&#x2F;etc&#x2F;mysql&#x2F;my.cnf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL高级">
+<meta property="og:url" content="http://example.com/2020/02/11/MySQL%E9%AB%98%E7%BA%A7/index.html">
+<meta property="og:site_name" content="池劲涛的博客">
+<meta property="og:description" content="链接管理1234567891011121314mysql-u      指定用户-p      指定密码-h      指定主机域-S      指定socket文件-P      指定端口-e      指定SQL语句# 配置优先级&#x2F;etc&#x2F;my.cnf                                     1&#x2F;etc&#x2F;mysql&#x2F;my.cnf">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-02-10T23:20:25.000Z">
+<meta property="article:modified_time" content="2020-03-01T04:22:34.000Z">
+<meta property="article:author" content="池劲涛">
+<meta property="article:tag" content="Python Linux Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2020/02/11/MySQL%E9%AB%98%E7%BA%A7/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2020/02/11/MySQL%E9%AB%98%E7%BA%A7/","path":"2020/02/11/MySQL高级/","title":"MySQL高级"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>MySQL高级 | 池劲涛的博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">池劲涛的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%93%BE%E6%8E%A5%E7%AE%A1%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">链接管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B"><span class="nav-number">2.</span> <span class="nav-text">实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL%E7%BB%93%E6%9E%84%E5%8C%96%E6%9F%A5%E8%AF%A2%E8%AF%AD%E8%A8%80%E5%8C%85%E5%90%AB6%E4%B8%AA%E9%83%A8%E5%88%86"><span class="nav-number">3.</span> <span class="nav-text">SQL结构化查询语言包含6个部分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E6%AE%B5%E6%B3%A8%E9%87%8A"><span class="nav-number">4.</span> <span class="nav-text">字段注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96"><span class="nav-number">5.</span> <span class="nav-text">查询优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL%E7%B4%A2%E5%BC%95%E7%AE%A1%E7%90%86"><span class="nav-number">6.</span> <span class="nav-text">MySQL索引管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#explain"><span class="nav-number">7.</span> <span class="nav-text">explain</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E7%B4%A2%E5%BC%95%E5%8E%9F%E5%88%99"><span class="nav-number">8.</span> <span class="nav-text">建立索引原则</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="池劲涛"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">池劲涛</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/02/11/MySQL%E9%AB%98%E7%BA%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="池劲涛">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="池劲涛的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MySQL高级
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-02-11 07:20:25" itemprop="dateCreated datePublished" datetime="2020-02-11T07:20:25+08:00">2020-02-11</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-03-01 12:22:34" itemprop="dateModified" datetime="2020-03-01T12:22:34+08:00">2020-03-01</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/MySQL%E7%B3%BB%E5%88%97/" itemprop="url" rel="index"><span itemprop="name">MySQL系列</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="链接管理"><a href="#链接管理" class="headerlink" title="链接管理"></a>链接管理</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql</span><br><span class="line"></span><br><span class="line">-u      指定用户</span><br><span class="line">-p      指定密码</span><br><span class="line">-h      指定主机域</span><br><span class="line">-S      指定socket文件</span><br><span class="line">-P      指定端口</span><br><span class="line">-e      指定SQL语句</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置优先级</span></span><br><span class="line">/etc/my.cnf                                     <span class="number">1</span></span><br><span class="line">/etc/mysql/my.cnf                               <span class="number">10</span></span><br><span class="line">/application/mysql/my.cnf       				<span class="number">20</span></span><br><span class="line">~/.my.cnf                                       <span class="number">30</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">什么是实例？</span><br><span class="line"></span><br><span class="line">进程+多个线程+预分配内存结构</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">什么是多实例？</span><br><span class="line"></span><br><span class="line">（进程+多个线程+预分配内存结构）*多个</span><br><span class="line"></span><br><span class="line">多个端口</span><br><span class="line">多套配置文件</span><br><span class="line">多个socket文件</span><br><span class="line">datadir（多套数据目录）</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">多套配置文件：端口，多个data目录，多个socket文件</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="SQL结构化查询语言包含6个部分"><a href="#SQL结构化查询语言包含6个部分" class="headerlink" title="SQL结构化查询语言包含6个部分"></a><strong>SQL结构化查询语言包含6个部分</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.数据查询语言（DQL: Data Query Language）</span></span><br><span class="line">数据检索语句，用于从表中获取数据。通常最常用的为保留字SELECT,并且常与FROM子句、WHERE子句组成查询SQL查询语句。</span><br><span class="line">语法：</span><br><span class="line">    SELECT &lt;字段名&gt; FROM &lt;表或视图名&gt; WHERE &lt;查询条件&gt;;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.数据操纵语言（DML：Data Manipulation Language）</span></span><br><span class="line">主要用来对数据库的数据进行一些操作，常用的就是INSERT、UPDATE、DELETE。</span><br><span class="line">语法：</span><br><span class="line">    INSERT INTO &lt;表名&gt;(列<span class="number">1</span>,列<span class="number">2</span>,...) VALUES (值<span class="number">1</span>,值<span class="number">2</span>,...);</span><br><span class="line">    UPDATE &lt;表名&gt; SET &lt;列名&gt;=新值 WHERE &lt;列名&gt;=某值;</span><br><span class="line">    DELETE FROM &lt;表名&gt; WHERE &lt;列名&gt;=某值;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.事务处理语言（DPL）</span></span><br><span class="line"></span><br><span class="line">事务处理语句能确保被DML语句影响的表的所有行及时得以更新。TPL语句包括BEGIN TRANSACTION、COMMIT和ROLLBACK。</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.数据控制语言（DCL）</span></span><br><span class="line">通过GRANT和REVOKE，确定单个用户或用户组对数据库对象的访问权限。</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5.数据定义语言（DDL）</span></span><br><span class="line">常用的有CREATE和DROP，用于在数据库中创建新表或删除表，以及为表加入索引等。</span><br><span class="line"></span><br><span class="line"><span class="comment"># 6.指针控制语言（CCL）</span></span><br><span class="line">它的语句，想DECLARE CURSOR、FETCH INTO和UPDATE WHERE CURRENT用于对一个或多个表单独行的操作。</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="字段注释"><a href="#字段注释" class="headerlink" title="字段注释"></a>字段注释</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># comment字段注释</span></span><br><span class="line"><span class="built_in">id</span> <span class="built_in">int</span> <span class="keyword">not</span> null primary key auto_increment comment <span class="string">&#x27;学号&#x27;</span>,</span><br><span class="line">name varchar(<span class="number">10</span>) <span class="keyword">not</span> null comment <span class="string">&#x27;姓名&#x27;</span>,</span><br><span class="line">age tinyint unsigned comment <span class="string">&#x27;年龄&#x27;</span>,</span><br><span class="line">sex enum(<span class="string">&#x27;f&#x27;</span>,<span class="string">&#x27;m&#x27;</span>,<span class="string">&#x27;bgx&#x27;</span>) <span class="keyword">not</span> null default <span class="string">&#x27;bgx&#x27;</span> comment <span class="string">&#x27;性别&#x27;</span>,</span><br><span class="line">date datetime <span class="keyword">not</span> null default NOW() comment <span class="string">&#x27;入学时间&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="查询优化"><a href="#查询优化" class="headerlink" title="查询优化"></a>查询优化</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#范围查询OR语句</span></span><br><span class="line">select * <span class="keyword">from</span> city where countrycode=<span class="string">&#x27;CHN&#x27;</span> <span class="keyword">or</span> countrycode=<span class="string">&#x27;USA&#x27;</span>;</span><br><span class="line"><span class="comment">#范围查询IN语句</span></span><br><span class="line">select * <span class="keyword">from</span> city where countrycode <span class="keyword">in</span> (<span class="string">&#x27;CHN&#x27;</span>,<span class="string">&#x27;USA&#x27;</span>);</span><br><span class="line">-- 上述两条sql语句等价且效率一致</span><br><span class="line"></span><br><span class="line"><span class="comment"># 效率更高(推荐)</span></span><br><span class="line">select * <span class="keyword">from</span> city where countrycode=<span class="string">&#x27;CHN&#x27;</span> </span><br><span class="line">union  <span class="built_in">all</span></span><br><span class="line">select * <span class="keyword">from</span> city where countrycode=<span class="string">&#x27;USA&#x27;</span> limit <span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="MySQL索引管理"><a href="#MySQL索引管理" class="headerlink" title="MySQL索引管理"></a>MySQL索引管理</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">btree       叶子结点不能直接跨(指针)</span><br><span class="line">b+tree  叶子结点可以直接跨(指针)(<span class="number">5.6</span>/<span class="number">5.7</span>用的都是该算法)</span><br><span class="line">b*tree  除了叶子结点、枝结点也能跨(指针)</span><br><span class="line"></span><br><span class="line">这些指针的添加都是为了提升范围查询的效率</span><br><span class="line">优化范围查询</span><br><span class="line"></span><br><span class="line"><span class="comment">#创建索引</span></span><br><span class="line">alter table test add index index_name(name);</span><br><span class="line"><span class="comment">#创建索引</span></span><br><span class="line">create index index_name on test(name);</span><br><span class="line"><span class="comment">#查看索引</span></span><br><span class="line">desc table;</span><br><span class="line"><span class="comment">#查看索引</span></span><br><span class="line">show index <span class="keyword">from</span> table;</span><br><span class="line"><span class="comment">#删除索引</span></span><br><span class="line">alter table test drop key index_name;</span><br><span class="line"><span class="comment">#添加唯一性索引</span></span><br><span class="line">alter table student add unique key uni_xxx(xxx);</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">添加唯一索引需要事先判断是否有重复数据 没有重复才能创建</span></span><br><span class="line"><span class="string">#查看表中数据行数</span></span><br><span class="line"><span class="string">select count(name) from city;</span></span><br><span class="line"><span class="string">#查看去重数据行数</span></span><br><span class="line"><span class="string">select count(distinct name) from city;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 前缀索引</span></span><br><span class="line">根据字段的前N个字符建立索引</span><br><span class="line">    避免对大列建索引</span><br><span class="line">    如果有，就使用前缀索引</span><br><span class="line">  alter table test add index idx_name(name(<span class="number">10</span>));</span><br><span class="line">  </span><br><span class="line"><span class="comment"># 联合索引</span></span><br><span class="line">多个字段建立一个索引</span><br><span class="line">例：</span><br><span class="line">    where a.女生 <span class="keyword">and</span> b.身高 <span class="keyword">and</span> c.体重 <span class="keyword">and</span> d.身材好</span><br><span class="line">    index(a,b,c)</span><br><span class="line">    特点：前缀生效特性</span><br><span class="line">    a,ab,ac,abc,abcd 可以走索引或部分走索引</span><br><span class="line">    b bc bcd cd c d ba ... 不走索引</span><br><span class="line">创建people表</span><br><span class="line">create table people (<span class="built_in">id</span> <span class="built_in">int</span>,name varchar(<span class="number">20</span>),age tinyint,money <span class="built_in">int</span> ,gender enum(<span class="string">&#x27;m&#x27;</span>,<span class="string">&#x27;f&#x27;</span>));</span><br><span class="line"><span class="comment">#创建联合索引</span></span><br><span class="line">alter table people add index idx_all(gender,age,money);</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="explain"><a href="#explain" class="headerlink" title="explain"></a>explain</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>全表扫描</span><br><span class="line">    在explain语句结果中<span class="built_in">type</span>为ALL</span><br><span class="line"><span class="number">2.</span>什么时候出现全表扫描?</span><br><span class="line">  <span class="number">2.1</span> 业务确实要获取所有数据</span><br><span class="line">  <span class="number">2.2</span> 不走索引导致的全表扫描</span><br><span class="line">    <span class="number">2.2</span><span class="number">.1</span> 没索引</span><br><span class="line">    <span class="number">2.2</span><span class="number">.2</span> 索引创建有问题</span><br><span class="line">    <span class="number">2.2</span><span class="number">.3</span> 语句有问题</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;mysql在使用全表扫描时的性能是极其差的，所以MySQL尽量避免出现全表扫描&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># explain命令使用方法</span></span><br><span class="line">explain select name,countrycode <span class="keyword">from</span> city where <span class="built_in">id</span>=<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span>索引扫描</span><br><span class="line">    常见的索引扫描类型:</span><br><span class="line">    <span class="number">1</span>）index</span><br><span class="line">    <span class="number">2</span>）<span class="built_in">range</span></span><br><span class="line">    <span class="number">3</span>）ref</span><br><span class="line">    <span class="number">4</span>）eq_ref</span><br><span class="line">    <span class="number">5</span>）const</span><br><span class="line">    <span class="number">6</span>）system</span><br><span class="line">    <span class="number">7</span>）null</span><br><span class="line"><span class="string">&quot;&quot;&quot;从上到下，性能从最差到最好，我们认为至少要达到range级别&quot;&quot;&quot;</span></span><br><span class="line"><span class="number">1.</span>index：Full Index Scan，index与ALL区别为index类型只遍历索引树</span><br><span class="line"><span class="number">2.</span><span class="built_in">range</span>：索引范围扫描，对索引的扫描开始于某一点，返回匹配值域的行。显而易见的索引范围扫描是带有between或者where子句里带有&lt;,&gt;查询</span><br><span class="line"><span class="number">3.</span>ref：使用非唯一索引扫描或者唯一索引的前缀扫描，返回匹配某个单独值的记录行</span><br><span class="line"><span class="number">4.</span>eq_ref：类似ref，区别就在使用的索引是唯一索引，对于每个索引键值，表中只有一条记录匹配，简单来说，就是多表连接中使用primary key或者 unique key作为关联条件A</span><br><span class="line"><span class="number">5.</span>const、system：当MySQL对查询某部分进行优化，并转换为一个常量时，使用这些类型访问:如将主键置于where列表中，MySQL就能将该查询转换为一个常量</span><br><span class="line"><span class="number">6.</span>NULL：MySQL在优化过程中分解语句，执行时甚至不用访问表或索引(条件不存在)，例如从一个索引列里选取最小值可以通过单独索引查找完成。 </span><br><span class="line"></span><br><span class="line">查询语句最好</span><br><span class="line">    key_len: 越小越好</span><br><span class="line">  rows: 越小越好</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="建立索引原则"><a href="#建立索引原则" class="headerlink" title="建立索引原则"></a>建立索引原则</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>选择唯一性索引(尽量考虑这个)</span><br><span class="line">    唯一性索引的值是唯一的，可以更快速的通过该索引来确定某条记录</span><br><span class="line">    <span class="comment"># 如果重复值较多，可以考虑采用联合索引</span></span><br><span class="line"><span class="number">2.</span>为经常需要排序、分组和联合操作的字段建立索引</span><br><span class="line"><span class="number">3.</span>为常作为查询条件的字段建立索引</span><br><span class="line">    <span class="number">3.1</span> 经常查询</span><br><span class="line">  <span class="number">3.2</span> 列值的重复值少</span><br><span class="line">    注:如果经常作为条件的列，重复值特别多，可以建立联合索引</span><br><span class="line"><span class="number">4</span>．尽量使用前缀来索引</span><br><span class="line">    如果索引字段的值很长，最好使用值的前缀来索引</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">5．限制索引的数目</span></span><br><span class="line"><span class="string">索引的数目不是越多越好。每个索引都需要占用磁盘空间，索引越多，需要的磁盘空间就越大。</span></span><br><span class="line"><span class="string">修改表时，对索引的重构和更新很麻烦。越多的索引，会使更新表变得很浪费时间。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">6．删除不再使用或者很少使用的索引</span></span><br><span class="line"><span class="string">表中的数据被大量更新，或者数据的使用方式被改变后，原有的一些索引可能不再需要。数据库管理</span></span><br><span class="line"><span class="string">员应当定期找出这些索引，将它们删除，从而减少索引对更新操作的影响。</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">*******************不走索引的情况*******************</span><br><span class="line"><span class="number">1.</span>没有查询条件，或者查询条件没有建立索引</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    在业务数据库中，特别是数据量比较大的表,是没有全表扫描这种需求。</span></span><br><span class="line"><span class="string">    1）对用户查看是非常痛苦的。</span></span><br><span class="line"><span class="string">    2）对服务器来讲毁灭性的。</span></span><br><span class="line"><span class="string">    3）SQL改写成以下语句：</span></span><br><span class="line"><span class="string">    #情况1</span></span><br><span class="line"><span class="string">    #全表扫描</span></span><br><span class="line"><span class="string">    select * from table;</span></span><br><span class="line"><span class="string">    #需要在price列上建立索引</span></span><br><span class="line"><span class="string">    selec  * from tab  order by  price  limit 10;</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    #情况2</span></span><br><span class="line"><span class="string">    #name列没有索引</span></span><br><span class="line"><span class="string">    select * from table where name=&#x27;zhangsan&#x27;; </span></span><br><span class="line"><span class="string">    1、换成有索引的列作为查询条件</span></span><br><span class="line"><span class="string">    2、将name列建立索引</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"><span class="number">2.</span>查询结果集是原表中的大部分数据大概<span class="number">25</span>％以上</span><br><span class="line">    哪怕建了索引也不会走，所以这个时候一般会用limit限制</span><br><span class="line"><span class="number">3.</span>索引本身失效，统计数据不真实</span><br><span class="line">    索引有自我维护的能力</span><br><span class="line">    对于表内容变化比较频繁的情况下，有可能会出现索引失效。</span><br><span class="line">    <span class="comment"># 重建索引就可以解决</span></span><br><span class="line"><span class="number">4.</span>查询条件使用函数在索引列上或者对索引列进行运算，运算包括(+，-，*等)</span><br><span class="line">    错误的例子：select * <span class="keyword">from</span> test where <span class="built_in">id</span>-<span class="number">1</span>=<span class="number">9</span>; </span><br><span class="line">    正确的例子：select * <span class="keyword">from</span> test where <span class="built_in">id</span>=<span class="number">10</span>;</span><br><span class="line"><span class="number">5.</span>隐式转换导致索引失效.这一点应当引起重视.也是开发中经常会犯的错误</span><br><span class="line">    <span class="comment"># telnum定义的时候用的是varchar</span></span><br><span class="line">    create table test (<span class="built_in">id</span> <span class="built_in">int</span> ,name varchar(<span class="number">20</span>),telnum varchar(<span class="number">10</span>));</span><br><span class="line">    insert into test values(<span class="number">1</span>,<span class="string">&#x27;zs&#x27;</span>,<span class="string">&#x27;110&#x27;</span>),(<span class="number">2</span>,<span class="string">&#x27;l4&#x27;</span>,<span class="number">120</span>),(<span class="number">3</span>,<span class="string">&#x27;w5&#x27;</span>,<span class="number">119</span>),(<span class="number">4</span>,<span class="string">&#x27;z4&#x27;</span>,<span class="number">112</span>);</span><br><span class="line">    explain select * <span class="keyword">from</span> test where telnum=<span class="number">120</span>;</span><br><span class="line">    alter table test add index idx_tel(telnum);</span><br><span class="line">  <span class="comment"># 查询的时候给的确实数字类型</span></span><br><span class="line">    explain select * <span class="keyword">from</span> test where telnum=<span class="number">120</span>;</span><br><span class="line">    explain select * <span class="keyword">from</span> test where telnum=<span class="number">120</span>;</span><br><span class="line">    explain select * <span class="keyword">from</span> test where telnum=<span class="string">&#x27;120&#x27;</span>;</span><br><span class="line"><span class="number">6</span>． &lt;&gt; ，<span class="keyword">not</span> <span class="keyword">in</span> 不走索引</span><br><span class="line">    单独的&gt;,&lt;,<span class="keyword">in</span> 有可能走，也有可能不走，和结果集有关，尽量结合业务添加limit</span><br><span class="line">    <span class="keyword">or</span>或<span class="keyword">in</span>尽量改成union</span><br><span class="line">  EXPLAIN  SELECT * FROM teltab WHERE telnum IN (<span class="string">&#x27;110&#x27;</span>,<span class="string">&#x27;119&#x27;</span>);</span><br><span class="line">    <span class="comment">#改写成</span></span><br><span class="line">    EXPLAIN SELECT * FROM teltab WHERE telnum=<span class="string">&#x27;110&#x27;</span></span><br><span class="line">    UNION ALL</span><br><span class="line">    SELECT * FROM teltab WHERE telnum=<span class="string">&#x27;119&#x27;</span></span><br><span class="line"><span class="number">7</span>．like <span class="string">&quot;%_&quot;</span> 百分号在最前面不走</span><br><span class="line">    <span class="comment">#不走索引</span></span><br><span class="line">    EXPLAIN SELECT * FROM teltab WHERE telnum LIKE <span class="string">&#x27;%110&#x27;</span>;</span><br><span class="line">    <span class="comment">#走range索引扫描</span></span><br><span class="line">    EXPLAIN SELECT * FROM teltab WHERE telnum LIKE <span class="string">&#x27;31%&#x27;</span>;</span><br><span class="line">    <span class="comment"># %linux%类的搜索需求，可以使用Elasticsearch -------&gt; ELK</span></span><br><span class="line"><span class="number">8.</span>单独引用联合索引里非第一位置的索引列</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/10/11/Docker-compose/" rel="prev" title="Docker-compose">
+                  <i class="fa fa-chevron-left"></i> Docker-compose
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/02/11/MySQL%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%9B%B6%E6%95%A3%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="next" title="MySQL基础之零散知识点">
+                  MySQL基础之零散知识点 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">池劲涛</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

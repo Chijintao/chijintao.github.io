@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="数据库前戏1234567891011121314151617181920212223242526储存数据1 文件：    文件地址与数据格式杂乱(每个人都可以按自己的格式来存) 例如：    user:xxx:age:xxx    user.xxx.age.xxx    user-xxx-age-xxx    从而出现↓↓↓2 软件开发目录规范：    规定了数据存储的位置，例如：    bin：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL基础之数据库初识">
+<meta property="og:url" content="http://example.com/2020/02/11/MySQL%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%88%9D%E8%AF%86/index.html">
+<meta property="og:site_name" content="池劲涛的博客">
+<meta property="og:description" content="数据库前戏1234567891011121314151617181920212223242526储存数据1 文件：    文件地址与数据格式杂乱(每个人都可以按自己的格式来存) 例如：    user:xxx:age:xxx    user.xxx.age.xxx    user-xxx-age-xxx    从而出现↓↓↓2 软件开发目录规范：    规定了数据存储的位置，例如：    bin：">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img2020.cnblogs.com/blog/2342210/202106/2342210-20210616212931824-1569182429.png">
+<meta property="article:published_time" content="2020-02-10T23:20:25.000Z">
+<meta property="article:modified_time" content="2020-03-01T04:22:34.000Z">
+<meta property="article:author" content="池劲涛">
+<meta property="article:tag" content="Python Linux Vue">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img2020.cnblogs.com/blog/2342210/202106/2342210-20210616212931824-1569182429.png">
+
+
+<link rel="canonical" href="http://example.com/2020/02/11/MySQL%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%88%9D%E8%AF%86/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2020/02/11/MySQL%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%88%9D%E8%AF%86/","path":"2020/02/11/MySQL基础之初识/","title":"MySQL基础之数据库初识"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>MySQL基础之数据库初识 | 池劲涛的博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">池劲涛的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%89%8D%E6%88%8F"><span class="nav-number">1.</span> <span class="nav-text">数据库前戏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%86%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">数据库分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL%E7%AE%80%E4%BB%8B"><span class="nav-number">3.</span> <span class="nav-text">MySQL简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E8%A6%81%E6%A6%82%E5%BF%B5%E4%BB%8B%E7%BB%8D"><span class="nav-number">4.</span> <span class="nav-text">重要概念介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85"><span class="nav-number">5.</span> <span class="nav-text">下载与安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1%E9%85%8D%E7%BD%AE"><span class="nav-number">6.</span> <span class="nav-text">系统服务配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95"><span class="nav-number">7.</span> <span class="nav-text">用户登录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">8.</span> <span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%ACSQL%E8%AF%AD%E5%8F%A5"><span class="nav-number">9.</span> <span class="nav-text">基本SQL语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">10.</span> <span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="池劲涛"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">池劲涛</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/02/11/MySQL%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%88%9D%E8%AF%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="池劲涛">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="池劲涛的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MySQL基础之数据库初识
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-02-11 07:20:25" itemprop="dateCreated datePublished" datetime="2020-02-11T07:20:25+08:00">2020-02-11</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-03-01 12:22:34" itemprop="dateModified" datetime="2020-03-01T12:22:34+08:00">2020-03-01</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/MySQL%E7%B3%BB%E5%88%97/" itemprop="url" rel="index"><span itemprop="name">MySQL系列</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="数据库前戏"><a href="#数据库前戏" class="headerlink" title="数据库前戏"></a>数据库前戏</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">储存数据</span><br><span class="line"></span><br><span class="line"><span class="number">1</span> 文件：</span><br><span class="line">    文件地址与数据格式杂乱(每个人都可以按自己的格式来存) 例如：</span><br><span class="line">    user:xxx:age:xxx</span><br><span class="line">    user.xxx.age.xxx</span><br><span class="line">    user-xxx-age-xxx</span><br><span class="line">    从而出现↓↓↓</span><br><span class="line"></span><br><span class="line"><span class="number">2</span> 软件开发目录规范：</span><br><span class="line">    规定了数据存储的位置，例如：</span><br><span class="line">    <span class="built_in">bin</span>：启动文件</span><br><span class="line">    conf：配置文件</span><br><span class="line">    core：核心逻辑代码文件</span><br><span class="line">    db：数据文件</span><br><span class="line">    log：日志文件</span><br><span class="line">    lib：公共模块文件</span><br><span class="line">    ...</span><br><span class="line">    (现在还是自己和自己玩，每个人的数据都自己储存---&gt;单机游戏)</span><br><span class="line">    接着出现↓↓↓</span><br><span class="line">    </span><br><span class="line"><span class="number">3</span> 数据库：</span><br><span class="line">    实现了数据共享，每个人的数据都储存在一个数据库里---&gt;网络游戏</span><br><span class="line">    但是存在安全问题---&gt;所有人的数据都放在一个数据库里，这个数据库没了，所有人的数据就都没了</span><br><span class="line">    所以出现了---&gt;数据库集群 图解↓↓↓</span><br><span class="line">    (从原先一个数据库存储数据到现在每收到一份数据，就往其他所以数据库发送一份数据，这样一个数据库没了，还有其他数据库，从而避免了一个数据库挂了，所有数据陪葬的问题)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img2020.cnblogs.com/blog/2342210/202106/2342210-20210616212931824-1569182429.png" alt="img"></p>
+<h2 id="数据库分类"><a href="#数据库分类" class="headerlink" title="数据库分类"></a>数据库分类</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">数据库本质就是一款cs架构软件(client---&gt;客户端，server---&gt;服务端)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">数据库相关软件：</span><br><span class="line">        <span class="number">1</span> 关系型数据库：(记)</span><br><span class="line">        固定表结构并且表与表之间可以建关系</span><br><span class="line">        常见软件：mysql --- postgresql---sqlite---db2---oracle---access---sql server</span><br><span class="line">        </span><br><span class="line">        <span class="number">2</span> 非关系型数据库：(记)</span><br><span class="line">        没有固定表结构并且储存数据以key value键值对的形式(类似字典)</span><br><span class="line">        常见软件：MongoDB---redis---memcache(逐渐淘汰)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="MySQL简介"><a href="#MySQL简介" class="headerlink" title="MySQL简介"></a>MySQL简介</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">MySQL本质上也是一款基于网络通信的应用程序</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">任何基于网络通信的软件底层肯定都是socket</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        服务端</span><br><span class="line">    基于socket通信</span><br><span class="line">    本地文件操作</span><br><span class="line">    解析指令(SQL语句)</span><br><span class="line">    </span><br><span class="line">        客户端</span><br><span class="line">    基于socket通信</span><br><span class="line">    发送指令</span><br><span class="line">    解析指令(SQL语句)</span><br><span class="line">    </span><br><span class="line">SQL语句的由来：</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">mysql不单单支持mysql客户端操作，也支持其他编程语言来操作</span></span><br><span class="line"><span class="string">    python、Java、php、c++、go...</span></span><br><span class="line"><span class="string">    这些编程语言语法都不一样，mysql如何做到兼容↓↓↓</span></span><br><span class="line"><span class="string">    两种思路</span></span><br><span class="line"><span class="string">        1 自己精通多种语言，自由切换(不现实，且切换也需要耗费资源)</span></span><br><span class="line"><span class="string">        2 统一的思想(采用统一的一种语言---&gt;sql语句)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="重要概念介绍"><a href="#重要概念介绍" class="headerlink" title="重要概念介绍"></a>重要概念介绍</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">库    ------&gt;    文件夹</span></span><br><span class="line"><span class="string">表    ------&gt;    文件夹里的文件</span></span><br><span class="line"><span class="string">记录  ------&gt;     文件内一行行的数据</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">表头      ---&gt;      表格的第一行数据</span></span><br><span class="line"><span class="string">字段      ---&gt;      字段名 + 字段类型</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="下载与安装"><a href="#下载与安装" class="headerlink" title="下载与安装"></a>下载与安装</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> 版本问题</span><br><span class="line">    <span class="number">5.6</span>(主流，逐渐向 <span class="number">5.7</span> 过度)</span><br><span class="line">    <span class="number">5.7</span>(主流)</span><br><span class="line">    <span class="number">8.0</span>(最新版，一般不采用最新版本)</span><br><span class="line"></span><br><span class="line"><span class="number">2</span> 下载</span><br><span class="line">    官网 ---&gt; 选择版本 ---&gt; 下载压缩包 ---&gt; 解压安装</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="系统服务配置"><a href="#系统服务配置" class="headerlink" title="系统服务配置"></a>系统服务配置</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> 环境变量添加</span><br><span class="line">    我的电脑 ---&gt; 属性 ---&gt; 高级配置 ---&gt; 环境变量 ---&gt; path ---&gt; 将<span class="built_in">bin</span>目录路径添加进去</span><br><span class="line">    </span><br><span class="line"><span class="number">2</span> 系统服务制作(全部在管理员身份下操作)</span><br><span class="line">        <span class="comment"># 初始化(5.7之前需要先初始化)</span></span><br><span class="line">        mysqld --initialize-insecure</span><br><span class="line">        <span class="comment"># 查看系统服务</span></span><br><span class="line">        services.msc</span><br><span class="line">        <span class="comment"># 制作成系统服务</span></span><br><span class="line">        mysqld --install</span><br><span class="line">        <span class="comment"># 启动服务</span></span><br><span class="line">        net start mysql</span><br><span class="line">        <span class="comment"># 停止服务          </span></span><br><span class="line">        net stop mysql</span><br><span class="line">        ps(windows操作系统上没有重启mysql服务的命令，如果需要重启服务，只能先stop再start)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="用户登录"><a href="#用户登录" class="headerlink" title="用户登录"></a>用户登录</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 管理员初次登录无需密码</span></span><br><span class="line">mysql -u用户名 -p密码 ---&gt; 密码可以换行再输入，会将输入的密码隐藏成*****，如果在-p后直接输入密码，则是明文</span><br><span class="line"></span><br><span class="line"><span class="comment"># 游客模式</span></span><br><span class="line">直接输入mysql 则进入游客模式，有很多限制</span><br><span class="line"></span><br><span class="line"><span class="comment"># 忘记密码</span></span><br><span class="line">    <span class="number">1</span> 跳过授权表启动</span><br><span class="line">    mysqld --skip-grant-tables</span><br><span class="line">    <span class="number">2</span> 无密码登录</span><br><span class="line">    mysql -uroot -p</span><br><span class="line">    <span class="number">3</span> 修改用户密码(修改对应用户的密码)</span><br><span class="line">    update mysql.user <span class="built_in">set</span> password=password(新密码) where user=<span class="string">&quot;root&quot;</span> <span class="keyword">and</span> host=<span class="string">&quot;localhost&quot;</span>;</span><br><span class="line">    <span class="number">4</span> 退出正常启动</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql默认配置文件my-default.ini不能修改</span><br><span class="line">自己创建并命名my.ini</span><br><span class="line"><span class="comment"># \s 查看基本信息</span></span><br><span class="line"></span><br><span class="line">my.ini文件内容 ---&gt; 将字符编码改成utf8，Windows默认gbk</span><br><span class="line">[mysqld]</span><br><span class="line">character-<span class="built_in">set</span>-server=utf8</span><br><span class="line">collation-server=utf8_general_ci</span><br><span class="line">[client]</span><br><span class="line">default-character-<span class="built_in">set</span>=utf8</span><br><span class="line">[mysql]</span><br><span class="line">default-character-<span class="built_in">set</span>=utf8</span><br></pre></td></tr></table></figure>
+
+<h2 id="基本SQL语句"><a href="#基本SQL语句" class="headerlink" title="基本SQL语句"></a>基本SQL语句</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">-------------------------------- 库的增删改查 -----------------------------------------</span><br><span class="line"><span class="comment"># 增：</span></span><br><span class="line">create database 库名(文件夹名)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 改</span></span><br><span class="line">alter database 库名(文件夹名) charset=<span class="string">&#x27;gbk&#x27;</span>;</span><br><span class="line">alter database ...</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查</span></span><br><span class="line">show database；</span><br><span class="line">show create database db1(按创建的库名查)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删</span></span><br><span class="line">drop database 库名(文件夹名);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">--------------------------------- 表的增删改查 --------------------------------------</span><br><span class="line">注意：要先切换到需要操作的库里(文件夹里)---&gt;use 库名(文件夹名)</span><br><span class="line">查看当前所在的库(文件夹)：select database();</span><br><span class="line"></span><br><span class="line"><span class="comment"># 增：</span></span><br><span class="line">create table 表名(文件名) (<span class="built_in">id</span> <span class="built_in">int</span>,name char(<span class="number">4</span>)); <span class="comment"># 创建出来的可能是多个文件，解耦管理</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 改</span></span><br><span class="line">alter table 表名 modify name char(<span class="number">16</span>); <span class="comment"># 更改名字的最大字符长度</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查</span></span><br><span class="line">show tables; <span class="comment"># 查所有表</span></span><br><span class="line">show create table 表名; <span class="comment"># 根据表名查看该表的详细信息</span></span><br><span class="line">describe 表名; == desc 表名; <span class="comment"># 根据表名查看该表的表结构</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 删</span></span><br><span class="line">drop table 表名;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">----------------------------------- 记录的增删改查 -------------------------------------</span><br><span class="line"><span class="comment"># 增</span></span><br><span class="line">insert into 库名.表名 values(<span class="number">1</span>,<span class="string">&#x27;xxx&#x27;</span>); <span class="comment"># 增加单条数据</span></span><br><span class="line">insert into 库名.表名 values(<span class="number">2</span>,<span class="string">&#x27;xxx&#x27;</span>),(<span class="number">3</span>,<span class="string">&#x27;xxx&#x27;</span>),(<span class="number">4</span>,<span class="string">&#x27;xxx&#x27;</span>) <span class="comment"># 增加多条数据</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 改</span></span><br><span class="line">update 库名.表名 <span class="built_in">set</span> name=<span class="string">&#x27;XXX&#x27;</span> where <span class="built_in">id</span> &gt; <span class="number">1</span>; <span class="comment"># 修改名字，条件放在where后</span></span><br><span class="line">update 库名.表名 <span class="built_in">set</span> name=<span class="string">&#x27;XXX&#x27;</span> where <span class="built_in">id</span> = <span class="number">2</span> <span class="keyword">or</span> <span class="built_in">id</span> = <span class="number">3</span>; <span class="comment"># where后可以用逻辑运算符</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查</span></span><br><span class="line">select <span class="built_in">id</span>,name <span class="keyword">from</span> 库名.表名; <span class="comment"># 库名可不指定，默认当前库</span></span><br><span class="line">select * <span class="keyword">from</span> 表名; <span class="comment"># 根据表名查看该表下所有记录</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 删</span></span><br><span class="line">delete <span class="keyword">from</span> 库名.表名 where <span class="built_in">id</span> &gt; <span class="number">3</span>; <span class="comment"># 根据where后的条件判断需要删除哪些记录(数据)</span></span><br><span class="line">delete <span class="keyword">from</span> 库名.表名 where name=<span class="string">&#x27;XXX&#x27;</span>;</span><br><span class="line">delete <span class="keyword">from</span> 库名.表名; <span class="comment"># 删除该表中的所有记录(数据)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 总结：</span></span><br><span class="line">库 == 表：show(查)、alter(改)、create(增)、drop(删)  ps(表：查看当前所在库：select 库名())</span><br><span class="line">(关键字后要带database/table 再+具体库名/表名)</span><br><span class="line"></span><br><span class="line">记录：select(查)、update(改)、insert into(增)、delete(删)</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> 数据库发展史：</span><br><span class="line">	bs/cs架构</span><br><span class="line">    </span><br><span class="line">	文件存储(单机) ---&gt; 存储在一个数据库上(不安全) ---&gt; 数据库集群(联机)</span><br><span class="line">    </span><br><span class="line"><span class="number">2</span> 数据库分类</span><br><span class="line">	</span><br><span class="line">    <span class="number">2.1</span> 关系型数据库</span><br><span class="line">    		-固定的表结构，表与表之间可以简历关联</span><br><span class="line">        	-常见软件：mysql、postgresql、oracl、sqlite、db2、sql server access</span><br><span class="line">            </span><br><span class="line">    <span class="number">2.2</span> 非关系型数据库</span><br><span class="line">    		-没有固定的表结构，存储数据按照kv键值对的格式(类似字典)</span><br><span class="line">        	-常见软件：MongoDB、redis、memcache</span><br><span class="line">            </span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">常见软件最好能记住默认端口号</span></span><br><span class="line"><span class="string">	-mysql        -3306</span></span><br><span class="line"><span class="string">	-redis        -6379</span></span><br><span class="line"><span class="string">	-MongoDB      -27017</span></span><br><span class="line"><span class="string">	-Django		  -8000</span></span><br><span class="line"><span class="string">	-flask		  -5000</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="number">3</span> mysql简介</span><br><span class="line">	<span class="comment"># ps：防呆思想</span></span><br><span class="line">    <span class="number">3.1</span> 版本问题</span><br><span class="line">    	-SQL语句的由来</span><br><span class="line">        	-统一思想</span><br><span class="line">            </span><br><span class="line">    <span class="number">3.2</span> 下载与安装</span><br><span class="line"></span><br><span class="line"><span class="number">4</span> 环境变量及系统服务</span><br><span class="line">	</span><br><span class="line">    <span class="number">4.1</span> 先添加环境变量</span><br><span class="line">    </span><br><span class="line">    <span class="number">4.2</span> 命令</span><br><span class="line">    		mysqld --install</span><br><span class="line">        	net start mysql</span><br><span class="line">            net stop mysql</span><br><span class="line">            mysqld --remove</span><br><span class="line">            </span><br><span class="line"><span class="number">5</span> 用户登录及密码相关</span><br><span class="line">	mysql 游客模式</span><br><span class="line">    mysql -u用户名 -p密码</span><br><span class="line">    </span><br><span class="line">    <span class="number">5.1</span> 直接修改</span><br><span class="line">    	mysqladmin -u用户名 -p原密码 password 新密码</span><br><span class="line">    </span><br><span class="line">    <span class="number">5.2</span> 忘记密码</span><br><span class="line">    	...</span><br><span class="line"></span><br><span class="line"><span class="number">6</span> 重要概念</span><br><span class="line">	-库  ---&gt; 文件夹</span><br><span class="line">    -表  ---&gt; 文件</span><br><span class="line">    -数据 ---&gt; 文件内一行行数据</span><br><span class="line"></span><br><span class="line"><span class="number">7</span> 配置文件</span><br><span class="line">	my.ini</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line"><span class="number">8</span> 基本SQL语句</span><br><span class="line">	...</span><br><span class="line">        </span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/02/11/MySQL%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E4%B8%8E%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="prev" title="MySQL基础之存储引擎与基本数据类型">
+                  <i class="fa fa-chevron-left"></i> MySQL基础之存储引擎与基本数据类型
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/02/17/MySQL%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%A4%9A%E8%A1%A8%E8%BF%9E%E6%8E%A5%E4%B8%8E%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/" rel="next" title="MySQL基础之多表连接与多表查询">
+                  MySQL基础之多表连接与多表查询 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">池劲涛</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

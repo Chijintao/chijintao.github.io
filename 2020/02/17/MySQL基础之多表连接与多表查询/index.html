@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="内容概要 查询关键字 多表查询的思想 子查询 连表操作 Navicat可视化软件 鼠标点点点完成数据库的操作(内部还是SQL语句) 多表查询练习题(重点)  内容详细查询关键字表准备1234567891011121314151617181920212223242526272829303132333435363738394041424344454647create table emp(  id in">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL基础之多表连接与多表查询">
+<meta property="og:url" content="http://example.com/2020/02/17/MySQL%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%A4%9A%E8%A1%A8%E8%BF%9E%E6%8E%A5%E4%B8%8E%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/index.html">
+<meta property="og:site_name" content="池劲涛的博客">
+<meta property="og:description" content="内容概要 查询关键字 多表查询的思想 子查询 连表操作 Navicat可视化软件 鼠标点点点完成数据库的操作(内部还是SQL语句) 多表查询练习题(重点)  内容详细查询关键字表准备1234567891011121314151617181920212223242526272829303132333435363738394041424344454647create table emp(  id in">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-02-16T23:20:25.000Z">
+<meta property="article:modified_time" content="2020-03-01T04:22:34.000Z">
+<meta property="article:author" content="池劲涛">
+<meta property="article:tag" content="Python Linux Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2020/02/17/MySQL%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%A4%9A%E8%A1%A8%E8%BF%9E%E6%8E%A5%E4%B8%8E%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2020/02/17/MySQL%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%A4%9A%E8%A1%A8%E8%BF%9E%E6%8E%A5%E4%B8%8E%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/","path":"2020/02/17/MySQL基础之多表连接与多表查询/","title":"MySQL基础之多表连接与多表查询"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>MySQL基础之多表连接与多表查询 | 池劲涛的博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">池劲涛的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%85%E5%AE%B9%E6%A6%82%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">内容概要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%85%E5%AE%B9%E8%AF%A6%E7%BB%86"><span class="nav-number">2.</span> <span class="nav-text">内容详细</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-number">2.1.</span> <span class="nav-text">查询关键字</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A8%E5%87%86%E5%A4%87"><span class="nav-number">2.1.1.</span> <span class="nav-text">表准备</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E5%85%B3%E9%94%AE%E5%AD%97%E4%B9%8Bwhere"><span class="nav-number">2.2.</span> <span class="nav-text">查询关键字之where</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E5%85%B3%E9%94%AE%E5%AD%97%E4%B9%8Bgroup-by%E5%88%86%E7%BB%84"><span class="nav-number">2.3.</span> <span class="nav-text">查询关键字之group by分组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0"><span class="nav-number">2.3.1.</span> <span class="nav-text">聚合函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E5%85%B3%E9%94%AE%E5%AD%97%E4%B9%8Bhaving-%E8%BF%87%E6%BB%A4"><span class="nav-number">2.4.</span> <span class="nav-text">查询关键字之having(过滤)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E5%85%B3%E9%94%AE%E5%AD%97%E4%B9%8Bdistinct-%E5%8E%BB%E9%87%8D"><span class="nav-number">2.5.</span> <span class="nav-text">查询关键字之distinct(去重)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E5%85%B3%E9%94%AE%E5%AD%97%E4%B9%8Border-by-%E6%8E%92%E5%BA%8F"><span class="nav-number">2.6.</span> <span class="nav-text">查询关键字之order by(排序)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E5%85%B3%E9%94%AE%E5%AD%97%E4%B9%8Blimit-%E5%88%86%E9%A1%B5"><span class="nav-number">2.7.</span> <span class="nav-text">查询关键字之limit(分页)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E5%85%B3%E9%94%AE%E5%AD%97%E4%B9%8Bregexp%E6%AD%A3%E5%88%99"><span class="nav-number">2.8.</span> <span class="nav-text">查询关键字之regexp正则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E6%80%9D%E6%83%B3"><span class="nav-number">2.9.</span> <span class="nav-text">多表查询思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E6%9C%9F%E8%A1%A8%E5%87%86%E5%A4%87"><span class="nav-number">2.10.</span> <span class="nav-text">前期表准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%90%E6%9F%A5%E8%AF%A2"><span class="nav-number">2.11.</span> <span class="nav-text">子查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9E%E8%A1%A8%E6%93%8D%E4%BD%9C"><span class="nav-number">2.12.</span> <span class="nav-text">连表操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Navicat%E5%8F%AF%E8%A7%86%E5%8C%96%E8%BD%AF%E4%BB%B6"><span class="nav-number">2.13.</span> <span class="nav-text">Navicat可视化软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E7%BB%83%E4%B9%A0%E9%A2%98"><span class="nav-number">2.14.</span> <span class="nav-text">多表查询练习题</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="池劲涛"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">池劲涛</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/02/17/MySQL%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%A4%9A%E8%A1%A8%E8%BF%9E%E6%8E%A5%E4%B8%8E%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="池劲涛">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="池劲涛的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MySQL基础之多表连接与多表查询
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-02-17 07:20:25" itemprop="dateCreated datePublished" datetime="2020-02-17T07:20:25+08:00">2020-02-17</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-03-01 12:22:34" itemprop="dateModified" datetime="2020-03-01T12:22:34+08:00">2020-03-01</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/MySQL%E7%B3%BB%E5%88%97/" itemprop="url" rel="index"><span itemprop="name">MySQL系列</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="内容概要"><a href="#内容概要" class="headerlink" title="内容概要"></a>内容概要</h1><ul>
+<li>查询关键字</li>
+<li>多表查询的思想</li>
+<li>子查询</li>
+<li>连表操作</li>
+<li>Navicat可视化软件</li>
+<li>鼠标点点点完成数据库的操作(内部还是SQL语句)</li>
+<li>多表查询练习题(重点)</li>
+</ul>
+<h1 id="内容详细"><a href="#内容详细" class="headerlink" title="内容详细"></a>内容详细</h1><h2 id="查询关键字"><a href="#查询关键字" class="headerlink" title="查询关键字"></a>查询关键字</h2><h3 id="表准备"><a href="#表准备" class="headerlink" title="表准备"></a>表准备</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">create table emp(</span><br><span class="line">  <span class="built_in">id</span> <span class="built_in">int</span> primary key auto_increment,</span><br><span class="line">  name varchar(<span class="number">20</span>) <span class="keyword">not</span> null,</span><br><span class="line">  sex enum(<span class="string">&#x27;male&#x27;</span>,<span class="string">&#x27;female&#x27;</span>) <span class="keyword">not</span> null default <span class="string">&#x27;male&#x27;</span>, <span class="comment">#大部分是男的</span></span><br><span class="line">  age <span class="built_in">int</span>(<span class="number">3</span>) unsigned <span class="keyword">not</span> null default <span class="number">28</span>,</span><br><span class="line">  hire_date date <span class="keyword">not</span> null,</span><br><span class="line">  post varchar(<span class="number">50</span>),</span><br><span class="line">  post_comment varchar(<span class="number">100</span>),</span><br><span class="line">  salary double(<span class="number">15</span>,<span class="number">2</span>),</span><br><span class="line">  office <span class="built_in">int</span>, <span class="comment">#一个部门一个屋子</span></span><br><span class="line">  depart_id <span class="built_in">int</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">#插入记录</span></span><br><span class="line"><span class="comment">#三个部门：教学，销售，运营</span></span><br><span class="line">insert into emp(name,sex,age,hire_date,post,salary,office,depart_id) values</span><br><span class="line">(<span class="string">&#x27;jason&#x27;</span>,<span class="string">&#x27;male&#x27;</span>,<span class="number">18</span>,<span class="string">&#x27;20170301&#x27;</span>,<span class="string">&#x27;张江第一帅形象代言&#x27;</span>,<span class="number">7300.33</span>,<span class="number">401</span>,<span class="number">1</span>), <span class="comment">#以下是教学部</span></span><br><span class="line">(<span class="string">&#x27;tom&#x27;</span>,<span class="string">&#x27;male&#x27;</span>,<span class="number">78</span>,<span class="string">&#x27;20150302&#x27;</span>,<span class="string">&#x27;teacher&#x27;</span>,<span class="number">1000000.31</span>,<span class="number">401</span>,<span class="number">1</span>),</span><br><span class="line">(<span class="string">&#x27;kevin&#x27;</span>,<span class="string">&#x27;male&#x27;</span>,<span class="number">81</span>,<span class="string">&#x27;20130305&#x27;</span>,<span class="string">&#x27;teacher&#x27;</span>,<span class="number">8300</span>,<span class="number">401</span>,<span class="number">1</span>),</span><br><span class="line">(<span class="string">&#x27;tony&#x27;</span>,<span class="string">&#x27;male&#x27;</span>,<span class="number">73</span>,<span class="string">&#x27;20140701&#x27;</span>,<span class="string">&#x27;teacher&#x27;</span>,<span class="number">3500</span>,<span class="number">401</span>,<span class="number">1</span>),</span><br><span class="line">(<span class="string">&#x27;owen&#x27;</span>,<span class="string">&#x27;male&#x27;</span>,<span class="number">28</span>,<span class="string">&#x27;20121101&#x27;</span>,<span class="string">&#x27;teacher&#x27;</span>,<span class="number">2100</span>,<span class="number">401</span>,<span class="number">1</span>),</span><br><span class="line">(<span class="string">&#x27;jack&#x27;</span>,<span class="string">&#x27;female&#x27;</span>,<span class="number">18</span>,<span class="string">&#x27;20110211&#x27;</span>,<span class="string">&#x27;teacher&#x27;</span>,<span class="number">9000</span>,<span class="number">401</span>,<span class="number">1</span>),</span><br><span class="line">(<span class="string">&#x27;jenny&#x27;</span>,<span class="string">&#x27;male&#x27;</span>,<span class="number">18</span>,<span class="string">&#x27;19000301&#x27;</span>,<span class="string">&#x27;teacher&#x27;</span>,<span class="number">30000</span>,<span class="number">401</span>,<span class="number">1</span>),</span><br><span class="line">(<span class="string">&#x27;sank&#x27;</span>,<span class="string">&#x27;male&#x27;</span>,<span class="number">48</span>,<span class="string">&#x27;20101111&#x27;</span>,<span class="string">&#x27;teacher&#x27;</span>,<span class="number">10000</span>,<span class="number">401</span>,<span class="number">1</span>),</span><br><span class="line">(<span class="string">&#x27;哈哈&#x27;</span>,<span class="string">&#x27;female&#x27;</span>,<span class="number">48</span>,<span class="string">&#x27;20150311&#x27;</span>,<span class="string">&#x27;sale&#x27;</span>,<span class="number">3000.13</span>,<span class="number">402</span>,<span class="number">2</span>),<span class="comment">#以下是销售部门</span></span><br><span class="line">(<span class="string">&#x27;呵呵&#x27;</span>,<span class="string">&#x27;female&#x27;</span>,<span class="number">38</span>,<span class="string">&#x27;20101101&#x27;</span>,<span class="string">&#x27;sale&#x27;</span>,<span class="number">2000.35</span>,<span class="number">402</span>,<span class="number">2</span>),</span><br><span class="line">(<span class="string">&#x27;西西&#x27;</span>,<span class="string">&#x27;female&#x27;</span>,<span class="number">18</span>,<span class="string">&#x27;20110312&#x27;</span>,<span class="string">&#x27;sale&#x27;</span>,<span class="number">1000.37</span>,<span class="number">402</span>,<span class="number">2</span>),</span><br><span class="line">(<span class="string">&#x27;乐乐&#x27;</span>,<span class="string">&#x27;female&#x27;</span>,<span class="number">18</span>,<span class="string">&#x27;20160513&#x27;</span>,<span class="string">&#x27;sale&#x27;</span>,<span class="number">3000.29</span>,<span class="number">402</span>,<span class="number">2</span>),</span><br><span class="line">(<span class="string">&#x27;拉拉&#x27;</span>,<span class="string">&#x27;female&#x27;</span>,<span class="number">28</span>,<span class="string">&#x27;20170127&#x27;</span>,<span class="string">&#x27;sale&#x27;</span>,<span class="number">4000.33</span>,<span class="number">402</span>,<span class="number">2</span>),</span><br><span class="line">(<span class="string">&#x27;僧龙&#x27;</span>,<span class="string">&#x27;male&#x27;</span>,<span class="number">28</span>,<span class="string">&#x27;20160311&#x27;</span>,<span class="string">&#x27;operation&#x27;</span>,<span class="number">10000.13</span>,<span class="number">403</span>,<span class="number">3</span>), <span class="comment">#以下是运营部门</span></span><br><span class="line">(<span class="string">&#x27;程咬金&#x27;</span>,<span class="string">&#x27;male&#x27;</span>,<span class="number">18</span>,<span class="string">&#x27;19970312&#x27;</span>,<span class="string">&#x27;operation&#x27;</span>,<span class="number">20000</span>,<span class="number">403</span>,<span class="number">3</span>),</span><br><span class="line">(<span class="string">&#x27;程咬银&#x27;</span>,<span class="string">&#x27;female&#x27;</span>,<span class="number">18</span>,<span class="string">&#x27;20130311&#x27;</span>,<span class="string">&#x27;operation&#x27;</span>,<span class="number">19000</span>,<span class="number">403</span>,<span class="number">3</span>),</span><br><span class="line">(<span class="string">&#x27;程咬铜&#x27;</span>,<span class="string">&#x27;male&#x27;</span>,<span class="number">18</span>,<span class="string">&#x27;20150411&#x27;</span>,<span class="string">&#x27;operation&#x27;</span>,<span class="number">18000</span>,<span class="number">403</span>,<span class="number">3</span>),</span><br><span class="line">(<span class="string">&#x27;程咬铁&#x27;</span>,<span class="string">&#x27;female&#x27;</span>,<span class="number">18</span>,<span class="string">&#x27;20140512&#x27;</span>,<span class="string">&#x27;operation&#x27;</span>,<span class="number">17000</span>,<span class="number">403</span>,<span class="number">3</span>);</span><br><span class="line"><span class="number">1</span> select</span><br><span class="line">    - 用来指定表的字段数据</span><br><span class="line">    select * <span class="keyword">from</span> emp;</span><br><span class="line">    select <span class="built_in">id</span>,name <span class="keyword">from</span> emp;</span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    在工作中很少使用*号 ---&gt; 内容大</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line">    </span><br><span class="line"><span class="number">2</span> <span class="keyword">from</span></span><br><span class="line">    - 后面跟需要查询的表名</span><br><span class="line">    </span><br><span class="line"><span class="number">3</span> where</span><br><span class="line">    筛选数据</span><br></pre></td></tr></table></figure>
+
+<h2 id="查询关键字之where"><a href="#查询关键字之where" class="headerlink" title="查询关键字之where"></a>查询关键字之where</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1 查询id大于等于3小于等于6的数据</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2 查询薪资是20000或者18000或者17000的数据</span></span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">模糊查询：</span></span><br><span class="line"><span class="string">    关键字 ---&gt; like</span></span><br><span class="line"><span class="string">    关键符号</span></span><br><span class="line"><span class="string">        %：匹配任意个数的任意字符</span></span><br><span class="line"><span class="string">        _：匹配单个个数的任意字符</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3 查询姓名中带有字母o的员工姓名和薪资</span></span><br><span class="line">select name,salary <span class="keyword">from</span> emp where name like <span class="string">&#x27;%o%&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4 查询姓名由四个字符组成的员工姓名和薪资</span></span><br><span class="line">select name,salary <span class="keyword">from</span> emp where name like<span class="string">&#x27;____&#x27;</span>;</span><br><span class="line">select name,salary <span class="keyword">from</span> emp where char_length(name) = <span class="number">4</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5 查询id小于3或者大于6的数据</span></span><br><span class="line">select * <span class="keyword">from</span> emp where <span class="built_in">id</span> &lt; <span class="number">3</span> <span class="keyword">or</span> <span class="built_in">id</span> &gt; <span class="number">6</span>;</span><br><span class="line">select * <span class="keyword">from</span> emp where <span class="built_in">id</span> <span class="keyword">not</span> between <span class="number">3</span> <span class="keyword">and</span> <span class="number">6</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 6 查询薪资不在20000,18000,17000范围的数据</span></span><br><span class="line">select * <span class="keyword">from</span> emp where salary <span class="keyword">not</span> <span class="keyword">in</span> (<span class="number">20000</span>,<span class="number">18000</span>,<span class="number">17000</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 7 查询岗位描述为空的员工名与岗位名 针对null不能用&#x27;=&#x27;,只能用is</span></span><br><span class="line">select name,post <span class="keyword">from</span> emp where post_comment = NULL; <span class="comment"># 查询为空</span></span><br><span class="line">select name,post <span class="keyword">from</span> emp where post_comment <span class="keyword">is</span> NULL;</span><br><span class="line">select name,post <span class="keyword">from</span> emp where post_comment <span class="keyword">is</span> <span class="keyword">not</span> NULL;</span><br></pre></td></tr></table></figure>
+
+<h2 id="查询关键字之group-by分组"><a href="#查询关键字之group-by分组" class="headerlink" title="查询关键字之group by分组"></a>查询关键字之group by分组</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">分组 ---&gt; 将单个单个的个体按照指定的条件分成一个个整体</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">分组之后默认只能直接获取分组的依据</span></span><br><span class="line"><span class="string">其他字段无法再直接获取(可以间接获取)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 严格模式</span></span><br><span class="line"><span class="built_in">set</span> <span class="keyword">global</span> sql_mode=<span class="string">&#x27;STRICT_TRANS_TABLES,PAD_CHAR_TO_FULL_LENGTH,only_full_group_by&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1 每个部门的最高薪资</span></span><br><span class="line">select post,<span class="built_in">max</span>(salary) <span class="keyword">from</span> emp group by post;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2 每个部门的最低薪资</span></span><br><span class="line">select post,<span class="built_in">min</span>(salary) <span class="keyword">from</span> emp group by post;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3 每个部门的平均薪资</span></span><br><span class="line">select post avg(salary) <span class="keyword">from</span> emp group by post;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4 每个部门的人数</span></span><br><span class="line">select post,count(<span class="built_in">id</span>) <span class="keyword">from</span> emp group by post;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5 每个部门的月工资总和</span></span><br><span class="line">select post,<span class="built_in">sum</span>(salary) fromm emp group by post;</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">可以给字段起别名(as还可以给表起别名)</span></span><br><span class="line"><span class="string">    select post as&#x27;部门&#x27;，sum(salary) as &#x27;总和&#x27; from emp group by post;</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 6 查询分组之后的部门名称和每个部门下所有的员工姓名</span></span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">group_concat()  ---&gt; 获取分组以外的字段数据，并且支持拼接操作(掌握)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">select post,group_concat(name) from emp group by post;</span></span><br><span class="line"><span class="string">select post,group_concat(name,&#x27;:&#x27;,salary) from emp group by post;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">concat()   ---&gt; 未分组之前使用的拼接功能(了解)</span></span><br><span class="line"><span class="string">select concat(name,&#x27;:&#x27;,sex) from emp;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">concat_ws()    ---&gt; 省步骤(了解)</span></span><br><span class="line"><span class="string">select concat_ws(&#x27;:&#x27;,name,sex,salary,age) from emp</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="聚合函数"><a href="#聚合函数" class="headerlink" title="聚合函数"></a>聚合函数</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">分组之后频繁需要使用的</span><br><span class="line">　　　　<span class="built_in">max</span>     最大值</span><br><span class="line">　　　　<span class="built_in">min</span>     最小值　　　　<span class="built_in">sum</span>     求和　　　　count   计数　　　　avg     平均值</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="查询关键字之having-过滤"><a href="#查询关键字之having-过滤" class="headerlink" title="查询关键字之having(过滤)"></a>查询关键字之having(过滤)</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">功能上having与where是一模一样的</span><br><span class="line">但是使用位置上有有所不同</span><br><span class="line">    -where在分组之前使用</span><br><span class="line">    -having在分组之后使用</span><br><span class="line">    </span><br><span class="line"><span class="number">1</span> 统计各部门年龄在<span class="number">30</span>岁以上的员工平均工资，并且保留工资大于<span class="number">10000</span>的部门</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1.1 先筛选出所有30岁以上的员工</span></span><br><span class="line">select * <span class="keyword">from</span> emp where age &gt;<span class="number">30</span>;</span><br><span class="line"><span class="comment"># 1.2 然后再按照部门分组</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;SQL语句的查询结果我们也可以直接看成是一张表&#x27;&#x27;&#x27;</span></span><br><span class="line">select post,avg(salary) <span class="keyword">from</span> emp where age &gt;<span class="number">30</span> group by post;</span><br><span class="line"><span class="comment"># 1.3 分组之后再做过滤操作</span></span><br><span class="line">select post,avg(salary) <span class="keyword">from</span> emp</span><br><span class="line">    where age&gt;<span class="number">30</span></span><br><span class="line">    group by post</span><br><span class="line">    having avg(salary)&gt;<span class="number">10000</span></span><br><span class="line">    ;</span><br></pre></td></tr></table></figure>
+
+<h2 id="查询关键字之distinct-去重"><a href="#查询关键字之distinct-去重" class="headerlink" title="查询关键字之distinct(去重)"></a>查询关键字之distinct(去重)</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">去重有一个非常严格的前提条件 数据必须是完全一样</span><br><span class="line">    如果数据带有主键name肯定无法去重</span><br><span class="line">    select distinct age <span class="keyword">from</span> emp;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="查询关键字之order-by-排序"><a href="#查询关键字之order-by-排序" class="headerlink" title="查询关键字之order by(排序)"></a>查询关键字之order by(排序)</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">select * <span class="keyword">from</span> emp order by salary; <span class="comment"># 默认是升序</span></span><br><span class="line">select * <span class="keyword">from</span> emp order by salary asc; <span class="comment"># 升序关键字(可不写)</span></span><br><span class="line">select * <span class="keyword">from</span> emp order by salary desc; <span class="comment"># 降序</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 排序也可以指定多个字段</span></span><br><span class="line">select <span class="keyword">from</span> emp order by age desc,salary asc;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 统计各部门年龄在10岁以上的员工平均工资，并且保留平均工资大于1000的部门，然后对平均工资进行排序</span></span><br><span class="line">select post,avg(salary) <span class="keyword">from</span> emp</span><br><span class="line">    where age &gt; <span class="number">10</span></span><br><span class="line">    group by post</span><br><span class="line">    having avg(salary)&gt;<span class="number">1000</span></span><br><span class="line">    order by avg(salary);</span><br></pre></td></tr></table></figure>
+
+<h2 id="查询关键字之limit-分页"><a href="#查询关键字之limit-分页" class="headerlink" title="查询关键字之limit(分页)"></a>查询关键字之limit(分页)</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">用来限制数据的展示条数</span><br><span class="line">select * <span class="keyword">from</span> emp limit <span class="number">5</span>;<span class="comment"># 前五条</span></span><br><span class="line">select * <span class="keyword">from</span> emp limit <span class="number">5</span>,<span class="number">5</span>; <span class="comment"># 起始位置、条数</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询工资最高的人的详细信息</span></span><br><span class="line">    <span class="comment"># 1 先按照工资排序，然后限制展示条数</span></span><br><span class="line">    select * <span class="keyword">from</span> emp order by salary desc limit <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="查询关键字之regexp正则"><a href="#查询关键字之regexp正则" class="headerlink" title="查询关键字之regexp正则"></a>查询关键字之regexp正则</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">正则表达式</span><br><span class="line">    用一些特殊符号的组合去字符串中筛选出符合条件的数据</span><br><span class="line">    </span><br><span class="line">select * <span class="keyword">from</span> emp where name regexp <span class="string">&#x27;^j.*(n|y)$&#x27;</span>;</span><br><span class="line"><span class="comment"># &#x27;^j.*(n|y)$&#x27;  j开头 中间无所谓 n或者y结尾</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="多表查询思想"><a href="#多表查询思想" class="headerlink" title="多表查询思想"></a>多表查询思想</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> 子查询</span><br><span class="line">    分步解决问题</span><br><span class="line">    将一条SQL语句的查询结果用括号括起来，当做另一条SQL语句的查询条件</span><br><span class="line">    </span><br><span class="line"><span class="number">2</span> 连表操作</span><br><span class="line">    先将所有需要用到的表拼接到一起(一张表)</span><br><span class="line">    然后就是转换成单表查询</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="前期表准备"><a href="#前期表准备" class="headerlink" title="前期表准备"></a>前期表准备</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#建表</span></span><br><span class="line">create table dep(</span><br><span class="line"><span class="built_in">id</span> <span class="built_in">int</span> primary key auto_increment,</span><br><span class="line">name varchar(<span class="number">20</span>) </span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">create table emp(</span><br><span class="line"><span class="built_in">id</span> <span class="built_in">int</span> primary key auto_increment,</span><br><span class="line">name varchar(<span class="number">20</span>),</span><br><span class="line">sex enum(<span class="string">&#x27;male&#x27;</span>,<span class="string">&#x27;female&#x27;</span>) <span class="keyword">not</span> null default <span class="string">&#x27;male&#x27;</span>,</span><br><span class="line">age <span class="built_in">int</span>,</span><br><span class="line">dep_id <span class="built_in">int</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">#插入数据</span></span><br><span class="line">insert into dep values</span><br><span class="line">(<span class="number">200</span>,<span class="string">&#x27;技术&#x27;</span>),</span><br><span class="line">(<span class="number">201</span>,<span class="string">&#x27;人力资源&#x27;</span>),</span><br><span class="line">(<span class="number">202</span>,<span class="string">&#x27;销售&#x27;</span>),</span><br><span class="line">(<span class="number">203</span>,<span class="string">&#x27;运营&#x27;</span>);</span><br><span class="line"></span><br><span class="line">insert into emp(name,sex,age,dep_id) values</span><br><span class="line">(<span class="string">&#x27;jason&#x27;</span>,<span class="string">&#x27;male&#x27;</span>,<span class="number">18</span>,<span class="number">200</span>),</span><br><span class="line">(<span class="string">&#x27;egon&#x27;</span>,<span class="string">&#x27;female&#x27;</span>,<span class="number">48</span>,<span class="number">201</span>),</span><br><span class="line">(<span class="string">&#x27;kevin&#x27;</span>,<span class="string">&#x27;male&#x27;</span>,<span class="number">18</span>,<span class="number">201</span>),</span><br><span class="line">(<span class="string">&#x27;nick&#x27;</span>,<span class="string">&#x27;male&#x27;</span>,<span class="number">28</span>,<span class="number">202</span>),</span><br><span class="line">(<span class="string">&#x27;owen&#x27;</span>,<span class="string">&#x27;male&#x27;</span>,<span class="number">18</span>,<span class="number">203</span>),</span><br><span class="line">(<span class="string">&#x27;jerry&#x27;</span>,<span class="string">&#x27;female&#x27;</span>,<span class="number">18</span>,<span class="number">204</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查询Jason所在的部门名称</span></span><br><span class="line">    <span class="comment"># 第一步 先获取Jason所在的部门id</span></span><br><span class="line">    select dep_id <span class="keyword">from</span> emp where name=<span class="string">&#x27;jason&#x27;</span>;</span><br><span class="line">    <span class="comment"># 第二步 根据id号去部门表中筛选</span></span><br><span class="line">    select * <span class="keyword">from</span> dep where <span class="built_in">id</span> = <span class="number">200</span>;</span><br><span class="line">    <span class="comment"># 完整句式</span></span><br><span class="line">    select * <span class="keyword">from</span> dep where <span class="built_in">id</span> = (select dep_id <span class="keyword">from</span> emp where name=<span class="string">&#x27;jason&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="连表操作"><a href="#连表操作" class="headerlink" title="连表操作"></a>连表操作</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 前戏(了解)</span></span><br><span class="line">select * <span class="keyword">from</span> emp,dep;</span><br><span class="line"><span class="comment"># 基于上表筛选数据(了解)</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;为了避免字段冲突 可以在字段名前面加表明确&#x27;&#x27;&#x27;</span></span><br><span class="line">    select * <span class="keyword">from</span> emp,dep where emp.dep_id = dep.<span class="built_in">id</span>;</span><br><span class="line">    </span><br><span class="line">--------------------------------------- 掌握 -------------------------------------------</span><br><span class="line">inner join   ---  内连接  拼接公共的部分</span><br><span class="line">    select * <span class="keyword">from</span> emp inner join dep on emp.dep_id = dep.<span class="built_in">id</span>;</span><br><span class="line">left join    ---  左连接 以左表为基准展示所有数据 没有的null填充  (用得少)</span><br><span class="line">    select * <span class="keyword">from</span> emp left join dep on emp.dep_id=dep.<span class="built_in">id</span>;</span><br><span class="line">right join     ---  右连接 以右表为基准展示所有数据 没有的null填充  (用得少)      </span><br><span class="line">    select * <span class="keyword">from</span> emp right join dep on emp.dep_id=dep.<span class="built_in">id</span>;</span><br><span class="line">union    全连接</span><br><span class="line">    select * <span class="keyword">from</span> emp left join dep on emp.dep_id=dep.<span class="built_in">id</span></span><br><span class="line">    union</span><br><span class="line">    select * <span class="keyword">from</span> emp right join dep on emp.dep_id=dep.<span class="built_in">id</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Navicat可视化软件"><a href="#Navicat可视化软件" class="headerlink" title="Navicat可视化软件"></a>Navicat可视化软件</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">可以充当很多数据库软件的客户端 封装了很多快捷方法</span><br><span class="line"></span><br><span class="line">该软件默认也是收费的 需要破解</span><br><span class="line">正版不破解免费试用<span class="number">14</span>天</span><br><span class="line">破解版(老版本):https://pan.baidu.com/s/1bpo5mqj</span><br><span class="line"></span><br><span class="line"><span class="number">1.</span>下载与安装</span><br><span class="line"><span class="number">2.</span>使用方法</span><br><span class="line">	创建库 表 记录</span><br><span class="line">    	注意主键</span><br><span class="line">     外键字段</span><br><span class="line">    逆向数据库到模型</span><br><span class="line">    转储SQL文件</span><br><span class="line">  	查询</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="多表查询练习题"><a href="#多表查询练习题" class="headerlink" title="多表查询练习题"></a>多表查询练习题</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>、 查询所有的课程的名称以及对应的任课老师姓名</span><br><span class="line"><span class="number">4</span>、 查询平均成绩大于八十分的同学的姓名和平均成绩</span><br><span class="line"><span class="number">7</span>、 查询没有报李平老师课的学生姓名</span><br><span class="line"><span class="number">8</span>、 查询没有同时选修物理课程和体育课程的学生姓名</span><br><span class="line"><span class="number">9</span>、 查询挂科超过两门(包括两门)的学生姓名和班级</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#####################关键字习惯都用大写#######################</span></span><br><span class="line"><span class="comment"># 建议:在书写SQL语句的时候一定不要想着一次性成功 写一点看一点再写一点  慢慢拼凑起来</span></span><br><span class="line">-- <span class="number">1</span>、 查询所有的课程的名称以及对应的任课老师姓名</span><br><span class="line"><span class="comment"># 1.先明确需要的表    course表 teacher表</span></span><br><span class="line">--     select * <span class="keyword">from</span> course;</span><br><span class="line">--     select * <span class="keyword">from</span> teacher;</span><br><span class="line"><span class="comment"># 2.连表操作 明确字段</span></span><br><span class="line">-- SELECT</span><br><span class="line">--     course.cname,</span><br><span class="line">--     teacher.tname</span><br><span class="line">-- FROM</span><br><span class="line">--     course</span><br><span class="line">--     INNER JOIN teacher ON course.teacher_id = teacher.tid;</span><br><span class="line">-- <span class="number">4</span>、 查询平均成绩大于八十分的同学的姓名和平均成绩</span><br><span class="line"><span class="comment"># 1.先查看成绩表 </span></span><br><span class="line">--     select * <span class="keyword">from</span> score;</span><br><span class="line"><span class="comment"># 2.求所有学生的平均成绩</span></span><br><span class="line">--     select score.student_id,avg(num) <span class="keyword">from</span> score group by score.student_id;</span><br><span class="line"><span class="comment"># 3.筛选出大于80分</span></span><br><span class="line">--     select score.student_id,avg(num) <span class="keyword">as</span> <span class="string">&#x27;avg_num&#x27;</span> <span class="keyword">from</span> score group by score.student_id having avg(num)&gt;<span class="number">80</span></span><br><span class="line">--     ;</span><br><span class="line"><span class="comment"># 4.学生表与上述查询出来的表连接</span></span><br><span class="line">-- SELECT</span><br><span class="line">--     student.sname,</span><br><span class="line">--     t1.avg_num </span><br><span class="line">-- FROM</span><br><span class="line">--     student</span><br><span class="line">--     INNER JOIN ( SELECT score.student_id, avg( num ) AS <span class="string">&#x27;avg_num&#x27;</span> FROM score GROUP BY score.student_id HAVING avg( num )&gt; <span class="number">80</span> ) AS t1 ON student.sid = t1.student_id;</span><br><span class="line">-- <span class="number">7</span>、 查询没有报李平老师课的学生姓名</span><br><span class="line"><span class="comment"># 1.正向思路:课下可以尝试一下</span></span><br><span class="line"><span class="comment"># 2.反向思路:先找所有报了李平老师课程的学生 再取反</span></span><br><span class="line"><span class="comment"># 1.先查询李平老师教授的课程id号</span></span><br><span class="line">-- select tid <span class="keyword">from</span> teacher WHERE tname=<span class="string">&#x27;李平老师&#x27;</span>;</span><br><span class="line">-- select cid <span class="keyword">from</span> course where teacher_id <span class="keyword">in</span> (select tid <span class="keyword">from</span> teacher WHERE tname=<span class="string">&#x27;李平老师&#x27;</span>);</span><br><span class="line"><span class="comment"># 2.去成绩表中筛选出所有报了李平老师课程的学生id号</span></span><br><span class="line">-- select distinct student_id <span class="keyword">from</span> score where course_id <span class="keyword">in</span> (select cid <span class="keyword">from</span> course where teacher_id <span class="keyword">in</span> (select tid <span class="keyword">from</span> teacher WHERE tname=<span class="string">&#x27;李平老师&#x27;</span>)); </span><br><span class="line"><span class="comment"># 3.去学生表中 取反获取没有报李平老师课程的学生姓名</span></span><br><span class="line">-- SELECT</span><br><span class="line">--     sname </span><br><span class="line">-- FROM</span><br><span class="line">--     student </span><br><span class="line">-- WHERE</span><br><span class="line">--     sid NOT IN (</span><br><span class="line">--     SELECT DISTINCT</span><br><span class="line">--         student_id </span><br><span class="line">--     FROM</span><br><span class="line">--         score </span><br><span class="line">--     WHERE</span><br><span class="line">--         course_id IN (</span><br><span class="line">--         SELECT</span><br><span class="line">--             cid </span><br><span class="line">--         FROM</span><br><span class="line">--             course </span><br><span class="line">--         WHERE</span><br><span class="line">--         teacher_id IN ( SELECT tid FROM teacher WHERE tname = <span class="string">&#x27;李平老师&#x27;</span> )));</span><br><span class="line">-- <span class="number">8</span>、 查询没有同时选修物理课程和体育课程的学生姓名(只要报了一门的 两门和都不报都不要)</span><br><span class="line"><span class="comment"># 1.先查询物理 和 体育课程的id号</span></span><br><span class="line">--     select cid <span class="keyword">from</span> course where cname <span class="keyword">in</span> (<span class="string">&#x27;物理&#x27;</span>,<span class="string">&#x27;体育&#x27;</span>);</span><br><span class="line"><span class="comment"># 2.去成绩表中先筛选出所有报了课程的数据(报了一门 报了两门)</span></span><br><span class="line">-- select * <span class="keyword">from</span> score where course_id <span class="keyword">in</span> (select cid <span class="keyword">from</span> course where cname <span class="keyword">in</span> (<span class="string">&#x27;物理&#x27;</span>,<span class="string">&#x27;体育&#x27;</span>));</span><br><span class="line"><span class="comment"># 3.按照学生id分组 统计每个学生报了的课程数目</span></span><br><span class="line">-- select student_id <span class="keyword">from</span> score where course_id <span class="keyword">in</span> (select cid <span class="keyword">from</span> course where cname <span class="keyword">in</span> (<span class="string">&#x27;物理&#x27;</span>,<span class="string">&#x27;体育&#x27;</span>))</span><br><span class="line">--     group by student_id</span><br><span class="line">--     having count(course_id) = <span class="number">1</span></span><br><span class="line">-- ;</span><br><span class="line"><span class="comment"># 4.去学生表中根据id获取学生姓名</span></span><br><span class="line">-- SELECT</span><br><span class="line">--     sname </span><br><span class="line">-- FROM</span><br><span class="line">--     student </span><br><span class="line">-- WHERE</span><br><span class="line">--     sid IN (</span><br><span class="line">--     SELECT</span><br><span class="line">--         student_id </span><br><span class="line">--     FROM</span><br><span class="line">--         score </span><br><span class="line">--     WHERE</span><br><span class="line">--         course_id IN (</span><br><span class="line">--         SELECT</span><br><span class="line">--             cid </span><br><span class="line">--         FROM</span><br><span class="line">--             course </span><br><span class="line">--         WHERE</span><br><span class="line">--         cname IN ( <span class="string">&#x27;物理&#x27;</span>, <span class="string">&#x27;体育&#x27;</span> ))</span><br><span class="line">--     group by student_id</span><br><span class="line">--     having count(course_id) = <span class="number">1</span>);</span><br><span class="line">-- <span class="number">9</span>、 查询挂科超过两门(包括两门)的学生姓名和班级</span><br><span class="line"><span class="comment"># 1.先去成绩表中 筛选出分数小于60分的数据</span></span><br><span class="line">-- select * <span class="keyword">from</span> score where num&lt;<span class="number">60</span>;</span><br><span class="line"><span class="comment"># 2.按照学生id分组 然后统计个数</span></span><br><span class="line">-- select student_id <span class="keyword">from</span> score where num&lt;<span class="number">60</span> group by student_id</span><br><span class="line">--     having count(num) &gt;= <span class="number">2</span></span><br><span class="line">-- ;</span><br><span class="line"><span class="comment"># 3.将班级表与学生表拼接起来</span></span><br><span class="line">SELECT</span><br><span class="line">    <span class="keyword">class</span>.caption,</span><br><span class="line">    student.sname </span><br><span class="line">FROM</span><br><span class="line">    <span class="class"><span class="keyword">class</span></span></span><br><span class="line"><span class="class">    <span class="title">INNER</span> <span class="title">JOIN</span> <span class="title">student</span> <span class="title">ON</span> <span class="title">class</span>.<span class="title">cid</span> = <span class="title">student</span>.<span class="title">class_id</span> </span></span><br><span class="line"><span class="class"><span class="title">WHERE</span></span></span><br><span class="line"><span class="class">    <span class="title">student</span>.<span class="title">sid</span> <span class="title">IN</span> (<span class="params"> SELECT student_id FROM score WHERE num &lt; <span class="number">60</span> GROUP BY student_id HAVING count(<span class="params"> num </span>) &gt;= <span class="number">2</span> </span>);</span></span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/02/11/MySQL%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%88%9D%E8%AF%86/" rel="prev" title="MySQL基础之数据库初识">
+                  <i class="fa fa-chevron-left"></i> MySQL基础之数据库初识
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">池劲涛</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
