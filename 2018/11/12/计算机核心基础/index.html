@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="引子什么是语言？什么是编程语言？为什么要有编程语言?什么是编程？为什么要编程？1234567891.1     1 语言就是人与人之间沟通的介质(英语、汉语...)    2 编程语言就是人与计算机之间沟通的介质    3 为什么要有编程语言，或者说人为什么要与计算机沟通呢？这是因为在编程的世界里，计算机就好比是人的奴隶，人与计算机沟通的目的就是为了奴役计算机，让计算机按照人类的思维逻辑自发地去工">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机核心基础">
+<meta property="og:url" content="http://example.com/2018/11/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="池劲涛的博客">
+<meta property="og:description" content="引子什么是语言？什么是编程语言？为什么要有编程语言?什么是编程？为什么要编程？1234567891.1     1 语言就是人与人之间沟通的介质(英语、汉语...)    2 编程语言就是人与计算机之间沟通的介质    3 为什么要有编程语言，或者说人为什么要与计算机沟通呢？这是因为在编程的世界里，计算机就好比是人的奴隶，人与计算机沟通的目的就是为了奴役计算机，让计算机按照人类的思维逻辑自发地去工">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img2020.cnblogs.com/blog/2342210/202104/2342210-20210421171214070-1978353069.png">
+<meta property="og:image" content="https://img2020.cnblogs.com/blog/2342210/202104/2342210-20210421171226105-104347706.png">
+<meta property="article:published_time" content="2018-11-11T23:20:25.000Z">
+<meta property="article:modified_time" content="2018-12-01T04:22:34.000Z">
+<meta property="article:author" content="池劲涛">
+<meta property="article:tag" content="Python Linux Vue">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img2020.cnblogs.com/blog/2342210/202104/2342210-20210421171214070-1978353069.png">
+
+
+<link rel="canonical" href="http://example.com/2018/11/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2018/11/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80/","path":"2018/11/12/计算机核心基础/","title":"计算机核心基础"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>计算机核心基础 | 池劲涛的博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">池劲涛的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%95%E5%AD%90"><span class="nav-number">1.</span> <span class="nav-text">引子</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%AF%AD%E8%A8%80%EF%BC%9F%E4%BB%80%E4%B9%88%E6%98%AF%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%EF%BC%9F%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%9C%89%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80"><span class="nav-number">1.1.</span> <span class="nav-text">什么是语言？什么是编程语言？为什么要有编程语言?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%BC%96%E7%A8%8B%EF%BC%9F%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%BC%96%E7%A8%8B%EF%BC%9F"><span class="nav-number">1.2.</span> <span class="nav-text">什么是编程？为什么要编程？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">计算机组成原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%AE%A1%E7%AE%97%E6%9C%BA%EF%BC%9F"><span class="nav-number">2.1.</span> <span class="nav-text">什么是计算机？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">2.2.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E4%BA%94%E5%A4%A7%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86"><span class="nav-number">2.3.</span> <span class="nav-text">计算机的五大组成部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="nav-number">2.3.1.</span> <span class="nav-text">控制器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E5%99%A8"><span class="nav-number">2.3.2.</span> <span class="nav-text">运算器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">2.3.3.</span> <span class="nav-text">存储器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E8%AE%BE%E5%A4%87input"><span class="nav-number">2.3.4.</span> <span class="nav-text">输入设备input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E8%AE%BE%E5%A4%87output"><span class="nav-number">2.3.5.</span> <span class="nav-text">输出设备output</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0"><span class="nav-number">3.</span> <span class="nav-text">操作系统概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%94%B1%E6%9D%A5"><span class="nav-number">3.1.</span> <span class="nav-text">操作系统的由来</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E8%BD%AF%E4%BB%B6%E4%B8%8E%E5%BA%94%E7%94%A8%E8%BD%AF%E4%BB%B6"><span class="nav-number">3.2.</span> <span class="nav-text">系统软件与应用软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%B8%89%E5%B1%82%E7%BB%93%E6%9E%84"><span class="nav-number">3.3.</span> <span class="nav-text">计算机系统的三层结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E9%9D%9E%E5%B8%B8%E9%87%8D%E8%A6%81%E7%9A%84%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%EF%BC%9A%E5%B9%B3%E5%8F%B0"><span class="nav-number">3.3.1.</span> <span class="nav-text">一个非常重要的基础概念：平台</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="池劲涛"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">池劲涛</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/11/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="池劲涛">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="池劲涛的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          计算机核心基础
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-11-12 07:20:25" itemprop="dateCreated datePublished" datetime="2018-11-12T07:20:25+08:00">2018-11-12</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2018-12-01 12:22:34" itemprop="dateModified" datetime="2018-12-01T12:22:34+08:00">2018-12-01</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python%E7%B3%BB%E5%88%97/" itemprop="url" rel="index"><span itemprop="name">Python系列</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h1><h2 id="什么是语言？什么是编程语言？为什么要有编程语言"><a href="#什么是语言？什么是编程语言？为什么要有编程语言" class="headerlink" title="什么是语言？什么是编程语言？为什么要有编程语言?"></a>什么是语言？什么是编程语言？为什么要有编程语言?</h2><h2 id="什么是编程？为什么要编程？"><a href="#什么是编程？为什么要编程？" class="headerlink" title="什么是编程？为什么要编程？"></a>什么是编程？为什么要编程？</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.1</span> </span><br><span class="line">    <span class="number">1</span> 语言就是人与人之间沟通的介质(英语、汉语...)</span><br><span class="line">    <span class="number">2</span> 编程语言就是人与计算机之间沟通的介质</span><br><span class="line">    <span class="number">3</span> 为什么要有编程语言，或者说人为什么要与计算机沟通呢？这是因为在编程的世界里，计算机就好比是人的奴隶，人与计算机沟通的目的就是为了奴役计算机，让计算机按照人类的思维逻辑自发地去工作从而把人力解放出来。</span><br><span class="line"><span class="number">1.2</span></span><br><span class="line">    <span class="number">1</span> 编程就是人把自己想命令计算机干的事用编程语言翻译出来并写到文件里(这一系列的文件就是程序)</span><br><span class="line">    <span class="number">2</span> 分为两个层面</span><br><span class="line">        -为了更好的控制人类的奴隶(计算机)，我们需要学习计算机是由什么组成的、它能做什么、它是怎样工作的</span><br><span class="line">        -我们需要学习编程语言，从而把原来需要人力来完成的业务(ATM+购物)交给计算机去做</span><br></pre></td></tr></table></figure>
+
+<h1 id="计算机组成原理"><a href="#计算机组成原理" class="headerlink" title="计算机组成原理"></a>计算机组成原理</h1><h2 id="什么是计算机？"><a href="#什么是计算机？" class="headerlink" title="什么是计算机？"></a>什么是计算机？</h2><p><strong>俗称电脑，即通电的大脑，电脑二字蕴含了人类对计算机的终极期望，希望它能真的像人脑一样去工作，从而解放人力。</strong></p>
+<p><strong>懒人奴役的是真正的人，而人是无法不吃、不喝、不睡觉一直工作的，但是计算机作为一台机器是可以做到的，所以把计算机当奴隶是上上之选。</strong></p>
+<p><strong>世界是由聪明的懒人统治的，任何时期，总有一群聪明的懒人想要奴隶别人。在奴隶制社会，聪明的懒人奴役的是真正的人，而人是无法不吃、不喝、不睡觉一直工作的，但是计算机作为一台机器是可以做到的，所以把计算机当奴隶是上上之选。</strong></p>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="计算机的五大组成部分"><a href="#计算机的五大组成部分" class="headerlink" title="计算机的五大组成部分"></a>计算机的五大组成部分</h2><h3 id="控制器"><a href="#控制器" class="headerlink" title="控制器"></a>控制器</h3><p><strong>控制器是计算机的指挥系统，用来控制计算机其他组件的运行，相当于人类的大脑</strong></p>
+<h3 id="运算器"><a href="#运算器" class="headerlink" title="运算器"></a>运算器</h3><p><strong>运算器是计算机的运算功能，用来做算术运算和逻辑运算，相当于人脑。<br>PS：控制器 + 运算器 = CPU</strong></p>
+<h3 id="存储器"><a href="#存储器" class="headerlink" title="存储器"></a>存储器</h3><p><strong>存储器是计算机的记忆功能，用来存取数据。</strong></p>
+<p><strong>存储器主要分为内存与外存：</strong></p>
+<p><strong>内存相当于人的短期记忆。断电数据丢失</strong></p>
+<p><strong>外存(如磁盘),相当于记事的本子，断电数据不会丢失，是用来永久保存数据的</strong></p>
+<p><strong>ps：内存的存取速度要远远高于外存</strong></p>
+<h3 id="输入设备input"><a href="#输入设备input" class="headerlink" title="输入设备input"></a>输入设备input</h3><p><strong>输入设备是计算接收外界输入数据的工具，如键盘、鼠标，相当于人的眼睛或耳朵。</strong></p>
+<h3 id="输出设备output"><a href="#输出设备output" class="headerlink" title="输出设备output"></a>输出设备output</h3><p><strong>输出设备是计算机向外输出数据的工具，如显示器、打印机，相当于人说的话，写出的文章。</strong></p>
+<p><strong>ps：存储器如内存、磁盘等既是输入设备又是输出设备，统称为IO设备</strong></p>
+<h1 id="操作系统概述"><a href="#操作系统概述" class="headerlink" title="操作系统概述"></a>操作系统概述</h1><h2 id="操作系统的由来"><a href="#操作系统的由来" class="headerlink" title="操作系统的由来"></a>操作系统的由来</h2><p><strong>大前提：我们编程目的就是为了奴役计算机，让计算机硬件自发地运行起来，然而硬件毕竟是”死的“，硬件的运行都是由软件支配。</strong></p>
+<p><strong>倘若我们要开发一个应用程序，比如暴风音影，该软件的一个核心业务就是播放视频，开发者若要编写程序完成播放视频这个业务逻辑，必先涉及到底层硬件硬盘的基本运作（视频文件都是先存放于硬盘中），这意味着开发者在编写业务逻辑代码之前，必须先编写一个控制硬盘基本运行的控制程序，然而这仅仅只是一个开始，事实上，在编写应用程序的业务逻辑前，需要开发者编写出一套完整的控制程序用来控制所有硬件的基本运行（这要求开发者需要详细了解计算机硬件的各种控制细节，例如我们必须把CPU里面所有指令集都掌握一遍），如此，所有的开发者在开发程序时都必须依次开发两种：</strong><br>　　<strong>1、编写一套完整的的控制程序，用来控制硬件的基本运行，以及把复杂的硬件的操作封装成简单的接口</strong><br>　　<strong>2、基于控制程序的接口开发包含一系列业务逻辑的程序，为了与控制程序区分，可以称为应用程序，以ATM这款应用程序为例，业务逻辑有提款、转账、查询余额等</strong><br><strong>综上，对于不同公司的开发者来说，应用程序的业务逻辑各不相同，但硬件的控制程序都大致相同，为了避免所有程序员做重复劳动，以及不用再耗费精力去了解所有硬件的运行细节，有公司专门跳出来承担起控制程序的开发任务，这里所说的控制程序指的就是操作系统。</strong></p>
+<p><strong>操作系统的功能就是帮我们把复杂的硬件的控制封装成简单的接口，对于开发应用程序来说只需要调用操作系统提供给我们的接口即可</strong></p>
+<h2 id="系统软件与应用软件"><a href="#系统软件与应用软件" class="headerlink" title="系统软件与应用软件"></a>系统软件与应用软件</h2><p><strong>硬件以上运行的都是软件，而软件分为两类：</strong><br>    <strong>一、应用软件（例如qq、word、暴风影音，我们学习python就是为了开发应用软件的）</strong></p>
+<p>​    <strong>二、操作系统，操作系统应用软件与硬件之间的一个桥梁，是协调、管理、控制计算机硬件与应用软件资源的控制程序。</strong></p>
+<h2 id="计算机系统的三层结构"><a href="#计算机系统的三层结构" class="headerlink" title="计算机系统的三层结构"></a>计算机系统的三层结构</h2><p><img src="https://img2020.cnblogs.com/blog/2342210/202104/2342210-20210421171214070-1978353069.png" alt="img"></p>
+<h3 id="一个非常重要的基础概念：平台"><a href="#一个非常重要的基础概念：平台" class="headerlink" title="一个非常重要的基础概念：平台"></a>一个非常重要的基础概念：平台</h3><p><strong>应用程序都是运行于操作系统之上，而操作系统则是运行于硬件之上的，所以承载应用程序的是一台运行有操作系统的计算机，称之为应用程序的运行平台，即：硬件 + 操作系统 == 平台</strong><br><strong>常见的平台有：windows系统+某款硬件、linux系统+某款硬件、ubuntu+某款硬件等，我们在开发应用程序时就需要考虑到应用程序的跨平台性，如果能开发出一款可以在任意平台运行的应用程序，那对于开发者来说真是极大的福音。而决定应用软件的跨平台性的关键因素往往是编程语言的选择，python恰好是一款跨平台性语言，这也是我们学习它的原因之一。</strong></p>
+<p><img src="https://img2020.cnblogs.com/blog/2342210/202104/2342210-20210421171226105-104347706.png" alt="img"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/11/12/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%9B%AE%E5%BD%95%E8%A7%84%E8%8C%83/" rel="prev" title="软件开发目录规范">
+                  <i class="fa fa-chevron-left"></i> 软件开发目录规范
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/11/12/%E7%94%9F%E6%88%90%E5%99%A8/" rel="next" title="生成器">
+                  生成器 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">池劲涛</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

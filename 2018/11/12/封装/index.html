@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="内容概要 引入 隐藏属性 开放接口 property  内容详细引入12345678910111213面对对象编程有三大特性：    1 封装    2 继承    3 多态    其中最重要的一个特性就是封装封装指的是：    把数据与功能整合到一起  &lt;---&quot;整合&quot;除此之外，针对封装到对象或者类中的属性，我们还可以严格控制对它们的访问，分两步实现：    1 隐藏属">
+<meta property="og:type" content="article">
+<meta property="og:title" content="封装">
+<meta property="og:url" content="http://example.com/2018/11/12/%E5%B0%81%E8%A3%85/index.html">
+<meta property="og:site_name" content="池劲涛的博客">
+<meta property="og:description" content="内容概要 引入 隐藏属性 开放接口 property  内容详细引入12345678910111213面对对象编程有三大特性：    1 封装    2 继承    3 多态    其中最重要的一个特性就是封装封装指的是：    把数据与功能整合到一起  &lt;---&quot;整合&quot;除此之外，针对封装到对象或者类中的属性，我们还可以严格控制对它们的访问，分两步实现：    1 隐藏属">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-11-11T23:20:25.000Z">
+<meta property="article:modified_time" content="2018-12-01T04:22:34.000Z">
+<meta property="article:author" content="池劲涛">
+<meta property="article:tag" content="Python Linux Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2018/11/12/%E5%B0%81%E8%A3%85/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2018/11/12/%E5%B0%81%E8%A3%85/","path":"2018/11/12/封装/","title":"封装"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>封装 | 池劲涛的博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">池劲涛的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%85%E5%AE%B9%E6%A6%82%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">内容概要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%85%E5%AE%B9%E8%AF%A6%E7%BB%86"><span class="nav-number">2.</span> <span class="nav-text">内容详细</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E5%85%A5"><span class="nav-number">2.1.</span> <span class="nav-text">引入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%90%E8%97%8F%E5%B1%9E%E6%80%A7"><span class="nav-number">2.2.</span> <span class="nav-text">隐藏属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E6%94%BE%E6%8E%A5%E5%8F%A3"><span class="nav-number">2.3.</span> <span class="nav-text">开放接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%90%E8%97%8F%E6%95%B0%E6%8D%AE%E5%B1%9E%E6%80%A7"><span class="nav-number">2.3.1.</span> <span class="nav-text">隐藏数据属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%90%E8%97%8F%E5%87%BD%E6%95%B0%E5%B1%9E%E6%80%A7"><span class="nav-number">2.3.2.</span> <span class="nav-text">隐藏函数属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#property"><span class="nav-number">2.4.</span> <span class="nav-text">property</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="池劲涛"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">池劲涛</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/11/12/%E5%B0%81%E8%A3%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="池劲涛">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="池劲涛的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          封装
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-11-12 07:20:25" itemprop="dateCreated datePublished" datetime="2018-11-12T07:20:25+08:00">2018-11-12</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2018-12-01 12:22:34" itemprop="dateModified" datetime="2018-12-01T12:22:34+08:00">2018-12-01</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python%E7%B3%BB%E5%88%97/" itemprop="url" rel="index"><span itemprop="name">Python系列</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="内容概要"><a href="#内容概要" class="headerlink" title="内容概要"></a>内容概要</h1><ul>
+<li>引入</li>
+<li>隐藏属性</li>
+<li>开放接口</li>
+<li>property</li>
+</ul>
+<h1 id="内容详细"><a href="#内容详细" class="headerlink" title="内容详细"></a>内容详细</h1><h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">面对对象编程有三大特性：</span><br><span class="line">    <span class="number">1</span> 封装</span><br><span class="line">    <span class="number">2</span> 继承</span><br><span class="line">    <span class="number">3</span> 多态</span><br><span class="line">    </span><br><span class="line">其中最重要的一个特性就是封装</span><br><span class="line"></span><br><span class="line">封装指的是：</span><br><span class="line">    把数据与功能整合到一起  &lt;---<span class="string">&quot;整合&quot;</span></span><br><span class="line"></span><br><span class="line">除此之外，针对封装到对象或者类中的属性，我们还可以严格控制对它们的访问，分两步实现：</span><br><span class="line">    <span class="number">1</span> 隐藏属性</span><br><span class="line">    <span class="number">2</span> 开放接口</span><br></pre></td></tr></table></figure>
+
+<h2 id="隐藏属性"><a href="#隐藏属性" class="headerlink" title="隐藏属性"></a>隐藏属性</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">python的Class机制采用双下划线<span class="string">&#x27;开头&#x27;</span>的方式将属性隐藏起来(设置成私有的)，但其实这仅仅是一种变形操作，类中所有的双下划线<span class="string">&#x27;开头&#x27;</span>的属性都会在定义阶段，检测语法时自动变成<span class="string">&#x27;_类名_属性名&#x27;</span>的形式：</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span>:</span></span><br><span class="line">    __N=<span class="number">0</span> <span class="comment"># 变形为_Foo__N</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span> <span class="comment"># 定义函数时，会检测函数语法，所以__开头的属性也会变形</span></span><br><span class="line">        self.__x=<span class="number">10</span> <span class="comment"># 变形为self._Foo__x</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__f1</span>(<span class="params">self</span>):</span> <span class="comment"># 变形为_Foo__f1</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;__f1 run&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">f2</span>(<span class="params">self</span>):</span>  <span class="comment"># 定义函数时，会检测函数语法，所以__开头的属性也会变形</span></span><br><span class="line">        self.__f1() <span class="comment">#变形为self._Foo__f1()</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(Foo.__N) <span class="comment"># 报错AttributeError:类Foo没有属性__N</span></span><br><span class="line"></span><br><span class="line">obj = Foo()</span><br><span class="line"><span class="built_in">print</span>(obbj.__x) <span class="comment"># 报错AttributeError:对象obj没有属性__x</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">这种变形需要注意的问题是：</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>、在类外部无法直接访问双下滑线开头的属性，但知道了类名和属性名就可以拼出名字：_类名__属性，然后就可以访问了，如Foo._A__N，所以说这种操作并没有严格意义上地限制外部访问，仅仅只是一种语法意义上的变形。</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Foo.__dict__</span><br><span class="line">mappingproxy(&#123;..., <span class="string">&#x27;_Foo__N&#x27;</span>: <span class="number">0</span>, ...&#125;)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>obj.__dict__</span><br><span class="line">&#123;<span class="string">&#x27;_Foo__x&#x27;</span>: <span class="number">10</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Foo._Foo__N</span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>obj._Foo__x</span><br><span class="line"><span class="number">10</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>obj._Foo__N</span><br><span class="line"><span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span>、在类内部是可以直接访问双下滑线开头的属性的，比如self.__f1()，因为在类定义阶段类内部双下滑线开头的属性统一发生了变形。</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>obj.f2()</span><br><span class="line">__f1 run</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span>、变形操作只在类定义阶段发生一次,在类定义之后的赋值操作，不会变形。</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Foo.__M=<span class="number">100</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Foo.__dict__</span><br><span class="line">mappingproxy(&#123;..., <span class="string">&#x27;__M&#x27;</span>: <span class="number">100</span>,...&#125;)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Foo.__M</span><br><span class="line"><span class="number">100</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>obj.__y=<span class="number">20</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>obj.__dict__</span><br><span class="line">&#123;<span class="string">&#x27;__y&#x27;</span>: <span class="number">20</span>, <span class="string">&#x27;_Foo__x&#x27;</span>: <span class="number">10</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>obj.__y</span><br><span class="line"><span class="number">20</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="开放接口"><a href="#开放接口" class="headerlink" title="开放接口"></a>开放接口</h2><p> <strong>定义属性就是为了使用，所以隐藏并不是目的</strong></p>
+<h3 id="隐藏数据属性"><a href="#隐藏数据属性" class="headerlink" title="隐藏数据属性"></a>隐藏数据属性</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">将数据隐藏起来就限制了类外部对数据的直接操作，然后类内应该提供相应的接口来允许类外部间接地操作数据，接口之上可以附加额外的逻辑来对数据的操作进行严格地控制：</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Teacher</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,name,age</span>):</span> <span class="comment">#将名字和年纪都隐藏起来</span></span><br><span class="line"><span class="meta">... </span>        self.__name=name</span><br><span class="line"><span class="meta">... </span>        self.__age=age</span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">tell_info</span>(<span class="params">self</span>):</span> <span class="comment">#对外提供访问老师信息的接口</span></span><br><span class="line"><span class="meta">... </span>        <span class="built_in">print</span>(<span class="string">&#x27;姓名:%s,年龄:%s&#x27;</span> %(self.__name,self.__age))</span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">set_info</span>(<span class="params">self,name,age</span>):</span> <span class="comment">#对外提供设置老师信息的接口，并附加类型检查的逻辑</span></span><br><span class="line"><span class="meta">... </span>        <span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">isinstance</span>(name,<span class="built_in">str</span>):</span><br><span class="line"><span class="meta">... </span>            <span class="keyword">raise</span> TypeError(<span class="string">&#x27;姓名必须是字符串类型&#x27;</span>)</span><br><span class="line"><span class="meta">... </span>        <span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">isinstance</span>(age,<span class="built_in">int</span>):</span><br><span class="line"><span class="meta">... </span>            <span class="keyword">raise</span> TypeError(<span class="string">&#x27;年龄必须是整型&#x27;</span>)</span><br><span class="line"><span class="meta">... </span>        self.__name=name</span><br><span class="line"><span class="meta">... </span>        self.__age=age</span><br><span class="line"><span class="meta">... </span></span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>t=Teacher(<span class="string">&#x27;lili&#x27;</span>,<span class="number">18</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>t.set_info(‘LiLi<span class="string">&#x27;,&#x27;</span><span class="number">19</span><span class="string">&#x27;) # 年龄不为整型，抛出异常</span></span><br><span class="line"><span class="string">Traceback (most recent call last):</span></span><br><span class="line"><span class="string">  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</span></span><br><span class="line"><span class="string">  File &quot;&lt;stdin&gt;&quot;, line 11, in set_info</span></span><br><span class="line"><span class="string">TypeError: 年龄必须是整型</span></span><br><span class="line"><span class="string">&gt;&gt;&gt; t.set_info(&#x27;</span>LiLi<span class="string">&#x27;,19) # 名字为字符串类型，年龄为整形，可以正常设置</span></span><br><span class="line"><span class="string">&gt;&gt;&gt; t.tell_info() # 查看老师的信息</span></span><br><span class="line"><span class="string">姓名:LiLi,年龄:19 </span></span><br></pre></td></tr></table></figure>
+
+<h3 id="隐藏函数属性"><a href="#隐藏函数属性" class="headerlink" title="隐藏函数属性"></a>隐藏函数属性</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">目的的是为了隔离复杂度，例如ATM程序的取款功能,该功能有很多其他功能组成，比如插卡、身份认证、输入金额、打印小票、取钱等，而对使用者来说,只需要开发取款这个功能接口即可,其余功能我们都可以隐藏起来</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">ATM</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__card</span>(<span class="params">self</span>):</span> <span class="comment">#插卡</span></span><br><span class="line"><span class="meta">... </span>        <span class="built_in">print</span>(<span class="string">&#x27;插卡&#x27;</span>)</span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__auth</span>(<span class="params">self</span>):</span> <span class="comment">#身份认证</span></span><br><span class="line"><span class="meta">... </span>        <span class="built_in">print</span>(<span class="string">&#x27;用户认证&#x27;</span>)</span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__input</span>(<span class="params">self</span>):</span> <span class="comment">#输入金额</span></span><br><span class="line"><span class="meta">... </span>        <span class="built_in">print</span>(<span class="string">&#x27;输入取款金额&#x27;</span>)</span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__print_bill</span>(<span class="params">self</span>):</span> <span class="comment">#打印小票</span></span><br><span class="line"><span class="meta">... </span>        <span class="built_in">print</span>(<span class="string">&#x27;打印账单&#x27;</span>)</span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__take_money</span>(<span class="params">self</span>):</span> <span class="comment">#取钱</span></span><br><span class="line"><span class="meta">... </span>        <span class="built_in">print</span>(<span class="string">&#x27;取款&#x27;</span>)</span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">withdraw</span>(<span class="params">self</span>):</span> <span class="comment">#取款功能</span></span><br><span class="line"><span class="meta">... </span>        self.__card()</span><br><span class="line"><span class="meta">... </span>        self.__auth()</span><br><span class="line"><span class="meta">... </span>        self.__<span class="built_in">input</span>()</span><br><span class="line"><span class="meta">... </span>        self.__print_bill()</span><br><span class="line"><span class="meta">... </span>        self.__take_money()</span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>obj=ATM()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>obj.withdraw()</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>隐藏属性与开放接口：<br>    本质就是为了明确地区分内外，类内部可以修改封装内的东西而不影响外部调用者的代码；而类外部只需拿到一个接口，只要接口名、参数不变，则无论设计者如何改变内部实现代码，使用者均无需改变代码。这就提供一个良好的合作基础，只要接口这个基础约定不变，则代码的修改不足为虑。</strong></p>
+<h2 id="property"><a href="#property" class="headerlink" title="property"></a>property</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">BMI指数是用来衡量一个人的体重与身高对健康影响的一个指标，计算公式为：</span><br><span class="line">    体质指数（BMI）=体重（kg）÷身高^<span class="number">2</span>（m）</span><br><span class="line">    EX：70kg÷（<span class="number">1.75</span>×<span class="number">1.75</span>）=<span class="number">22.86</span></span><br><span class="line">    </span><br><span class="line">身高或体重是不断变化的，因而每次想查看BMI值都需要通过计算才能得到，但很明显BMI听起来更像是一个特征而非功能，为此Python专门提供了一个装饰器<span class="built_in">property</span>，可以将类中的函数“伪装成”对象的数据属性，对象在访问该特殊属性时会触发功能的执行，然后将返回值作为本次访问的结果，例如：</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">People</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,name,weight,height</span>):</span></span><br><span class="line"><span class="meta">... </span>        self.name=name</span><br><span class="line"><span class="meta">... </span>        self.weight=weight</span><br><span class="line"><span class="meta">... </span>        self.height=height</span><br><span class="line"><span class="meta">... </span>    @<span class="built_in">property</span></span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">bmi</span>(<span class="params">self</span>):</span></span><br><span class="line"><span class="meta">... </span>        <span class="keyword">return</span> self.weight / (self.height**<span class="number">2</span>)</span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>obj=People(<span class="string">&#x27;lili&#x27;</span>,<span class="number">75</span>,<span class="number">1.85</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>obj.bmi <span class="comment">#触发方法bmi的执行，将obj自动传给self，执行后返回值作为本次引用的结果</span></span><br><span class="line"><span class="number">21.913805697589478</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">使用<span class="built_in">property</span>有效地保证了属性访问的一致性。另外<span class="built_in">property</span>还提供设置和删除属性的功能，如下</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Foo</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,val</span>):</span></span><br><span class="line"><span class="meta">... </span>        self.__NAME=val <span class="comment">#将属性隐藏起来</span></span><br><span class="line"><span class="meta">... </span>    @<span class="built_in">property</span></span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">name</span>(<span class="params">self</span>):</span></span><br><span class="line"><span class="meta">... </span>        <span class="keyword">return</span> self.__NAME</span><br><span class="line"><span class="meta">... </span>    @name.setter</span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">name</span>(<span class="params">self,value</span>):</span></span><br><span class="line"><span class="meta">... </span>        <span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">isinstance</span>(value,<span class="built_in">str</span>):  <span class="comment">#在设定值之前进行类型检查</span></span><br><span class="line"><span class="meta">... </span>            <span class="keyword">raise</span> TypeError(<span class="string">&#x27;%s must be str&#x27;</span> %value)</span><br><span class="line"><span class="meta">... </span>        self.__NAME=value <span class="comment">#通过类型检查后,将值value存放到真实的位置self.__NAME</span></span><br><span class="line"><span class="meta">... </span>    @name.deleter</span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">name</span>(<span class="params">self</span>):</span></span><br><span class="line"><span class="meta">... </span>        <span class="keyword">raise</span> PermissionError(<span class="string">&#x27;Can not delete&#x27;</span>)</span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f=Foo(<span class="string">&#x27;lili&#x27;</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f.name</span><br><span class="line">lili</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f.name=<span class="string">&#x27;LiLi&#x27;</span> <span class="comment">#触发name.setter装饰器对应的函数name(f,’Egon&#x27;)</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f.name=<span class="number">123</span> <span class="comment">#触发name.setter对应的的函数name(f,123),抛出异常TypeError</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">del</span> f.name <span class="comment">#触发name.deleter对应的函数name(f),抛出异常PermissionError </span></span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/11/12/%E5%87%BD%E6%95%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" rel="prev" title="函数的基本使用">
+                  <i class="fa fa-chevron-left"></i> 函数的基本使用
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/11/12/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/" rel="next" title="字符编码">
+                  字符编码 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">池劲涛</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

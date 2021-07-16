@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="内容概要 模块介绍 模块的使用  内容详细模块介绍在Python中，一个py文件就是一个模块，文件名为xxx.py模块名则是xxx,导入模块可以引用模块中已经写好的功能。如果把开发程序比喻成制造一台电脑，编写模块就像是在制造电脑的零部件，准备好零部件后，剩下的工作就是按照逻辑把它们组装到一起。 将程序模块化会使得程序的组织结构清晰，维护起来更加方便。比起直接开发一个完整的程序，单独开发一个小的模块">
+<meta property="og:type" content="article">
+<meta property="og:title" content="模块">
+<meta property="og:url" content="http://example.com/2018/11/12/%E6%A8%A1%E5%9D%97/index.html">
+<meta property="og:site_name" content="池劲涛的博客">
+<meta property="og:description" content="内容概要 模块介绍 模块的使用  内容详细模块介绍在Python中，一个py文件就是一个模块，文件名为xxx.py模块名则是xxx,导入模块可以引用模块中已经写好的功能。如果把开发程序比喻成制造一台电脑，编写模块就像是在制造电脑的零部件，准备好零部件后，剩下的工作就是按照逻辑把它们组装到一起。 将程序模块化会使得程序的组织结构清晰，维护起来更加方便。比起直接开发一个完整的程序，单独开发一个小的模块">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-11-11T23:20:25.000Z">
+<meta property="article:modified_time" content="2018-12-01T04:22:34.000Z">
+<meta property="article:author" content="池劲涛">
+<meta property="article:tag" content="Python Linux Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2018/11/12/%E6%A8%A1%E5%9D%97/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2018/11/12/%E6%A8%A1%E5%9D%97/","path":"2018/11/12/模块/","title":"模块"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>模块 | 池劲涛的博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">池劲涛的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%85%E5%AE%B9%E6%A6%82%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">内容概要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%85%E5%AE%B9%E8%AF%A6%E7%BB%86"><span class="nav-number">2.</span> <span class="nav-text">内容详细</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.1.</span> <span class="nav-text">模块介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">2.2.</span> <span class="nav-text">模块的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#import%E8%AF%AD%E5%8F%A5"><span class="nav-number">2.2.1.</span> <span class="nav-text">import语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#from-import%E8%AF%AD%E5%8F%A5"><span class="nav-number">2.2.2.</span> <span class="nav-text">from import语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E5%AF%BC%E5%85%A5%E8%AF%AD%E6%B3%95-as"><span class="nav-number">2.2.3.</span> <span class="nav-text">其他导入语法(as)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E5%AF%BC%E5%85%A5%E9%97%AE%E9%A2%98"><span class="nav-number">2.2.4.</span> <span class="nav-text">循环导入问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%90%9C%E7%B4%A2%E6%A8%A1%E5%9D%97%E7%9A%84%E8%B7%AF%E5%BE%84%E4%B8%8E%E4%BC%98%E5%85%88%E7%BA%A7"><span class="nav-number">2.2.5.</span> <span class="nav-text">搜索模块的路径与优先级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%BA%E5%88%86py%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%A4%E7%A7%8D%E7%94%A8%E9%80%94"><span class="nav-number">2.2.6.</span> <span class="nav-text">区分py文件的两种用途</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E8%A7%84%E8%8C%83%E7%9A%84%E6%A8%A1%E5%9D%97"><span class="nav-number">2.2.7.</span> <span class="nav-text">编写一个规范的模块</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="池劲涛"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">池劲涛</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/11/12/%E6%A8%A1%E5%9D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="池劲涛">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="池劲涛的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          模块
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-11-12 07:20:25" itemprop="dateCreated datePublished" datetime="2018-11-12T07:20:25+08:00">2018-11-12</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2018-12-01 12:22:34" itemprop="dateModified" datetime="2018-12-01T12:22:34+08:00">2018-12-01</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python%E7%B3%BB%E5%88%97/" itemprop="url" rel="index"><span itemprop="name">Python系列</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="内容概要"><a href="#内容概要" class="headerlink" title="内容概要"></a>内容概要</h1><ul>
+<li>模块介绍</li>
+<li>模块的使用</li>
+</ul>
+<h1 id="内容详细"><a href="#内容详细" class="headerlink" title="内容详细"></a>内容详细</h1><h2 id="模块介绍"><a href="#模块介绍" class="headerlink" title="模块介绍"></a>模块介绍</h2><p><strong>在Python中，一个py文件就是一个模块，文件名为xxx.py模块名则是xxx,导入模块可以引用模块中已经写好的功能。如果把开发程序比喻成制造一台电脑，编写模块就像是在制造电脑的零部件，准备好零部件后，剩下的工作就是按照逻辑把它们组装到一起。</strong></p>
+<p><strong>将程序模块化会使得程序的组织结构清晰，维护起来更加方便。比起直接开发一个完整的程序，单独开发一个小的模块也会更加简单，并且程序中的模块与电脑中的零部件稍微不同的是：程序中的模块可以被重复使用。所以总结下来，使用模块既保证了代码的重用性，又增强了程序的结构性和可维护性。另外除了自定义模块外，我们还可以导入使用内置或第三方模块提供的现成功能，这种“拿来主义”极大地提高了程序员的开发效率。</strong></p>
+<h2 id="模块的使用"><a href="#模块的使用" class="headerlink" title="模块的使用"></a>模块的使用</h2><h3 id="import语句"><a href="#import语句" class="headerlink" title="import语句"></a>import语句</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 文件名：foo.py</span></span><br><span class="line">x = <span class="number">1</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get</span>():</span></span><br><span class="line">    <span class="built_in">print</span>(x)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">change</span>():</span></span><br><span class="line">    <span class="keyword">global</span> x</span><br><span class="line">    x = <span class="number">0</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">func</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;from the func&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">想要在另一个py文件中引用foo.py中的功能，需要使用<span class="keyword">import</span> foo，首次导入模块会做三件事：</span><br><span class="line"></span><br><span class="line"><span class="number">1</span> 执行源文件代码</span><br><span class="line"></span><br><span class="line"><span class="number">2</span> 产生一个新的名称空间用于存放源文件执行过程中产生的名字</span><br><span class="line"></span><br><span class="line"><span class="number">3</span> 在当前执行文件所在的名称空间中得到一个名字foo，该名字指向新创建的模块名称空间，若要引用模块名称空间中的名字，需要加上该前缀，如：</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> foo <span class="comment"># 导入模块foo</span></span><br><span class="line">a = foo.x <span class="comment"># 引用模块foo中变量x的值赋值给当前名称空间中的名字a</span></span><br><span class="line">foo.get() <span class="comment"># 调用模块foo中的get函数</span></span><br><span class="line">foo.change() <span class="comment"># 调用模块foo中的change函数</span></span><br><span class="line">obj = foo.Foo() <span class="comment"># 调用模块foo的类Foo来实例化，进一步可以执行obj.func()</span></span><br><span class="line"></span><br><span class="line">加上foo.作为前缀，就相当于指名道姓地说明要引用foo名称空间中的名字，所以肯定不会与当前执行文件所在名称空间中的名字相冲突，并且若当前执行文件的名称空间中存在x，执行foo.get()或者foo.change()操作的都是源文件中的全局变量x</span><br><span class="line"></span><br><span class="line"><span class="comment"># 强调：第一次导入模块已经将其加载到内存空间了，之后的重复导入会直接引用内存中已存在的模块，不会重复执行文件，通过import sys，打印sys.modules的值可以看到内存中已经加载的模块名</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">提示：</span><br><span class="line"></span><br><span class="line"><span class="comment">#1、在Python中模块也属于第一类对象，可以进行赋值、以数据形式传递以及作为容器类型的元素等操作。</span></span><br><span class="line"><span class="comment">#2、模块名应该遵循小写形式，标准库从python2过渡到python3做出了很多这类调整，比如ConfigParser、Queue、SocketServer全更新为纯小写形式。</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">用<span class="keyword">import</span>语句导入多个模块，可以写多行<span class="keyword">import</span>语句</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> module1</span><br><span class="line"><span class="keyword">import</span> module2</span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">import</span> moduleN</span><br><span class="line">还可以在一行导入，用逗号分隔开不同的模块</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> module1,module2,...,moduleN</span><br><span class="line">但其实第一种形式更为规范，可读性更强，推荐使用，而且我们导入的模块中可能包含有python内置的模块、第三方的模块、自定义的模块，为了便于明显地区分它们，我们通常在文件的开头导入模块，并且分类导入，一类模块的导入与另外一类的导入用空行隔开，不同类别的导入顺序如下：</span><br><span class="line"></span><br><span class="line"><span class="number">1.</span> python内置模块</span><br><span class="line"><span class="number">2.</span> 第三方模块</span><br><span class="line"><span class="number">3.</span> 程序员自定义模块</span><br><span class="line">当然，我们也可以在函数内导入模块，对比在文件开头导入模块属于全局作用域，在函数内导入的模块则属于局部的作用域。</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="from-import语句"><a href="#from-import语句" class="headerlink" title="from import语句"></a>from import语句</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span>...<span class="keyword">import</span>...与<span class="keyword">import</span>语句基本一致，唯一不同的是：使用<span class="keyword">import</span> foo导入模块后，引用模块中的名字都需要加上foo.作为前缀，而使用<span class="keyword">from</span> foo <span class="keyword">import</span> x,get,change,Foo则可以在当前执行文件中直接引用模块foo中的名字，如下</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> foo <span class="keyword">import</span> x,get,change <span class="comment">#将模块foo中的x和get导入到当前名称空间</span></span><br><span class="line">a=x <span class="comment">#直接使用模块foo中的x赋值给a</span></span><br><span class="line">get() <span class="comment">#直接执行foo中的get函数</span></span><br><span class="line">change() <span class="comment">#即便是当前有重名的x，修改的仍然是源文件中的x</span></span><br><span class="line">无需加前缀的好处是使得我们的代码更加简洁，坏处则是容易与当前名称空间中的名字冲突，如果当前名称空间存在相同的名字，则后定义的名字会覆盖之前定义的名字。</span><br><span class="line"></span><br><span class="line">另外<span class="keyword">from</span>语句支持<span class="keyword">from</span> foo <span class="keyword">import</span> 语法，代表将foo中所有的名字都导入到当前位置</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> foo <span class="keyword">import</span> * <span class="comment">#把foo中所有的名字都导入到当前执行文件的名称空间中，在当前位置直接可以使用这些名字</span></span><br><span class="line"></span><br><span class="line">a=x</span><br><span class="line">get()</span><br><span class="line">change()</span><br><span class="line">obj=Foo()</span><br><span class="line">如果我们需要引用模块中的名字过多的话，可以采用上述的导入形式来达到节省代码量的效果，但是需要强调的一点是：只能在模块最顶层使用的方式导入，在函数内则非法，并且的方式会带来一种副作用，即我们无法搞清楚究竟从源文件中导入了哪些名字到当前位置，这极有可能与当前位置的名字产生冲突。模块的编写者可以在自己的文件中定义__all__变量用来控制*代表的意思</span><br><span class="line"></span><br><span class="line"><span class="comment">#foo.py</span></span><br><span class="line">__all__=[<span class="string">&#x27;x&#x27;</span>,<span class="string">&#x27;get&#x27;</span>] <span class="comment">#该列表中所有的元素必须是字符串类型，每个元素对应foo.py中的一个名字</span></span><br><span class="line">x=<span class="number">1</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get</span>():</span></span><br><span class="line">    <span class="built_in">print</span>(x)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">change</span>():</span></span><br><span class="line">    <span class="keyword">global</span> x</span><br><span class="line">    x=<span class="number">0</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">func</span>(<span class="params">self</span>):</span></span><br><span class="line">       <span class="built_in">print</span>(<span class="string">&#x27;from the func&#x27;</span>)</span><br><span class="line">这样我们在另外一个文件中使用*导入时，就只能导入__all__定义的名字了</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> foo <span class="keyword">import</span> * <span class="comment">#此时的*只代表x和get</span></span><br><span class="line"></span><br><span class="line">x <span class="comment">#可用</span></span><br><span class="line">get() <span class="comment">#可用</span></span><br><span class="line">change() <span class="comment">#不可用</span></span><br><span class="line">Foo() <span class="comment">#不可用</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="其他导入语法-as"><a href="#其他导入语法-as" class="headerlink" title="其他导入语法(as)"></a>其他导入语法(as)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">我们还可以在当前位置为导入的模块起一个别名</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> foo <span class="keyword">as</span> f <span class="comment">#为导入的模块foo在当前位置起别名f，以后再使用时就用这个别名f</span></span><br><span class="line">f.x</span><br><span class="line">f.get()</span><br><span class="line">还可以为导入的一个名字起别名</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> foo <span class="keyword">import</span> get <span class="keyword">as</span> get_x</span><br><span class="line">get_x()</span><br><span class="line">通常在被导入的名字过长时采用起别名的方式来精简代码，另外为被导入的名字起别名可以很好地避免与当前名字发生冲突，还有很重要的一点就是：可以保持调用方式的一致性，例如我们有两个模块json和pickle同时实现了load方法，作用是从一个打开的文件中解析出结构化的数据，但解析的格式不同，可以用下述代码有选择性地加载不同的模块</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> data_format == <span class="string">&#x27;json&#x27;</span>:</span><br><span class="line">    <span class="keyword">import</span> json <span class="keyword">as</span> serialize <span class="comment">#如果数据格式是json，那么导入json模块并命名为serialize</span></span><br><span class="line"><span class="keyword">elif</span> data_format == <span class="string">&#x27;pickle&#x27;</span>:</span><br><span class="line">    <span class="keyword">import</span> pickle <span class="keyword">as</span> serialize <span class="comment">#如果数据格式是pickle，那么导入pickle模块并命名为serialize</span></span><br><span class="line"></span><br><span class="line">data=serialize.load(fn) <span class="comment">#最终调用的方式是一致的</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="循环导入问题"><a href="#循环导入问题" class="headerlink" title="循环导入问题"></a>循环导入问题</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">循环导入问题指的是在一个模块加载/导入的过程中导入另外一个模块，而在另外一个模块中又返回来导入第一个模块中的名字，由于第一个模块尚未加载完毕，所以引用失败、抛出异常，究其根源就是在python中，同一个模块只会在第一次导入时执行其内部代码，再次导入该模块时，即便是该模块尚未完全加载完毕也不会去重复执行内部代码</span><br><span class="line"></span><br><span class="line">我们以下述文件为例，来详细分析循环/嵌套导入出现异常的原因以及解决的方案</span><br><span class="line"></span><br><span class="line">m1.py</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;正在导入m1&#x27;</span>)</span><br><span class="line"><span class="keyword">from</span> m2 <span class="keyword">import</span> y</span><br><span class="line"></span><br><span class="line">x=<span class="string">&#x27;m1&#x27;</span></span><br><span class="line">m2.py</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;正在导入m2&#x27;</span>)</span><br><span class="line"><span class="keyword">from</span> m1 <span class="keyword">import</span> x</span><br><span class="line"></span><br><span class="line">y=<span class="string">&#x27;m2&#x27;</span></span><br><span class="line">run.py</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> m1</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">测试一</span><br><span class="line"></span><br><span class="line"><span class="comment">#1、执行run.py会抛出异常</span></span><br><span class="line">正在导入m1</span><br><span class="line">正在导入m2</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">&quot;/Users/linhaifeng/PycharmProjects/pro01/1 aaaa练习目录/aa.py&quot;</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    <span class="keyword">import</span> m1</span><br><span class="line">  File <span class="string">&quot;/Users/linhaifeng/PycharmProjects/pro01/1 aaaa练习目录/m1.py&quot;</span>, line <span class="number">2</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    <span class="keyword">from</span> m2 <span class="keyword">import</span> y</span><br><span class="line">  File <span class="string">&quot;/Users/linhaifeng/PycharmProjects/pro01/1 aaaa练习目录/m2.py&quot;</span>, line <span class="number">2</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    <span class="keyword">from</span> m1 <span class="keyword">import</span> x</span><br><span class="line">ImportError: cannot <span class="keyword">import</span> name <span class="string">&#x27;x&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#2、分析</span></span><br><span class="line">先执行run.py---&gt;执行<span class="keyword">import</span> m1，开始导入m1并运行其内部代码---&gt;打印内容<span class="string">&quot;正在导入m1&quot;</span></span><br><span class="line">---&gt;执行<span class="keyword">from</span> m2 <span class="keyword">import</span> y 开始导入m2并运行其内部代码---&gt;打印内容“正在导入m2”---&gt;执行<span class="keyword">from</span> m1 <span class="keyword">import</span> x,由于m1已经被导入过了，所以不会重新导入，所以直接去m1中拿x，然而x此时并没有存在于m1中，所以报错</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">测试二</span><br><span class="line"></span><br><span class="line"><span class="comment">#1、执行文件不等于导入文件，比如执行m1.py不等于导入了m1</span></span><br><span class="line">直接执行m1.py抛出异常</span><br><span class="line">正在导入m1</span><br><span class="line">正在导入m2</span><br><span class="line">正在导入m1</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">&quot;/Users/linhaifeng/PycharmProjects/pro01/1 aaaa练习目录/m1.py&quot;</span>, line <span class="number">2</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    <span class="keyword">from</span> m2 <span class="keyword">import</span> y</span><br><span class="line">  File <span class="string">&quot;/Users/linhaifeng/PycharmProjects/pro01/1 aaaa练习目录/m2.py&quot;</span>, line <span class="number">2</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    <span class="keyword">from</span> m1 <span class="keyword">import</span> x</span><br><span class="line">  File <span class="string">&quot;/Users/linhaifeng/PycharmProjects/pro01/1 aaaa练习目录/m1.py&quot;</span>, line <span class="number">2</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    <span class="keyword">from</span> m2 <span class="keyword">import</span> y</span><br><span class="line">ImportError: cannot <span class="keyword">import</span> name <span class="string">&#x27;y&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#2、分析</span></span><br><span class="line">执行m1.py，打印“正在导入m1”，执行<span class="keyword">from</span> m2 <span class="keyword">import</span> y ，导入m2进而执行m2.py内部代码---&gt;打印<span class="string">&quot;正在导入m2&quot;</span>，执行<span class="keyword">from</span> m1 <span class="keyword">import</span> x，此时m1是第一次被导入，执行m1.py并不等于导入了m1，于是开始导入m1并执行其内部代码---&gt;打印<span class="string">&quot;正在导入m1&quot;</span>，执行<span class="keyword">from</span> m1 <span class="keyword">import</span> y，由于m1已经被导入过了，所以无需继续导入而直接问m2要y，然而y此时并没有存在于m2中所以报错</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">解决方案</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方案一：导入语句放到最后，保证在导入时，所有名字都已经加载过</span></span><br><span class="line"><span class="comment"># 文件：m1.py</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;正在导入m1&#x27;</span>)</span><br><span class="line"></span><br><span class="line">x=<span class="string">&#x27;m1&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> m2 <span class="keyword">import</span> y</span><br><span class="line"></span><br><span class="line"><span class="comment"># 文件：m2.py</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;正在导入m2&#x27;</span>)</span><br><span class="line">y=<span class="string">&#x27;m2&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> m1 <span class="keyword">import</span> x</span><br><span class="line"></span><br><span class="line"><span class="comment"># 文件：run.py内容如下，执行该文件，可以正常使用</span></span><br><span class="line"><span class="keyword">import</span> m1</span><br><span class="line"><span class="built_in">print</span>(m1.x)</span><br><span class="line"><span class="built_in">print</span>(m1.y)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># 方案二：导入语句放到函数中，只有在调用函数时才会执行其内部代码</span></span><br><span class="line"><span class="comment"># 文件：m1.py</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;正在导入m1&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f1</span>():</span></span><br><span class="line">    <span class="keyword">from</span> m2 <span class="keyword">import</span> y</span><br><span class="line">    <span class="built_in">print</span>(x,y)</span><br><span class="line"></span><br><span class="line">x = <span class="string">&#x27;m1&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 文件：m2.py</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;正在导入m2&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f2</span>():</span></span><br><span class="line">    <span class="keyword">from</span> m1 <span class="keyword">import</span> x</span><br><span class="line">    <span class="built_in">print</span>(x,y)</span><br><span class="line"></span><br><span class="line">y = <span class="string">&#x27;m2&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 文件：run.py内容如下，执行该文件，可以正常使用</span></span><br><span class="line"><span class="keyword">import</span> m1</span><br><span class="line"></span><br><span class="line">m1.f1()</span><br><span class="line">注意：循环导入问题大多数情况是因为程序设计失误导致，上述解决方案也只是在烂设计之上的无奈之举，在我们的程序中应该尽量避免出现循环/嵌套导入，如果多个模块确实都需要共享某些数据，可以将共享的数据集中存放到某一个地方，然后进行导入</span><br></pre></td></tr></table></figure>
+
+<h3 id="搜索模块的路径与优先级"><a href="#搜索模块的路径与优先级" class="headerlink" title="搜索模块的路径与优先级"></a>搜索模块的路径与优先级</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">模块其实分为四个通用类别，分别是：</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>、使用纯Python代码编写的py文件</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>、包含一系列模块的包</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>、使用C编写并链接到Python解释器中的内置模块</span><br><span class="line"></span><br><span class="line"><span class="number">4</span>、使用C或C++编译的扩展模块</span><br><span class="line"></span><br><span class="line">在导入一个模块时，如果该模块已加载到内存中，则直接引用，否则会优先查找内置模块，然后按照从左到右的顺序依次检索sys.path中定义的路径，直到找模块对应的文件为止，否则抛出异常。sys.path也被称为模块的搜索路径，它是一个列表类型</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sys.path</span><br><span class="line">[<span class="string">&#x27;&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;/Library/Frameworks/Python.framework/Versions/3.5/lib/python35.zip&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5&#x27;</span>,</span><br><span class="line">...,</span><br><span class="line"><span class="string">&#x27;/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">列表中的每个元素其实都可以当作一个目录来看：在列表中会发现有.<span class="built_in">zip</span>或.egg结尾的文件，二者是不同形式的压缩文件，事实上Python确实支持从一个压缩文件中导入模块，我们也只需要把它们都当成目录去看即可。</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">sys.path中的第一个路径通常为空，代表执行文件所在的路径，所以在被导入模块与执行文件在同一目录下时肯定是可以正常导入的，而针对被导入的模块与执行文件在不同路径下的情况，为了确保模块对应的源文件仍可以被找到，需要将源文件foo.py所在的路径添加到sys.path中，假设foo.py所在的路径为/pythoner/projects/</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">sys.path.append(<span class="string">r&#x27;/pythoner/projects/&#x27;</span>) <span class="comment">#也可以使用sys.path.insert(……)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> foo <span class="comment">#无论foo.py在何处,我们都可以导入它了</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="区分py文件的两种用途"><a href="#区分py文件的两种用途" class="headerlink" title="区分py文件的两种用途"></a>区分py文件的两种用途</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">一个Python文件有两种用途，一种被当主程序/脚本执行，另一种被当模块导入，为了区别同一个文件的不同用途，每个py文件都内置了__name__变量，该变量在py文件被当做脚本执行时赋值为“__main__”,在py文件被当做模块导入时赋值为模块名</span><br><span class="line"></span><br><span class="line">作为模块foo.py的开发者，可以在文件末尾基于__name__在不同应用场景下值的不同来控制文件执行不同的逻辑</span><br><span class="line"></span><br><span class="line"><span class="comment">#foo.py</span></span><br><span class="line">...</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    foo.py被当做脚本执行时运行的代码</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    foo.py被当做模块导入时运行的代码</span><br></pre></td></tr></table></figure>
+
+<p><strong>通常我们会在if的子代码块中编写针对模块功能的测试代码，这样foo.py在被当做脚本运行时，就会执行测试代码，而被当做模块导入时则不用执行测试代码。</strong></p>
+<h3 id="编写一个规范的模块"><a href="#编写一个规范的模块" class="headerlink" title="编写一个规范的模块"></a>编写一个规范的模块</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">我们在编写py文件时，需要时刻提醒自己，该文件既是给自己用的，也有可能会被其他人使用，因而代码的可读性与易维护性显得十分重要，为此我们在编写一个模块时最好按照统一的规范去编写，如下:</span><br><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/env python #通常只在类unix环境有效,作用是可以使用脚本名来执行，而无需直接调用解释器。</span></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;The module is used to...&quot;</span> <span class="comment">#模块的文档描述</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys <span class="comment">#导入模块</span></span><br><span class="line"></span><br><span class="line">x=<span class="number">1</span> <span class="comment">#定义全局变量,如果非必须,则最好使用局部变量,这样可以提高代码的易维护性,并且可以节省内存提高性能</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span>:</span> <span class="comment">#定义类,并写好类的注释</span></span><br><span class="line">    <span class="string">&#x27;Class Foo is used to...&#x27;</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span>():</span> <span class="comment">#定义函数,并写好函数的注释</span></span><br><span class="line">    <span class="string">&#x27;Function test is used to…&#x27;</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>: <span class="comment">#主程序</span></span><br><span class="line">    test() <span class="comment">#在被当做脚本执行时,执行此处的代码 </span></span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/11/12/%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/" rel="prev" title="流程控制">
+                  <i class="fa fa-chevron-left"></i> 流程控制
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/11/12/%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/" rel="next" title="文件处理">
+                  文件处理 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">池劲涛</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="引入字符串类型、本文类型的内容都是由字符组成的，但凡涉及到字符的存取，都需要考虑字符编码的问题字符编码这个知识点的典型特征就是理论多，结论少，但对于开发而言只需要记住结论即可 知识储备三大核心硬件123456    所有软件都是运行在硬件之上的，与运行软件相关的三大核心硬件为cpu、内存、硬盘，我们需要明白三点# 1 软件运行前，软件的代码及其相关数据都是存放在硬盘中的# 2 任何软件的启动都是将">
+<meta property="og:type" content="article">
+<meta property="og:title" content="字符编码">
+<meta property="og:url" content="http://example.com/2018/11/12/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/index.html">
+<meta property="og:site_name" content="池劲涛的博客">
+<meta property="og:description" content="引入字符串类型、本文类型的内容都是由字符组成的，但凡涉及到字符的存取，都需要考虑字符编码的问题字符编码这个知识点的典型特征就是理论多，结论少，但对于开发而言只需要记住结论即可 知识储备三大核心硬件123456    所有软件都是运行在硬件之上的，与运行软件相关的三大核心硬件为cpu、内存、硬盘，我们需要明白三点# 1 软件运行前，软件的代码及其相关数据都是存放在硬盘中的# 2 任何软件的启动都是将">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-48e25e7f03030e066f8fcaf4750cc892_720w.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-19bac7b0910652bbd1f7e026683a28be_720w.jpg">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-484a43054d2217ed11c7d5d9170675f8_720w.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-08a12814397a5a6d3e530a66cf2dbc02_720w.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-5f7b25aaeb4ccc913f0c23d586acdbab_720w.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-c2a4ec82d946e4e35645f9782dbc798a_720w.jpg">
+<meta property="article:published_time" content="2018-11-11T23:20:25.000Z">
+<meta property="article:modified_time" content="2018-12-01T04:22:34.000Z">
+<meta property="article:author" content="池劲涛">
+<meta property="article:tag" content="Python Linux Vue">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic3.zhimg.com/80/v2-48e25e7f03030e066f8fcaf4750cc892_720w.jpg">
+
+
+<link rel="canonical" href="http://example.com/2018/11/12/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2018/11/12/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/","path":"2018/11/12/字符编码/","title":"字符编码"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>字符编码 | 池劲涛的博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">池劲涛的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%95%E5%85%A5"><span class="nav-number">1.</span> <span class="nav-text">引入</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E5%82%A8%E5%A4%87"><span class="nav-number">2.</span> <span class="nav-text">知识储备</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E5%A4%A7%E6%A0%B8%E5%BF%83%E7%A1%AC%E4%BB%B6"><span class="nav-number">2.1.</span> <span class="nav-text">三大核心硬件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="nav-number">2.2.</span> <span class="nav-text">文本编辑器读取文件内容的流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python%E8%A7%A3%E9%87%8A%E5%99%A8%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E6%B5%81%E7%A8%8B"><span class="nav-number">2.3.</span> <span class="nav-text">python解释器执行文件流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">2.4.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E4%BB%8B%E7%BB%8D"><span class="nav-number">3.</span> <span class="nav-text">字符编码介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%EF%BC%9F"><span class="nav-number">3.1.</span> <span class="nav-text">什么是字符编码？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E8%A1%A8%E7%9A%84%E5%8F%91%E5%B1%95%E5%8F%B2-%E4%BA%86%E8%A7%A3"><span class="nav-number">3.2.</span> <span class="nav-text">字符编码表的发展史(了解)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B6%E6%AE%B5%E4%B8%80%EF%BC%9A%E4%B8%80%E5%AE%B6%E7%8B%AC%E5%A4%A7"><span class="nav-number">3.2.1.</span> <span class="nav-text">阶段一：一家独大</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B6%E6%AE%B5%E4%BA%8C%EF%BC%9A%E8%AF%B8%E4%BE%AF%E5%89%B2%E6%8D%AE%EF%BC%8C%E5%A4%A9%E4%B8%8B%E5%A4%A7%E4%B9%B1"><span class="nav-number">3.2.2.</span> <span class="nav-text">阶段二：诸侯割据，天下大乱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B6%E6%AE%B5%E4%B8%89%EF%BC%9A%E5%88%86%E4%B9%85%E5%BF%85%E5%90%88"><span class="nav-number">3.2.3.</span> <span class="nav-text">阶段三：分久必合</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E7%A0%81%E4%B8%8E%E8%A7%A3%E7%A0%81"><span class="nav-number">3.3.</span> <span class="nav-text">编码与解码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#utf-8%E7%9A%84%E7%94%B1%E6%9D%A5"><span class="nav-number">3.4.</span> <span class="nav-text">utf-8的由来</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E7%9A%84%E5%BA%94%E7%94%A8-%E9%87%8D%E8%A6%81"><span class="nav-number">4.</span> <span class="nav-text">字符编码的应用(重要)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93-%E8%AE%B0-%EF%BC%9A"><span class="nav-number">4.1.</span> <span class="nav-text">总结(记)：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python%E8%A7%A3%E9%87%8A%E5%99%A8%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E7%9A%84%E5%89%8D%E4%B8%A4%E4%B8%AA%E9%98%B6%E6%AE%B5"><span class="nav-number">4.2.</span> <span class="nav-text">python解释器执行文件的前两个阶段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python%E8%A7%A3%E9%87%8A%E5%99%A8"><span class="nav-number">4.3.</span> <span class="nav-text">python解释器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2encode%E7%BC%96%E7%A0%81%E4%B8%8Edecode%E8%A7%A3%E7%A0%81%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">4.4.</span> <span class="nav-text">字符串encode编码与decode解码的使用</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="池劲涛"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">池劲涛</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/11/12/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="池劲涛">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="池劲涛的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          字符编码
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-11-12 07:20:25" itemprop="dateCreated datePublished" datetime="2018-11-12T07:20:25+08:00">2018-11-12</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2018-12-01 12:22:34" itemprop="dateModified" datetime="2018-12-01T12:22:34+08:00">2018-12-01</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python%E7%B3%BB%E5%88%97/" itemprop="url" rel="index"><span itemprop="name">Python系列</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h1><p><strong>字符串类型、本文类型的内容都是由字符组成的，但凡涉及到字符的存取，都需要考虑字符编码的问题</strong><br><strong>字符编码这个知识点的典型特征就是理论多，结论少，但对于开发而言只需要记住结论即可</strong></p>
+<h1 id="知识储备"><a href="#知识储备" class="headerlink" title="知识储备"></a>知识储备</h1><h2 id="三大核心硬件"><a href="#三大核心硬件" class="headerlink" title="三大核心硬件"></a>三大核心硬件</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">    所有软件都是运行在硬件之上的，与运行软件相关的三大核心硬件为cpu、内存、硬盘，我们需要明白三点</span><br><span class="line"><span class="comment"># 1 软件运行前，软件的代码及其相关数据都是存放在硬盘中的</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2 任何软件的启动都是将数据从硬盘读入内存，然后cpu从内存中取出指令并执行</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3 软件运行过程中产生的数据最先都是存放于内存中的，若想永久保存软件产生的数据，则需要将数据由内存写入硬盘</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic3.zhimg.com/80/v2-48e25e7f03030e066f8fcaf4750cc892_720w.jpg" alt="img"></p>
+<h2 id="文本编辑器读取文件内容的流程"><a href="#文本编辑器读取文件内容的流程" class="headerlink" title="文本编辑器读取文件内容的流程"></a>文本编辑器读取文件内容的流程</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># 阶段1 启动一个文本编辑器(文本编辑器如nodepad++， pycharm， word...)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 阶段2 文件编辑器会将文件内容从硬盘读入内存</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 阶段3 文本编辑器会将刚刚读入内存的内容显示到屏幕上</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="python解释器执行文件流程"><a href="#python解释器执行文件流程" class="headerlink" title="python解释器执行文件流程"></a>python解释器执行文件流程</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">    以python test.py为例，执行流程如下↓↓↓</span><br><span class="line"></span><br><span class="line"><span class="comment"># 阶段1 启动python解释器，此时就相当于启动了一个文本编辑器</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 阶段2 python解释器相当于文本编辑器，从硬盘上将test.py的内容读入到内存中</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 阶段3 python解释器解释执行刚刚读入的内存的内容，开始识别python语法</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">    python解释器与文本编辑器的异同如下：</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1 相同点：前两个阶段二者完全一致，都是将硬盘中文件的内容读入内存</span></span><br><span class="line">(python解释器是解释执行文件内容的，因而python解释器具备读py文件的功能，这一点与文本编辑器一样)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2 不同点：在阶段3时，针对内存中读入的内容处理方式不同</span></span><br><span class="line">(文本编辑器将文件内容读入内存后，是为了显示或者编辑，根本不会去理会python语法，而python解释器将文件内容读入内存后，可不是为了给你瞅一眼python代码写的是啥，而是为了执行python代码，会识别python语法)</span><br></pre></td></tr></table></figure>
+
+<h1 id="字符编码介绍"><a href="#字符编码介绍" class="headerlink" title="字符编码介绍"></a>字符编码介绍</h1><h2 id="什么是字符编码？"><a href="#什么是字符编码？" class="headerlink" title="什么是字符编码？"></a>什么是字符编码？</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">人类再与计算机交互时，用的都是人类能读懂的字符，如中文字符、英文字符、日文字符...</span><br><span class="line"></span><br><span class="line">而计算机只能识别二进制数</span><br><span class="line"></span><br><span class="line"><span class="comment"># 二进制数即由0和1组成的数字，如010101010101001，计算机是基于电工作的，电的特性即高低电频人类从逻辑层面将髙电频对应为数字1，低电频对应为数字0，这直接决定了计算机可是识别的是由0和1组成的数字</span></span><br><span class="line"></span><br><span class="line">由人类的字符到计算机中的数字，必须经历一个过程↓↓↓</span><br><span class="line">字符 ---&gt; 翻译 ---&gt; 数字</span><br><span class="line"></span><br><span class="line">翻译的过程必须参照一个特定的标准，该标准称之为字符编码表，该表上存放的就是字符与数字一一对应的关系</span><br><span class="line"></span><br><span class="line">字符编码中的编码指的是翻译或者转换的意思是，即将人能理解的字符翻译成计算机能识别的数字</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="字符编码表的发展史-了解"><a href="#字符编码表的发展史-了解" class="headerlink" title="字符编码表的发展史(了解)"></a>字符编码表的发展史(了解)</h2><h3 id="阶段一：一家独大"><a href="#阶段一：一家独大" class="headerlink" title="阶段一：一家独大"></a>阶段一：一家独大</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">现代计算机起源于美国，所以最先考虑的仅仅是让计算机识别英文字符，于是诞生了ASCII表</span><br><span class="line"></span><br><span class="line"><span class="comment"># ASCII表的特点</span></span><br><span class="line">    <span class="number">1</span> 只有英文字符与数字的一一对应关系</span><br><span class="line">    <span class="number">2</span> 一个英文字符对应1<span class="built_in">bytes</span>，1<span class="built_in">bytes</span>=8bit， 8bit最多包含<span class="number">256</span>个数字，可以对应<span class="number">256</span>个字符，足够表示所有的英文字符</span><br></pre></td></tr></table></figure>
+
+<h3 id="阶段二：诸侯割据，天下大乱"><a href="#阶段二：诸侯割据，天下大乱" class="headerlink" title="阶段二：诸侯割据，天下大乱"></a>阶段二：诸侯割据，天下大乱</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">为了让计算机能够识别中文和英文，中国人制定了gbk</span><br><span class="line"></span><br><span class="line"><span class="comment"># gbk表的特点</span></span><br><span class="line">    <span class="number">1</span> 只有中文字符、英文字符与数字的一一对应关系</span><br><span class="line">    <span class="number">2</span> 一个英文字符对应1<span class="built_in">bytes</span></span><br><span class="line">      一个中文字符对应2<span class="built_in">bytes</span></span><br><span class="line">        补充说明：1<span class="built_in">bytes</span> = 8bit，8bit最多包含<span class="number">256</span>个数字，可以对应<span class="number">256</span>个字符，足够表示所有英文字符</span><br><span class="line">                2<span class="built_in">bytes</span> = 16bit，16bit最多包含<span class="number">65536</span>个字符，足够表示所有中文字符</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">每个国家都有各自的字符(语言),为了让计算能够识别自己国家的字符外加英文字符， 各个国家都制定了自己的字符编码表</span><br><span class="line"></span><br><span class="line"><span class="comment"># shift_JIS表的特点</span></span><br><span class="line">    <span class="number">1</span> 只有日文字符、英文字符与数字的一一对应关系</span><br><span class="line">    </span><br><span class="line"><span class="comment"># Euc_kr表的特点</span></span><br><span class="line">    <span class="number">1</span> 只有韩文字符、英文字符与数字的一一对应关系</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic3.zhimg.com/80/v2-19bac7b0910652bbd1f7e026683a28be_720w.jpg" alt="img"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">图<span class="number">1</span>中，文本编辑存取文件的原理如下</span><br><span class="line">	文本文件内容全都为字符，无论存取都是涉及到字符编码的问题</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 1 存(写)文本文件</span></span><br><span class="line">    人类通过文本编辑器输入的字符会被转换成ASCII格式的二进制存放于内存中，如果需要永久保存，则直接将内存中的ASCII格式的二进制写入硬盘</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 2 取(读)文本文件</span></span><br><span class="line">    直接将硬盘中的ASCII格式的二进制读入内存，然后通过ASCII表反解成英文字符</span><br><span class="line">    </span><br><span class="line">图<span class="number">2</span>图<span class="number">3</span>也都是相同的过程，此时无论是存还是取，由于采用的字符编码表一样，所以肯定不会出现乱码问题，但问题是在美国人用的计算机里只能输入英文字符，而在中国人用的计算机里只能输入中文和英文字符...</span><br><span class="line"></span><br><span class="line">毫无疑问我们希望计算机允许我们输入的万国字符均可识别，不乱码，而现阶段计算机采用的字符编码表ASCII、gbk、shift_jis都无法识别万国字符，所以我们必须制定一个兼容万国字符的编码表</span><br></pre></td></tr></table></figure>
+
+<h3 id="阶段三：分久必合"><a href="#阶段三：分久必合" class="headerlink" title="阶段三：分久必合"></a>阶段三：分久必合</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Unicode于<span class="number">1990</span>年开始研发，<span class="number">1994</span>年正式公布，具备两大特点：</span><br><span class="line"><span class="comment"># 1 存在所有语言中的所有字符与数字的一一对应关系，即兼容万国字符</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2 与传统的字符编码的二进制数都有对应关系</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">很多地方或老的系统、应用软件仍会采用各种各样传统的编码，这是历史遗留问题。此处需要强调：</span><br><span class="line"></span><br><span class="line">	软件是存放于硬盘的，而运行软件是要将软件加载到内存的，面对硬盘中存放的各种传统编码的软件，想让我们的计算机能够将他们全部正常运行而不出现乱码，内存中必须有一种兼容万国的编码，并且该编码需要与其他编码有相对饮的映射/转换关系，这就是Unicode的第二大特点产生的缘由</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.zhimg.com/80/v2-484a43054d2217ed11c7d5d9170675f8_720w.jpg" alt="img"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">文本编辑器输入任何字符都是最先存于内存中的，而内存是Unicode编码的，若存放于硬盘中，则可以转换成任意其他编码，只要该编码可以支持相应的字符</span><br><span class="line"><span class="comment"># 英文字符可以背ASCII识别    </span></span><br><span class="line">    英文字符 ---&gt; Unicode格式的数字 ---&gt;ASCII格式的数字</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 中文字符、英文字符可以背gbk识别</span></span><br><span class="line">    中文字符、英文字符 ---&gt; Unicode格式的数字 ---&gt; gbk格式的数字</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 日文字符、英文字符可以被shift_JIS识别</span></span><br><span class="line">    日文字符、英文字符 ---&gt; Unicode格式的数字 ---&gt; shift_JIS格式的数字</span><br></pre></td></tr></table></figure>
+
+<h2 id="编码与解码"><a href="#编码与解码" class="headerlink" title="编码与解码"></a>编码与解码</h2><p><strong>由字符转换成内存中的Unicode，以及由Unicode转换成其他编码的过程，都称为编码encode</strong></p>
+<p><img src="https://pic3.zhimg.com/80/v2-08a12814397a5a6d3e530a66cf2dbc02_720w.jpg" alt="img"></p>
+<p><strong>由内存中的Unicode转换成字符，以及由其他编码转换成Unicode的过程，都称为解码decode</strong></p>
+<p><img src="https://pic4.zhimg.com/80/v2-5f7b25aaeb4ccc913f0c23d586acdbab_720w.jpg" alt="img"></p>
+<h2 id="utf-8的由来"><a href="#utf-8的由来" class="headerlink" title="utf-8的由来"></a>utf-8的由来</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">注意：</span><br><span class="line">	如果保存到硬盘的是gbk格式的二进制，当初用户输入的字符只能是中文或英文，同理，如果保存到硬盘的是shift_JIS格式的二进制，当初用户输入的字符只能是日文或英文，如果我们输入的字符中包含多国字符，那么该如何处理</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 多国字符 ---√---&gt; 内存(Unicode格式的二进制) ---×---&gt;硬盘(gbk格式的二进制)</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 多国字符 ---√---&gt; 内存(Unicode格式的二进制) ---×---&gt;硬盘(shift_JIS格式的二进制)</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 多国字符 ---√---&gt; 内存(Unicode格式的二进制) ---×---&gt;硬盘(？？？格式的二进制)</span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">        理论上是可以将内存中Unicode格式的二进制直接存放于硬盘中的，但由于Unicode固定使用两个字节来存储一个字符，如果多国字符中包含大量的英文字符时，使用Unicode格式存放会额外占用一倍空间(英文字符其实只需要用一个字节存放即可)，然而空间占用并不是最致命的问题，最致命的问题是当我们由内存写入硬盘时会额外耗费一倍的时间，所以将内存中的Unicode二进制写入硬盘或者基于网络传输时必须将其转换成一种精简的格式，这种格式就是utf-<span class="number">8</span></span><br><span class="line">        </span><br><span class="line">    <span class="comment"># 多国字符 ---√---&gt; 内存(Unicode格式的二进制) ---√---&gt;硬盘(utf-8格式的二进制)</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic3.zhimg.com/80/v2-c2a4ec82d946e4e35645f9782dbc798a_720w.jpg" alt="img"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">那为何不直接在内存中使用utf-<span class="number">8</span>？↓↓↓</span><br><span class="line">   </span><br><span class="line">   utf-<span class="number">8</span>是针对Unicode的可变长度字符编码：一个英文字符占1<span class="built_in">bytes</span>，一个中文字符占3<span class="built_in">bytes</span>，生僻字用更多的<span class="built_in">bytes</span>存储</span><br><span class="line">   Unicode更像是一个过渡版本，我们新开发的软件或文件存入硬盘都采用utf-<span class="number">8</span>格式，等过去几十年，所有老编码的文件都淘汰掉之后，会出现一个令人开心的场景，就是硬盘里放的都是utf-<span class="number">8</span>格式，此时Unicode便可以退出历史舞台，内存里也改用utf-<span class="number">8</span>，天下重新归于统一</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="字符编码的应用-重要"><a href="#字符编码的应用-重要" class="headerlink" title="字符编码的应用(重要)"></a>字符编码的应用(重要)</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">我们学习字符编码就是为了存取字符时不发生乱码问题：</span><br><span class="line">   </span><br><span class="line">   <span class="comment"># 1 内存中固定使用Unicode，无论输入任何字符都不会发生乱码</span></span><br><span class="line">   </span><br><span class="line">   <span class="comment"># 2 我们能够修改的是存/取硬盘的编码方式，如果编码设置不正确将会出现乱码问题，乱码问题分为两种：存乱了，读乱了</span></span><br><span class="line">   </span><br><span class="line">   <span class="comment"># 2.1 存(写)乱了(致命，文件乱了)：如果用户输入的内容中包含中文和日文字符，如果单纯shift_JIS存，日文可以正常写入硬盘，而由于中文字符在shift_jis中没有找到对应关系而导致存乱了</span></span><br><span class="line">   </span><br><span class="line">   <span class="comment"># 2.2 取(读)乱了(不致命，文件还在)：如果硬盘中的数据是shift_jis格式存储的，用gbk格式读入内存就读乱了</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="总结-记-："><a href="#总结-记-：" class="headerlink" title="总结(记)："></a>总结(记)：</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># 1：保证存的时候不乱：在由内存写入硬盘时，必须将编码格式设置为支持所输入字符的编码格式</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2：保证取的时候不乱：在又硬盘读入内存时，必须采用与写入硬盘时相同的编码格式</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="python解释器执行文件的前两个阶段"><a href="#python解释器执行文件的前两个阶段" class="headerlink" title="python解释器执行文件的前两个阶段"></a>python解释器执行文件的前两个阶段</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">	执行py文件的前两个阶段就是python解释器读文本文件的过程，与文本编辑读文本文件的前两个阶段没有任何区别，</span><br><span class="line">要保证读不乱码，则必须将python解释器读文件时采用的编码方式设置为文件当初写入硬盘时的编码格式，如果没有设置，python解释器则采用默认的编码方式，在python3中默认为utf-<span class="number">8</span>，在python2中默认ASCII，我们可以通过指定文件头来修改默认的编码方式</span><br><span class="line"></span><br><span class="line">	--在文件首行写入包含<span class="comment">#号在内的以下内容：</span></span><br><span class="line"><span class="comment"># coding：当初文件写入硬盘时采用的编码方式</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>解释器会先用默认的编码方式读取文件的首行内容，由于首行是纯英文组成，而任何编码方式都可以识别英文字符</strong></p>
+<h2 id="python解释器"><a href="#python解释器" class="headerlink" title="python解释器"></a>python解释器</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">	设置文件头的作用是保证运行python程序的前两个阶段不乱码，经过前两个阶段后py文件的内容都会以Unicode格式存放于内存中</span><br><span class="line">    </span><br><span class="line">    在经历第三个阶段时开始识别python语法，当遇到特定的语法name=<span class="string">&#x27;上&#x27;</span>(代码本身也都全部是Unicode格式存的)时，需要申请内存空间来存储字符串<span class="string">&#x27;上&#x27;</span>，这又涉及到应该以什么编码存储<span class="string">&#x27;上&#x27;</span>的问题</span><br><span class="line">    </span><br><span class="line">   	在python3中，字符串类的值都是使用Unicode格式来存储的</span><br><span class="line">    </span><br><span class="line">    在python2中，由于python2的盛行是早于Unicode的，因此在python2中是按照文件头指定的编码来存储字符串类型的值的(如果文件头中没有指定编码，那么解释器会按照它自己默认的编码方式来存储<span class="string">&#x27;上&#x27;</span>)，所以，这就有可能导致乱码问题</span><br><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line"></span><br><span class="line">x = <span class="string">&#x27;上&#x27;</span> <span class="comment"># x的值为untf-8格式的二进制</span></span><br><span class="line"><span class="built_in">print</span>(x)</span><br><span class="line"><span class="comment"># 打印操作是将x的值，即utf-8格式的二进制交给终端，当终端收到后发现并不是unicode（只有unicode才与字符有对应关系），所以终端会执行操作：utf-8二进制---解码--&gt;unicode格式的二进制，解码的过程终端会采用自己默认的编码，而在pycharm的终端默认编码为utf-8、windows下的cmd终端的默认编码为gbk，所以该打印操作在pycharm中显示正常，而在windows下的cmd中则乱码</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在windows下的cmd中运行效果如下</span></span><br><span class="line">C:\Users\Administrator&gt;python2 E:\aaa.py</span><br><span class="line">涓</span><br></pre></td></tr></table></figure>
+
+<h2 id="字符串encode编码与decode解码的使用"><a href="#字符串encode编码与decode解码的使用" class="headerlink" title="字符串encode编码与decode解码的使用"></a>字符串encode编码与decode解码的使用</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1 unicode格式 ------ 编码encode ------&gt; 其他编码格式</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>x = <span class="string">&#x27;上&#x27;</span> <span class="comment"># 在python3中，&#x27;上&#x27;被存成Unicode</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>res = x.encode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>res, <span class="built_in">type</span>(res) <span class="comment"># Unicode编码成了utf-8格式，而编码的结果为bytes类型，可以直接当做二进制去使用</span></span><br><span class="line">(<span class="string">b&#x27;\xe4\xb8\x8a&#x27;</span>, &lt;<span class="class"><span class="keyword">class</span> &#x27;<span class="title">bytes</span>&#x27;&gt;)</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"># 2 其他编码格式 ------ 解码<span class="title">decode</span> ------&gt; Unicode格式</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">&gt;&gt;&gt; res.decode(&#x27;utf-8&#x27;)</span></span><br><span class="line"><span class="class">&#x27;上&#x27;</span></span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/11/12/%E5%B0%81%E8%A3%85/" rel="prev" title="封装">
+                  <i class="fa fa-chevron-left"></i> 封装
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/11/12/%E5%A4%9A%E6%80%81%E6%80%A7%E4%B8%8E%E9%B8%AD%E5%AD%90%E7%B1%BB%E5%9E%8B/" rel="next" title="多态性与鸭子类型">
+                  多态性与鸭子类型 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">池劲涛</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
