@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="加入链接循环的套接字服务端1234567891011import socketsever &#x3D; socket.socket()sever.bind((&amp;#x27;127.0.0.1&amp;#x27;, 8087))sever.listen(5)while True:    sock, addr &#x3D; sever.accept()    data &#x3D; sock.recv(1024)    print(data">
+<meta property="og:type" content="article">
+<meta property="og:title" content="并发、并行和多进程">
+<meta property="og:url" content="http://example.com/2019/03/11/%E5%B9%B6%E5%8F%91%E3%80%81%E5%B9%B6%E8%A1%8C%E5%92%8C%E5%A4%9A%E8%BF%9B%E7%A8%8B/index.html">
+<meta property="og:site_name" content="池劲涛的博客">
+<meta property="og:description" content="加入链接循环的套接字服务端1234567891011import socketsever &#x3D; socket.socket()sever.bind((&amp;#x27;127.0.0.1&amp;#x27;, 8087))sever.listen(5)while True:    sock, addr &#x3D; sever.accept()    data &#x3D; sock.recv(1024)    print(data">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img2020.cnblogs.com/blog/2342210/202104/2342210-20210422195710649-959416771.png">
+<meta property="article:published_time" content="2019-03-10T23:20:25.000Z">
+<meta property="article:modified_time" content="2019-04-01T04:22:34.000Z">
+<meta property="article:author" content="池劲涛">
+<meta property="article:tag" content="Python Linux Vue">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img2020.cnblogs.com/blog/2342210/202104/2342210-20210422195710649-959416771.png">
+
+
+<link rel="canonical" href="http://example.com/2019/03/11/%E5%B9%B6%E5%8F%91%E3%80%81%E5%B9%B6%E8%A1%8C%E5%92%8C%E5%A4%9A%E8%BF%9B%E7%A8%8B/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2019/03/11/%E5%B9%B6%E5%8F%91%E3%80%81%E5%B9%B6%E8%A1%8C%E5%92%8C%E5%A4%9A%E8%BF%9B%E7%A8%8B/","path":"2019/03/11/并发、并行和多进程/","title":"并发、并行和多进程"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>并发、并行和多进程 | 池劲涛的博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">池劲涛的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A0%E5%85%A5%E9%93%BE%E6%8E%A5%E5%BE%AA%E7%8E%AF%E7%9A%84%E5%A5%97%E6%8E%A5%E5%AD%97%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="nav-number">1.</span> <span class="nav-text">加入链接循环的套接字服务端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A0%E5%85%A5%E9%80%9A%E4%BF%A1%E5%BE%AA%E7%8E%AF%E7%9A%84%E5%A5%97%E6%8E%A5%E5%AD%97%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="nav-number">2.</span> <span class="nav-text">加入通信循环的套接字服务端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8EUDP%E7%9A%84%E5%A5%97%E6%8E%A5%E5%AD%97%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%92%8C%E6%9C%8D%E5%8A%A1%E7%AB%AF-%E4%BA%86%E8%A7%A3"><span class="nav-number">3.</span> <span class="nav-text">基于UDP的套接字客户端和服务端(了解)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8F%91%E5%B1%95%E5%8F%B2"><span class="nav-number">4.</span> <span class="nav-text">操作系统的发展史</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E5%9F%BA%E7%A1%80"><span class="nav-number">5.</span> <span class="nav-text">进程基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%B6%E5%8F%91%E5%92%8C%E5%B9%B6%E8%A1%8C"><span class="nav-number">6.</span> <span class="nav-text">并发和并行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%90%AF%E5%A4%9A%E8%BF%9B%E7%A8%8B"><span class="nav-number">7.</span> <span class="nav-text">开启多进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">8.</span> <span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="池劲涛"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">池劲涛</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">62</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/03/11/%E5%B9%B6%E5%8F%91%E3%80%81%E5%B9%B6%E8%A1%8C%E5%92%8C%E5%A4%9A%E8%BF%9B%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="池劲涛">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="池劲涛的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          并发、并行和多进程
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-03-11 07:20:25" itemprop="dateCreated datePublished" datetime="2019-03-11T07:20:25+08:00">2019-03-11</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2019-04-01 12:22:34" itemprop="dateModified" datetime="2019-04-01T12:22:34+08:00">2019-04-01</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B9%B6%E5%8F%91%E7%B3%BB%E5%88%97/" itemprop="url" rel="index"><span itemprop="name">网络并发系列</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="加入链接循环的套接字服务端"><a href="#加入链接循环的套接字服务端" class="headerlink" title="加入链接循环的套接字服务端"></a>加入链接循环的套接字服务端</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket</span><br><span class="line">sever = socket.socket()</span><br><span class="line">sever.bind((<span class="string">&#x27;127.0.0.1&#x27;</span>, <span class="number">8087</span>))</span><br><span class="line">sever.listen(<span class="number">5</span>)</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    sock, addr = sever.accept()</span><br><span class="line">    data = sock.recv(<span class="number">1024</span>)</span><br><span class="line">    <span class="built_in">print</span>(data)</span><br><span class="line">    sock.send(data.upper())</span><br><span class="line">    sock.close()</span><br><span class="line">sever.close()</span><br></pre></td></tr></table></figure>
+
+<h2 id="加入通信循环的套接字服务端"><a href="#加入通信循环的套接字服务端" class="headerlink" title="加入通信循环的套接字服务端"></a>加入通信循环的套接字服务端</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket</span><br><span class="line">server=socket.socket(family=socket.AF_INET, <span class="built_in">type</span>=socket.SOCK_STREAM)</span><br><span class="line"></span><br><span class="line">server.bind((<span class="string">&#x27;127.0.0.1&#x27;</span>,<span class="number">81</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">server.listen(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;开始等待客户端连接了&#x27;</span>)</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line"></span><br><span class="line">    sock,addr=server.accept()</span><br><span class="line">    <span class="built_in">print</span>(sock)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;客户端的地址是：&#x27;</span>,addr)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 等待客户端发送过来的数据，如果客户端没有发送数据，会一直等着</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            data=sock.recv(<span class="number">1024</span>)</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(data)==<span class="number">0</span>: <span class="comment"># 这个表示客户端正常断开了，结束通信循环</span></span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="built_in">print</span>(data.decode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line">            sock.send(data.upper())</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            <span class="built_in">print</span>(e) <span class="comment">#客户端非正常断开，需要异常捕获</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    sock.close()</span><br><span class="line">server.close()</span><br></pre></td></tr></table></figure>
+
+<h2 id="基于UDP的套接字客户端和服务端-了解"><a href="#基于UDP的套接字客户端和服务端-了解" class="headerlink" title="基于UDP的套接字客户端和服务端(了解)"></a>基于UDP的套接字客户端和服务端(了解)</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line"><span class="comment"># udp的服务端</span></span><br><span class="line">server = socket.socket(<span class="built_in">type</span>=socket.SOCK_DGRAM)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 监听地址和端口</span></span><br><span class="line">server.bind((<span class="string">&#x27;127.0.0.1&#x27;</span>, <span class="number">82</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 不需要listen，直接建立链接</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;等待客户端发送数据：&#x27;</span>)</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line"><span class="comment">#recvfrom回返回数据和客户端的地址</span></span><br><span class="line">    data,addr = server.recvfrom(<span class="number">1024</span>)</span><br><span class="line">    <span class="built_in">print</span>(data)</span><br><span class="line">    <span class="built_in">print</span>(addr)</span><br><span class="line">    server.sendto(data.upper(), addr)</span><br><span class="line"></span><br><span class="line">server.close()</span><br></pre></td></tr></table></figure>
+
+<h2 id="操作系统的发展史"><a href="#操作系统的发展史" class="headerlink" title="操作系统的发展史"></a>操作系统的发展史</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> 手工操作——穿孔卡片</span><br><span class="line">    -用户独占全机</span><br><span class="line">    -CPU的利用不充分</span><br><span class="line"><span class="number">2</span> 批处理</span><br><span class="line">    -把一个操作整个写到磁带中，以后要进行这个操作，直接拿着磁带，读入即可</span><br><span class="line">    -脱机批处理</span><br><span class="line">    -联机批处理</span><br><span class="line">    </span><br><span class="line"><span class="number">3</span> 多道程序系统(重要)</span><br><span class="line">    -当一道程序因I/O请求而暂停运行时，CPU便立即转去运行另一道程序</span><br><span class="line">    -各道程序轮流地用CPU，并交替运行</span><br><span class="line"><span class="number">4</span> 分时系统(重要)</span><br><span class="line">    -多个程序在运行，时间片的概念，cpu执行完固定的时间，就会转去另一个程序</span><br><span class="line"><span class="number">5</span> 通用操作系统</span><br><span class="line">    多道批处理系统，分时</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">io操作：（通通不占用cpu）(重要)</span><br><span class="line">    键盘输入，从硬盘拿数据，从网络加载数据---&gt;都叫输入</span><br><span class="line">    显示在显示器，写到硬盘，从网络发送数据---&gt;都叫输出</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="进程基础"><a href="#进程基础" class="headerlink" title="进程基础"></a>进程基础</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">狭义定义：进程是正在运行的程序的实例（an instance of a computer program that <span class="keyword">is</span> being executed）。</span><br><span class="line"></span><br><span class="line">广义定义：进程是一个具有一定独立功能的程序关于某个数据集合的一次运行活动。它是操作系统动态执行的基本单元，在传统的操作系统中，进程既是基本的分配单元</span><br><span class="line"></span><br><span class="line">(重要)↓↓↓</span><br><span class="line"><span class="comment"># 进程是资源分配的最小单位，线程是cpu执行的最小单位</span></span><br><span class="line"><span class="comment"># 一个程序运行，最少有一个进程</span></span><br><span class="line"><span class="comment"># 一个进程里最少有一条线程</span></span><br><span class="line"></span><br><span class="line">(重要)↓↓↓</span><br><span class="line"><span class="comment"># 进程和程序的区分</span></span><br><span class="line">    -程序可以作为一种软件资料长期存在，而进程是有一定生命期的。</span><br><span class="line">    -程序是永久的，进程是暂时的。</span><br><span class="line"></span><br><span class="line">(重要)↓↓↓</span><br><span class="line"><span class="comment"># 进程的状态（）</span></span><br><span class="line">    -就绪态：可以被cpu调度执行了，还没有执行，排着队</span><br><span class="line">    -运行态：在cpu中运行，正在运行（如果到了时间片，也会被调度出去，调度出去的程序是就绪态）</span><br><span class="line">    -阻塞态：io操作，把数据加载到内存中   </span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img2020.cnblogs.com/blog/2342210/202104/2342210-20210422195710649-959416771.png" alt="img"></p>
+<h2 id="并发和并行"><a href="#并发和并行" class="headerlink" title="并发和并行"></a>并发和并行</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">并发：（你在跑步，鞋带开了，停下跑步，系鞋带，系完以后，继续跑步，在一个时间段内来看，你干了多个事）</span><br><span class="line">    -单核下的并发</span><br><span class="line">    :在一个时间段内，处理多件事</span><br><span class="line">    </span><br><span class="line">并行：（你在跑步，你用随身听在听着，同一时刻，在干多个事）</span><br><span class="line">    -只有多核才涉及到并行</span><br><span class="line">    ：在某一个时刻，有多件事同时被处理</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="开启多进程"><a href="#开启多进程" class="headerlink" title="开启多进程"></a>开启多进程</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Process</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#如果在win下开多进程，必须写main，否则报错(注意)</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">wirte_file</span>(<span class="params">s</span>):</span></span><br><span class="line"></span><br><span class="line">    time.sleep(<span class="number">5</span>)</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;a.txt&#x27;</span>,<span class="string">&#x27;a&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        f.write(s)</span><br><span class="line">        f.write(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    time.sleep(<span class="number">5</span>)</span><br><span class="line">    <span class="comment"># wirte_file()</span></span><br><span class="line">    <span class="comment"># 开启多进程的第一个方式</span></span><br><span class="line">    p=Process(target=wirte_file,args=[<span class="string">&#x27;lqz is nb&#x27;</span>])</span><br><span class="line">    <span class="comment"># 执行该进程</span></span><br><span class="line">    p.start()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 又开了一个进程</span></span><br><span class="line">    p1 = Process(target=wirte_file,args=[<span class="string">&#x27;egon is dsb&#x27;</span>])</span><br><span class="line">    <span class="comment"># 执行该进程</span></span><br><span class="line">    p1.start()</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> 基于socket写TCP的客户端和服务端</span><br><span class="line">    -加入链接循环</span><br><span class="line">    -加入通信循环</span><br><span class="line">    -客户端主动断开----&gt;服务端一直收空</span><br><span class="line">    -客户端强制断开----&gt;服务端会报错</span><br><span class="line">    -同一时刻，只能有一个客户端与服务端交互</span><br><span class="line">    </span><br><span class="line"><span class="number">2</span> 基于UDP的客户端和服务端</span><br><span class="line">    -数据不可靠，应用场景比较少</span><br><span class="line">    </span><br><span class="line"><span class="number">3</span> 并发编程（进程，线程，协程）</span><br><span class="line"></span><br><span class="line"><span class="number">4</span> 进程：</span><br><span class="line">    -资源分配的最小单位，线程是cpu调度的最小单位</span><br><span class="line">    -食谱：程序</span><br><span class="line">    -拿到食谱做法的过程，叫进程</span><br><span class="line">    -进程：程序运行的过程，一堆数据+做一件事的过程的集合</span><br><span class="line">    </span><br><span class="line"><span class="number">5</span> python中如何开启进程</span><br><span class="line">    -p=Process(target=task)</span><br><span class="line">    -p.start()</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/03/11/%E6%AD%BB%E9%94%81%E9%97%AE%E9%A2%98%E4%B8%8E%E5%8D%8F%E7%A8%8B/" rel="prev" title="死锁问题与协程">
+                  <i class="fa fa-chevron-left"></i> 死锁问题与协程
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/03/11/%E5%85%A8%E5%B1%80%E8%A7%A3%E9%87%8A%E5%99%A8%E9%94%81%EF%BC%88GIL%EF%BC%89/" rel="next" title="全局解释器锁（GIL）">
+                  全局解释器锁（GIL） <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">池劲涛</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

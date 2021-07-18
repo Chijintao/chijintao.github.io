@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="简介HTTP协议是Hyper Text Transfer Protocol（超文本传输协议）的缩写,是用于万维网（WWW:World Wide Web ）服务器与本地浏览器之间传输超文本的传送协议。 HTTP是一个属于应用层的面向对象的协议，由于其简捷、快速的方式，适用于分布式超媒体信息系统。它于1990年提出，经过几年的使用与发展，得到不断地完善和扩展。HTTP协议工作于客户端-服务端架构为上。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP协议">
+<meta property="og:url" content="http://example.com/2021/04/11/HTTP%E5%8D%8F%E8%AE%AE/index.html">
+<meta property="og:site_name" content="池劲涛的博客">
+<meta property="og:description" content="简介HTTP协议是Hyper Text Transfer Protocol（超文本传输协议）的缩写,是用于万维网（WWW:World Wide Web ）服务器与本地浏览器之间传输超文本的传送协议。 HTTP是一个属于应用层的面向对象的协议，由于其简捷、快速的方式，适用于分布式超媒体信息系统。它于1990年提出，经过几年的使用与发展，得到不断地完善和扩展。HTTP协议工作于客户端-服务端架构为上。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj1v3zrxr6j30t008gn1y.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj1v4exupzj30t00a6af1.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj1v4yobhaj30s00e4q9r.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj1v5jenz5j30tq0eq7aa.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj1v6d9oftj30vi0d2gpn.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj1v6jblf2j30tw0caacp.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj1v7q07r9j30xi0cyaei.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj1v87pnwrj30ro0bcwho.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj1v8s70a5j314m0e8tix.jpg">
+<meta property="article:published_time" content="2021-04-10T23:20:25.000Z">
+<meta property="article:modified_time" content="2021-05-01T04:22:34.000Z">
+<meta property="article:author" content="池劲涛">
+<meta property="article:tag" content="Python Linux Vue">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj1v3zrxr6j30t008gn1y.jpg">
+
+
+<link rel="canonical" href="http://example.com/2021/04/11/HTTP%E5%8D%8F%E8%AE%AE/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/04/11/HTTP%E5%8D%8F%E8%AE%AE/","path":"2021/04/11/HTTP协议/","title":"HTTP协议"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>HTTP协议 | 池劲涛的博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">池劲涛的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%8F%E8%AE%AE%E7%89%B9%E6%80%A7"><span class="nav-number">2.</span> <span class="nav-text">协议特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8ETCP-IP%E5%8D%8F%E8%AE%AE%E4%B9%8B%E4%B8%8A%E7%9A%84%E5%BA%94%E7%94%A8%E5%B1%82%E5%8D%8F%E8%AE%AE"><span class="nav-number">2.1.</span> <span class="nav-text">基于TCP&#x2F;IP协议之上的应用层协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E8%AF%B7%E6%B1%82-%E5%93%8D%E5%BA%94%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.2.</span> <span class="nav-text">基于请求-响应模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E7%8A%B6%E6%80%81%E4%BF%9D%E5%AD%98"><span class="nav-number">2.3.</span> <span class="nav-text">无状态保存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E8%BF%9E%E6%8E%A5"><span class="nav-number">2.4.</span> <span class="nav-text">无连接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP%E7%89%88%E6%9C%AC%E5%8C%BA%E5%88%AB"><span class="nav-number">3.</span> <span class="nav-text">HTTP版本区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-0-9"><span class="nav-number">3.1.</span> <span class="nav-text">HTTP&#x2F;0.9</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-1-0"><span class="nav-number">3.2.</span> <span class="nav-text">HTTP&#x2F;1.0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-1-1"><span class="nav-number">3.3.</span> <span class="nav-text">HTTP&#x2F;1.1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-2-0"><span class="nav-number">3.4.</span> <span class="nav-text">HTTP&#x2F;2.0</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP%E8%AF%B7%E6%B1%82%E5%8D%8F%E8%AE%AE%E4%B8%8E%E5%93%8D%E5%BA%94%E5%8D%8F%E8%AE%AE"><span class="nav-number">4.</span> <span class="nav-text">HTTP请求协议与响应协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E5%8D%8F%E8%AE%AE"><span class="nav-number">4.1.</span> <span class="nav-text">请求协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%93%8D%E5%BA%94%E5%8D%8F%E8%AE%AE"><span class="nav-number">4.2.</span> <span class="nav-text">响应协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81"><span class="nav-number">4.3.</span> <span class="nav-text">响应状态码</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="池劲涛"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">池劲涛</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">62</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/11/HTTP%E5%8D%8F%E8%AE%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="池劲涛">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="池劲涛的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          HTTP协议
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-04-11 07:20:25" itemprop="dateCreated datePublished" datetime="2021-04-11T07:20:25+08:00">2021-04-11</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-05-01 12:22:34" itemprop="dateModified" datetime="2021-05-01T12:22:34+08:00">2021-05-01</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%89%8D%E7%AB%AF%E7%B3%BB%E5%88%97/" itemprop="url" rel="index"><span itemprop="name">前端系列</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><strong>HTTP协议是Hyper Text Transfer Protocol（超文本传输协议）的缩写,是用于万维网（WWW:World Wide Web ）服务器与本地浏览器之间传输超文本的传送协议。</strong></p>
+<p><strong>HTTP是一个属于应用层的面向对象的协议，由于其简捷、快速的方式，适用于分布式超媒体信息系统。它于1990年提出，经过几年的使用与发展，得到不断地完善和扩展。HTTP协议工作于客户端-服务端架构为上。浏览器作为HTTP客户端通过URL向HTTP服务端即WEB服务器发送所有请求。Web服务器根据接收到的请求后，向客户端发送响应信息。</strong></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj1v3zrxr6j30t008gn1y.jpg" alt="image-20200924172049937"></p>
+<h2 id="协议特性"><a href="#协议特性" class="headerlink" title="协议特性"></a>协议特性</h2><h3 id="基于TCP-IP协议之上的应用层协议"><a href="#基于TCP-IP协议之上的应用层协议" class="headerlink" title="基于TCP/IP协议之上的应用层协议"></a>基于TCP/IP协议之上的应用层协议</h3><h3 id="基于请求-响应模式"><a href="#基于请求-响应模式" class="headerlink" title="基于请求-响应模式"></a>基于请求-响应模式</h3><p><strong>HTTP协议规定，请求从客户端发出，最后服务器端应该接收请求并返回响应，换句话说，肯定是先从客户端开始建立通信的，服务端在没有接收到请求之前不会发送响应（于是出现了web_socket）</strong></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj1v4exupzj30t00a6af1.jpg" alt="image-20200924172118199"></p>
+<h3 id="无状态保存"><a href="#无状态保存" class="headerlink" title="无状态保存"></a>无状态保存</h3><p><strong>HTTP是一种不保存状态，即无状态协议. HTTP协议自身不对请求和响应之间的通信状态进行保存. 也就是说HTTP协议对于发送过的请求或响应都不做持久化处理</strong></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj1v4yobhaj30s00e4q9r.jpg" alt="image-20200924172149501"></p>
+<p><strong>使用HTTP协议，每当有新的请求发送时，就会有对应的新响应产生. 协议本身并不保留之前的一切请求或响应报文的信息. 这是为了更快地处理大量事务，确保协议的可伸缩性而特意吧HTTP协议设计成如此简单的</strong></p>
+<p><strong>可是随着Web的不断发展，因无状态而导致业务处理变的棘手的情况增多了</strong></p>
+<p><strong>HTTP/1.1虽然是无状态协议，但为了实现期望的保持状态功能，于是引入了Cookie技术</strong></p>
+<h3 id="无连接"><a href="#无连接" class="headerlink" title="无连接"></a>无连接</h3><p><strong>无连接的含义是限制每次只连接处理一个请求，服务器处理完客户的请求，并收到客户的响应后，立刻断开链接，采用这种方式可以节省传输时间</strong></p>
+<h2 id="HTTP版本区别"><a href="#HTTP版本区别" class="headerlink" title="HTTP版本区别"></a>HTTP版本区别</h2><h3 id="HTTP-0-9"><a href="#HTTP-0-9" class="headerlink" title="HTTP/0.9"></a>HTTP/0.9</h3><p><strong>http协议的第一个版本仅适用于数据信息的简介交换，即仅文本传输，只接受GET这一种请求方式，且不支持请求头，由于不支持POST方式，大多数敏感信息无法交换，至此客户端无法向服务器传递过多信息。</strong><br><strong>缺点: 信息种类过于单一，无法满足需求，串行处理</strong></p>
+<h3 id="HTTP-1-0"><a href="#HTTP-1-0" class="headerlink" title="HTTP/1.0"></a>HTTP/1.0</h3><p><strong>第一个在通讯中指定版本号的HTTP协议版本，常用于代理服务器，成为了面向事务的应用层协议，;支持cache, MIME, method该协议需要每请求一次响应建立并拆除一次连接，1.0引入了POST和HEAD命令，相对于一版本在一定程度上保障的数据的传输安全，是一个典型的串行连接事务。</strong><br><strong>缺点: 串行处理，效率低下</strong></p>
+<h3 id="HTTP-1-1"><a href="#HTTP-1-1" class="headerlink" title="HTTP/1.1"></a>HTTP/1.1</h3><p><strong>引入持久连接机制并被默认采用，且更好的配合代理服务器工作，还支持管道方式同一连接下同时发送多个请求，以降低线路负载，提高传输速度，新增方法: PUT、PATCH、OPTIONS、DELETE</strong><br><strong>缺点: 同一TCP连接里，所有通信按次序进行，服务器只能顺序处理回应，如果前面处理过慢，会有许多请求排队，造成队头阻塞(Head-of-line blocking)</strong></p>
+<h3 id="HTTP-2-0"><a href="#HTTP-2-0" class="headerlink" title="HTTP/2.0"></a>HTTP/2.0</h3><p><strong>头信息和数据体都是二进制，称为头信息帧和数据帧</strong><br><strong>复用TCP连接，在一个连接里，客户端和浏览器都可以同时发送多个请求或回应，且不用按顺序一一对应，避免了“队头堵塞“,此双向的实时通信称为多工（Multiplexing）</strong><br><strong>引入头信息压缩机制（header compression）,头信息使用gzip或compress压缩后再发送；客户端和服务器同时维护一张头信息表，所有字段都会存入这个表，生成一个索引号，不发送同样字段，只发送索引号，提高速度</strong><br><strong>HTTP/2 允许服务器未经请求，主动向客户端发送资源，即服务器推送（server push）</strong></p>
+<h2 id="HTTP请求协议与响应协议"><a href="#HTTP请求协议与响应协议" class="headerlink" title="HTTP请求协议与响应协议"></a>HTTP请求协议与响应协议</h2><p><strong>HTTP协议包含由浏览器发送数据到服务器需要遵循的请求协议与服务器发送数据到浏览器需要遵循的请求协议</strong></p>
+<p><strong>用于HTTP协议交互的信息被称为HTTP报文</strong></p>
+<p><strong>请求端(客户端)的HTTP报文，叫做请求报文，响应端(服务器端)的HTTP报文叫做响应报文</strong></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj1v5jenz5j30tq0eq7aa.jpg" alt="image-20200924172222493"></p>
+<h3 id="请求协议"><a href="#请求协议" class="headerlink" title="请求协议"></a>请求协议</h3><p><strong>请求格式</strong></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj1v6d9oftj30vi0d2gpn.jpg" alt="image-20200924172250257"></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj1v6jblf2j30tw0caacp.jpg" alt="image-20200924172316497"></p>
+<p><strong>请求方式：get与post请求</strong></p>
+<ul>
+<li>GET提交的数据会放在URL之后，以?分割URL和传输数据，参数之间以&amp;相连，如EditBook?name=test1&amp;id=123456. POST方法是把提交的数据放在HTTP包的请求体中.</li>
+<li>GET提交的数据大小有限制（因为浏览器对URL的长度有限制），而POST方法提交的数据没有限制.</li>
+<li>GET与POST请求在服务端获取请求数据方式不同。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    GET请求</span></span><br><span class="line"><span class="string">    # 请求首行</span></span><br><span class="line"><span class="string">    GET / HTTP/1.1\r\n</span></span><br><span class="line"><span class="string">    # get请求后面的参数</span></span><br><span class="line"><span class="string">    GET /?name=lqz&amp;age=18 HTTP/1.1\r\n</span></span><br><span class="line"><span class="string">    # 请求头</span></span><br><span class="line"><span class="string">    Host: 127.0.0.1:8008\r\n</span></span><br><span class="line"><span class="string">    Connection: keep-alive\r\n</span></span><br><span class="line"><span class="string">    Cache-Control: max-age=0\r\n</span></span><br><span class="line"><span class="string">    Upgrade-Insecure-Requests: 1\r\n</span></span><br><span class="line"><span class="string">    User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36\r\n</span></span><br><span class="line"><span class="string">    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8\r\nAccept-Encoding: gzip, deflate, br\r\n</span></span><br><span class="line"><span class="string">    Accept-Language: zh-CN,zh;q=0.9\r\n</span></span><br><span class="line"><span class="string">    Cookie: csrftoken=7xx6BxQDJ6KB0PM7qS8uTA892ACtooNbnnF4LDwlYk1Y7S7nTS81FBqwruizHsxF\r\n\r\n&#x27;</span></span><br><span class="line"><span class="string">    # 请求体（get请求，请求体为空）    </span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    POST请求</span></span><br><span class="line"><span class="string">    # 请求首行</span></span><br><span class="line"><span class="string">    POST /?name=lqz&amp;age=18 HTTP/1.1\r\n</span></span><br><span class="line"><span class="string">    # 请求头</span></span><br><span class="line"><span class="string">    Host: 127.0.0.1:8008\r\nConnection: keep-alive\r\nContent-Length: 21\r\nCache-Control: max-age=0\r\nOrigin: http://127.0.0.1:8008\r\nUpgrade-Insecure-Requests: 1\r\nContent-Type: application/x-www-form-urlencoded\r\nUser-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36\r\nAccept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8\r\nReferer: http://127.0.0.1:8008/?name=lqz&amp;age=18\r\nAccept-Encoding: gzip, deflate, br\r\nAccept-Language: zh-CN,zh;q=0.9\r\nCookie: csrftoken=7xx6BxQDJ6KB0PM7qS8uTA892ACtooNbnnF4LDwlYk1Y7S7nTS81FBqwruizHsxF\r\n\r\n</span></span><br><span class="line"><span class="string">    # 请求体</span></span><br><span class="line"><span class="string">    name=lqz&amp;password=123&#x27;</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="响应协议"><a href="#响应协议" class="headerlink" title="响应协议"></a>响应协议</h3><p><strong>响应格式</strong></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj1v7q07r9j30xi0cyaei.jpg" alt="image-20200924172428894"></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj1v87pnwrj30ro0bcwho.jpg" alt="image-20200924172443165"></p>
+<h3 id="响应状态码"><a href="#响应状态码" class="headerlink" title="响应状态码"></a>响应状态码</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj1v8s70a5j314m0e8tix.jpg" alt="image-20200924172516228"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/04/11/CSS/" rel="prev" title="CSS">
+                  <i class="fa fa-chevron-left"></i> CSS
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/04/11/HTML/" rel="next" title="HTML">
+                  HTML <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">池劲涛</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

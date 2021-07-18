@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="网络编程osi 七层，tcp&#x2F;ip 五层1234567891011121314151 cs架构和bs架构2 互联网3 osi七层 tcp&#x2F;ip五层        -物理层            -网线、光纤        -数据链路层            -网卡        -网络层            -路由器        -传输层(也叫运输层)            -四层路由器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络编程">
+<meta property="og:url" content="http://example.com/2019/03/11/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/index.html">
+<meta property="og:site_name" content="池劲涛的博客">
+<meta property="og:description" content="网络编程osi 七层，tcp&#x2F;ip 五层1234567891011121314151 cs架构和bs架构2 互联网3 osi七层 tcp&#x2F;ip五层        -物理层            -网线、光纤        -数据链路层            -网卡        -网络层            -路由器        -传输层(也叫运输层)            -四层路由器">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-03-10T23:20:25.000Z">
+<meta property="article:modified_time" content="2019-04-01T04:22:34.000Z">
+<meta property="article:author" content="池劲涛">
+<meta property="article:tag" content="Python Linux Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2019/03/11/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2019/03/11/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/","path":"2019/03/11/网络编程/","title":"网络编程"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>网络编程 | 池劲涛的博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">池劲涛的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">网络编程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#osi-%E4%B8%83%E5%B1%82%EF%BC%8Ctcp-ip-%E4%BA%94%E5%B1%82"><span class="nav-number">1.1.</span> <span class="nav-text">osi 七层，tcp&#x2F;ip 五层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AF%8F%E4%B8%80%E5%B1%82%E5%8A%9F%E8%83%BD"><span class="nav-number">1.2.</span> <span class="nav-text">每一层功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%AB%AF%E5%8F%A3%E5%8F%B7"><span class="nav-number">1.3.</span> <span class="nav-text">常用端口号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B"><span class="nav-number">1.4.</span> <span class="nav-text">TCP 三次握手四次挥手</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Socket%E5%B1%82"><span class="nav-number">1.5.</span> <span class="nav-text">Socket层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8ETCP%E7%9A%84socket%E5%A5%97%E6%8E%A5%E5%AD%97-%E9%87%8D%E7%82%B9"><span class="nav-number">1.6.</span> <span class="nav-text">基于TCP的socket套接字(重点)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="池劲涛"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">池劲涛</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">62</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/03/11/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="池劲涛">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="池劲涛的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          网络编程
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-03-11 07:20:25" itemprop="dateCreated datePublished" datetime="2019-03-11T07:20:25+08:00">2019-03-11</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2019-04-01 12:22:34" itemprop="dateModified" datetime="2019-04-01T12:22:34+08:00">2019-04-01</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B9%B6%E5%8F%91%E7%B3%BB%E5%88%97/" itemprop="url" rel="index"><span itemprop="name">网络并发系列</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="网络编程"><a href="#网络编程" class="headerlink" title="网络编程"></a>网络编程</h1><h2 id="osi-七层，tcp-ip-五层"><a href="#osi-七层，tcp-ip-五层" class="headerlink" title="osi 七层，tcp/ip 五层"></a>osi 七层，tcp/ip 五层</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> cs架构和bs架构</span><br><span class="line"></span><br><span class="line"><span class="number">2</span> 互联网</span><br><span class="line"></span><br><span class="line"><span class="number">3</span> osi七层 tcp/ip五层</span><br><span class="line">        -物理层</span><br><span class="line">            -网线、光纤</span><br><span class="line">        -数据链路层</span><br><span class="line">            -网卡</span><br><span class="line">        -网络层</span><br><span class="line">            -路由器</span><br><span class="line">        -传输层(也叫运输层)</span><br><span class="line">            -四层路由器</span><br><span class="line">        -应用层(会话层、表示层、应用层)</span><br><span class="line">            http协议、ftp协议、websocket协议...</span><br></pre></td></tr></table></figure>
+
+<h2 id="每一层功能"><a href="#每一层功能" class="headerlink" title="每一层功能"></a>每一层功能</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> 物理层</span><br><span class="line">    -网线 ----&gt; <span class="number">1010101</span>电信号 -----&gt; 从网线中传输电信号</span><br><span class="line">    -<span class="number">8</span>个比特位是<span class="number">1</span>个字节(重要)</span><br><span class="line"><span class="number">2</span> 数据链路层</span><br><span class="line">    -数据帧: 一组电信号就是一个数据帧/数据报，有头和数据部分</span><br><span class="line">    -网卡: ----&gt; mac地址 ----&gt; 全球唯一 -----&gt;网卡出厂----&gt;烧在网卡上</span><br><span class="line">    -<span class="number">48</span>位二进制 ----&gt; 看到的都是<span class="number">16</span>进制表示</span><br><span class="line">    -广播:</span><br><span class="line">        -局域网内通信，所有人都会接收到，通过mac地址确定是给谁的数据帧/数据报，如果不是自己的就不处理</span><br><span class="line">    -广播风暴</span><br><span class="line"><span class="number">3</span> 网络层</span><br><span class="line">    -跨局域网通信，需要经过网络层</span><br><span class="line">    -IP地址</span><br><span class="line">    -子网掩码</span><br><span class="line">    -ARP协议 : ip和mac的对照表</span><br><span class="line"><span class="number">4</span> 传输层</span><br><span class="line">    -端口: <span class="number">0</span>-<span class="number">65535</span>， 一个应用程序可以监听多个端口，但是一个端口只能属于一个应用程序</span><br><span class="line">    -TCP协议: 可靠传输</span><br><span class="line">    -UDP协议: 不可靠传输</span><br></pre></td></tr></table></figure>
+
+<h2 id="常用端口号"><a href="#常用端口号" class="headerlink" title="常用端口号"></a>常用端口号</h2><table>
+<thead>
+<tr>
+<th>应用程序</th>
+<th>FTP</th>
+<th>TFTP</th>
+<th>TELNET</th>
+<th>SMTP</th>
+<th>DNS</th>
+<th>HTTP</th>
+<th>SSH</th>
+<th>MYSQL</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>熟知端口</td>
+<td>21,20</td>
+<td>69</td>
+<td>23</td>
+<td>25</td>
+<td>53</td>
+<td>80</td>
+<td>22</td>
+<td>3306</td>
+</tr>
+<tr>
+<td>传输层协议</td>
+<td>TCP</td>
+<td>UDP</td>
+<td>TCP</td>
+<td>TCP</td>
+<td>UDP</td>
+<td>TCP</td>
+<td>TCP</td>
+<td>TCP</td>
+</tr>
+</tbody></table>
+<p><strong>DNS： 把网址转换成IP地址</strong><br><strong>从浏览器发出去的数据，都是http协议，默认是80端口</strong></p>
+<h2 id="TCP-三次握手四次挥手"><a href="#TCP-三次握手四次挥手" class="headerlink" title="TCP 三次握手四次挥手"></a>TCP 三次握手四次挥手</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> TCP：可靠传输：三次握手，四次挥手保证数据可靠</span><br><span class="line"></span><br><span class="line"><span class="number">2</span> 三次握手</span><br><span class="line">    -客户端向服务端发送链接请求    ----<span class="number">1</span></span><br><span class="line">    -服务端回复可以建立你，并且带着跟客户端建立链接的数据报  ----<span class="number">2</span></span><br><span class="line">    -客户端收到后，链接建好了     ----<span class="number">3</span></span><br><span class="line"><span class="number">3</span> 这个过程后就可以可靠传输数据</span><br><span class="line"></span><br><span class="line"><span class="number">4</span> 断开链接(四次挥手)</span><br><span class="line">    -客户端告诉服务器，要断开    ----<span class="number">1</span></span><br><span class="line">    -服务端收到，回复ok         ----<span class="number">2</span></span><br><span class="line">    -服务端可能还有数据在传递，暂时还没断开-----等数据传完</span><br><span class="line">    -服务端告诉客户端，我要断了   ----<span class="number">3</span></span><br><span class="line">    -客户端收到，回复ok         ----<span class="number">4</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Socket层"><a href="#Socket层" class="headerlink" title="Socket层"></a>Socket层</h2><p><strong>1 Socket抽象层，从osi七层抽象出来的，抽象了网络层和传输层，跟语言无关，任何语言都会有socket的封装</strong><br><strong>2 专门给开发人员用的</strong></p>
+<h2 id="基于TCP的socket套接字-重点"><a href="#基于TCP的socket套接字-重点" class="headerlink" title="基于TCP的socket套接字(重点)"></a>基于TCP的socket套接字(重点)</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">(简易版本)</span><br><span class="line">服务端</span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line">sever = socket.socket()</span><br><span class="line">sever.bind((<span class="string">&#x27;192.168.11.123&#x27;</span>, <span class="number">7777</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;服务端启动完成，等待连接...&#x27;</span>)</span><br><span class="line">sever.listen(<span class="number">5</span>)</span><br><span class="line">sock, addr = sever.accept()</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    data = sock.recv(<span class="number">1024</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;客户端发来的信息&#x27;</span>, data.decode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line">    msg = <span class="built_in">input</span>(<span class="string">&#x27;请输入: &#x27;</span>).strip()</span><br><span class="line">    <span class="keyword">if</span> msg == <span class="string">&#x27;q&#x27;</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    sock.send(msg.encode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line">sock.close()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">(客户端)</span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line">client = socket.socket()</span><br><span class="line">client.connect((<span class="string">&#x27;192.168.11.123&#x27;</span>, <span class="number">7777</span>))</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    msg = <span class="built_in">input</span>(<span class="string">&#x27;请输入: &#x27;</span>).strip()</span><br><span class="line">    <span class="keyword">if</span> msg ==<span class="string">&#x27;q&#x27;</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    client.send(msg.encode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line">    data = client.recv(<span class="number">1024</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;服务端发来的信息: &#x27;</span>,data.decode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line">    client.close()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> osi 七层模型 ----&gt; 五层</span><br><span class="line">    -物理层</span><br><span class="line">        -<span class="number">10101000</span>电信号-----&gt;网线、光纤</span><br><span class="line">    -数据链路层</span><br><span class="line">        -网卡----&gt;mac地址，全球唯一</span><br><span class="line">        -广播: 局域网中通信</span><br><span class="line">    -网络层</span><br><span class="line">        -ip地址: ipv4，ipv6</span><br><span class="line">        -子网掩码+ip区分是不是属于同一个子网</span><br><span class="line">        -arp协议: ip和mac地址的映射表</span><br><span class="line">    -传输层(运输层)</span><br><span class="line">        -端口: <span class="number">0</span> --- <span class="number">65535</span></span><br><span class="line">        -端口是用来区分应用程序的</span><br><span class="line">        -TCP: 可靠传输，三次握手，四次挥手</span><br><span class="line">        -UDP: 不可靠传输</span><br><span class="line">    -应用层</span><br><span class="line">        -http，ftp</span><br><span class="line"><span class="number">2</span> 常用的端口(重要)</span><br><span class="line">    -<span class="number">80</span>： http协议，基于TCP</span><br><span class="line">    -<span class="number">3306</span> ：mysql</span><br><span class="line">    -<span class="number">53</span> DNS(域名解析)----&gt;基于UDP</span><br><span class="line"><span class="number">3</span> TCP/IP----&gt;socket抽象层----&gt;针对于程序员来写客户端，服务端的程序(更好写)</span><br><span class="line"><span class="number">4</span> 基于TCP的套接字(socket)的客户端和服务端</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/11/12/%E4%B8%8E%E7%94%A8%E6%88%B7%E4%BA%A4%E4%BA%92%E3%80%81%E8%BF%90%E7%AE%97%E7%AC%A6/" rel="prev" title="与用户交互、运算符">
+                  <i class="fa fa-chevron-left"></i> 与用户交互、运算符
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/03/11/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E3%80%81%E8%BF%9B%E7%A8%8B%E5%90%8C%E6%AD%A5%E4%B8%8E%E8%BF%9B%E7%A8%8B%E9%94%81/" rel="next" title="进程调度、进程同步与进程锁">
+                  进程调度、进程同步与进程锁 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">池劲涛</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
