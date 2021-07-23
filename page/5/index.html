@@ -130,14 +130,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-count">65</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -167,6 +167,96 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/11/12/%E5%8F%8D%E5%B0%84%E4%B8%8E%E5%86%85%E7%BD%AE%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="池劲涛">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="池劲涛的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/11/12/%E5%8F%8D%E5%B0%84%E4%B8%8E%E5%86%85%E7%BD%AE%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">反射与内置方法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-11-12 07:20:25" itemprop="dateCreated datePublished" datetime="2018-11-12T07:20:25+08:00">2018-11-12</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2018-12-01 12:22:34" itemprop="dateModified" datetime="2018-12-01T12:22:34+08:00">2018-12-01</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python%E7%B3%BB%E5%88%97/" itemprop="url" rel="index"><span itemprop="name">Python系列</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="内容概要"><a href="#内容概要" class="headerlink" title="内容概要"></a>内容概要</h1><ul>
+<li>反射</li>
+<li>内置方法</li>
+</ul>
+<h1 id="内容详细"><a href="#内容详细" class="headerlink" title="内容详细"></a>内容详细</h1><h2 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h2><p><strong>python是动态语言，而反射机制则被视为动态语言的关键</strong><br>    <strong>反射机制指的是：</strong><br>    <strong>在程序的运行状态中：</strong><br>        <strong>对于任意一个类，都可以知道这个类的所有属性和方法；</strong><br>        <strong>对于任意一个对象，都能够调用它的任意方法和属性</strong><br>    <strong>这种动态获取程序信息以及动态调用对象的功能称为反射机制</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">在python中实现反射非常简单：</span><br><span class="line">    <span class="number">1</span> 在程序运行过程中，如果我们获取一个不知道存有何种属性的对象，若想操作其内部属性，可以先通过内置函数<span class="built_in">dir</span>来获取任意一个类或者对象的属性列表，列表中全为字符串格式</span><br><span class="line">    </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">People</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,name,age,gender</span>):</span></span><br><span class="line"><span class="meta">... </span>        self.name=name</span><br><span class="line"><span class="meta">... </span>        self.age=age</span><br><span class="line"><span class="meta">... </span>        self.gender=gender</span><br><span class="line"><span class="meta">... </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>obj=People(<span class="string">&#x27;egon&#x27;</span>,<span class="number">18</span>,<span class="string">&#x27;male&#x27;</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">dir</span>(obj) <span class="comment"># 列表中查看到的属性全为字符串</span></span><br><span class="line">[......,<span class="string">&#x27;age&#x27;</span>, <span class="string">&#x27;gender&#x27;</span>, <span class="string">&#x27;name&#x27;</span>]</span><br><span class="line"></span><br><span class="line">    <span class="number">2</span> 接下来就是想办法通过字符串来操作对象的属性了，这就涉及到内置函数<span class="built_in">hasattr</span>、gatattr、<span class="built_in">setattr</span>、<span class="built_in">delattr</span>的使用了</span><br><span class="line">        -- python中一切皆对象，类和对象都可以被这四个函数操作，用法一样</span><br><span class="line">        </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Teacher</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,full_name</span>):</span></span><br><span class="line">        self.full_name =full_name</span><br><span class="line"></span><br><span class="line">t=Teacher(<span class="string">&#x27;Egon Lin&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># hasattr(object,&#x27;name&#x27;)</span></span><br><span class="line"><span class="built_in">hasattr</span>(t,<span class="string">&#x27;full_name&#x27;</span>) <span class="comment"># 按字符串&#x27;full_name&#x27;判断有无属性t.full_name</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># getattr(object, &#x27;name&#x27;, default=None)</span></span><br><span class="line"><span class="built_in">getattr</span>(t,<span class="string">&#x27;full_name&#x27;</span>,<span class="literal">None</span>) <span class="comment"># 等同于t.full_name,不存在该属性则返回默认值None</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># setattr(x, &#x27;y&#x27;, v)</span></span><br><span class="line"><span class="built_in">setattr</span>(t,<span class="string">&#x27;age&#x27;</span>,<span class="number">18</span>) <span class="comment"># 等同于t.age=18</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># delattr(x, &#x27;y&#x27;)</span></span><br><span class="line"><span class="built_in">delattr</span>(t,<span class="string">&#x27;age&#x27;</span>) <span class="comment"># 等同于del t.age</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">基于反射可以十分灵活地操作对象的属性</span><br><span class="line"></span><br><span class="line">例如：将用户交互的结果反射到具体的功能执行</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">FtpServer</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">serve_forever</span>(<span class="params">self</span>):</span></span><br><span class="line"><span class="meta">... </span>        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line"><span class="meta">... </span>            inp=<span class="built_in">input</span>(<span class="string">&#x27;input your cmd&gt;&gt;: &#x27;</span>).strip()</span><br><span class="line"><span class="meta">... </span>            cmd,file=inp.split()</span><br><span class="line"><span class="meta">... </span>            <span class="keyword">if</span> <span class="built_in">hasattr</span>(self,cmd): <span class="comment"># 根据用户输入的cmd，判断对象self有无对应的方法属性</span></span><br><span class="line"><span class="meta">... </span>                func=<span class="built_in">getattr</span>(self,cmd) <span class="comment"># 根据字符串cmd，获取对象self对应的方法属性</span></span><br><span class="line"><span class="meta">... </span>                func(file)</span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">get</span>(<span class="params">self,file</span>):</span></span><br><span class="line"><span class="meta">... </span>        <span class="built_in">print</span>(<span class="string">&#x27;Downloading %s...&#x27;</span> %file)</span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">put</span>(<span class="params">self,file</span>):</span></span><br><span class="line"><span class="meta">... </span>        <span class="built_in">print</span>(<span class="string">&#x27;Uploading %s...&#x27;</span> %file)</span><br><span class="line"><span class="meta">... </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>server=FtpServer()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>server.serve_forever()</span><br><span class="line"><span class="built_in">input</span> your cmd&gt;&gt;: get a.txt</span><br><span class="line">Downloading a.txt...</span><br><span class="line"><span class="built_in">input</span> your cmd&gt;&gt;: put a.txt</span><br><span class="line">Uploading a.txt... </span><br></pre></td></tr></table></figure>
+
+<h2 id="内置方法"><a href="#内置方法" class="headerlink" title="内置方法"></a>内置方法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">python的Class机制内置了很多特殊的方法来帮助使用者高度定制自己的类</span><br><span class="line"></span><br><span class="line">这些内置方法都是以双下划线开头和结尾的，会在满足某种条件时自动触发</span><br><span class="line">我们以常用的__str__和__del__为例：</span><br><span class="line"></span><br><span class="line">    <span class="number">1</span> __str__方法会在对象被打印时自动触发，<span class="built_in">print</span>功能打印的就是它的返回值，我们通常基于方法来定制对象的打印信息，该方法必须返回字符串类型</span><br><span class="line">    </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">People</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,name,age</span>):</span></span><br><span class="line"><span class="meta">... </span>        self.name=name</span><br><span class="line"><span class="meta">... </span>        self.age=age</span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span>(<span class="params">self</span>):</span></span><br><span class="line"><span class="meta">... </span>        <span class="keyword">return</span> <span class="string">&#x27;&lt;Name:%s Age:%s&gt;&#x27;</span> %(self.name,self.age) <span class="comment">#返回类型必须是字符串</span></span><br><span class="line"><span class="meta">... </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>p=People(<span class="string">&#x27;lili&#x27;</span>,<span class="number">18</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(p) <span class="comment">#触发p.__str__()，拿到返回值后进行打印</span></span><br><span class="line">&lt;Name:lili Age:<span class="number">18</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">      <span class="number">2</span> __del__会在对象被删除时自动触发 由于Python自带的垃圾回收机制会自动清理Python程序的资源，所以当一个对象只占用应用程序级资源时，完全没必要为对象定制__del__方法，但在产生一个对象的同时涉及到申请系统资源（比如系统打开的文件、网络连接等）的情况下，关于系统资源的回收，Python的垃圾回收机制便派不上用场了，需要我们为对象定制该方法，用来在对象被删除时自动触发回收系统资源的操作</span><br><span class="line">    </span><br><span class="line">lass MySQL:</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,ip,port</span>):</span></span><br><span class="line">        self.conn=connect(ip,port) <span class="comment"># 伪代码，发起网络连接，需要占用系统资源</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__del__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.conn.close() <span class="comment"># 关闭网络连接，回收系统资源</span></span><br><span class="line"></span><br><span class="line">obj=MySQL(<span class="string">&#x27;127.0.0.1&#x27;</span>,<span class="number">3306</span>) <span class="comment"># 在对象obj被删除时，自动触发obj.__del__()</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1320,102 +1410,6 @@
 <h2 id="property"><a href="#property" class="headerlink" title="property"></a>property</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">BMI指数是用来衡量一个人的体重与身高对健康影响的一个指标，计算公式为：</span><br><span class="line">    体质指数（BMI）=体重（kg）÷身高^<span class="number">2</span>（m）</span><br><span class="line">    EX：70kg÷（<span class="number">1.75</span>×<span class="number">1.75</span>）=<span class="number">22.86</span></span><br><span class="line">    </span><br><span class="line">身高或体重是不断变化的，因而每次想查看BMI值都需要通过计算才能得到，但很明显BMI听起来更像是一个特征而非功能，为此Python专门提供了一个装饰器<span class="built_in">property</span>，可以将类中的函数“伪装成”对象的数据属性，对象在访问该特殊属性时会触发功能的执行，然后将返回值作为本次访问的结果，例如：</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">People</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,name,weight,height</span>):</span></span><br><span class="line"><span class="meta">... </span>        self.name=name</span><br><span class="line"><span class="meta">... </span>        self.weight=weight</span><br><span class="line"><span class="meta">... </span>        self.height=height</span><br><span class="line"><span class="meta">... </span>    @<span class="built_in">property</span></span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">bmi</span>(<span class="params">self</span>):</span></span><br><span class="line"><span class="meta">... </span>        <span class="keyword">return</span> self.weight / (self.height**<span class="number">2</span>)</span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>obj=People(<span class="string">&#x27;lili&#x27;</span>,<span class="number">75</span>,<span class="number">1.85</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>obj.bmi <span class="comment">#触发方法bmi的执行，将obj自动传给self，执行后返回值作为本次引用的结果</span></span><br><span class="line"><span class="number">21.913805697589478</span></span><br></pre></td></tr></table></figure>
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">使用<span class="built_in">property</span>有效地保证了属性访问的一致性。另外<span class="built_in">property</span>还提供设置和删除属性的功能，如下</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Foo</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,val</span>):</span></span><br><span class="line"><span class="meta">... </span>        self.__NAME=val <span class="comment">#将属性隐藏起来</span></span><br><span class="line"><span class="meta">... </span>    @<span class="built_in">property</span></span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">name</span>(<span class="params">self</span>):</span></span><br><span class="line"><span class="meta">... </span>        <span class="keyword">return</span> self.__NAME</span><br><span class="line"><span class="meta">... </span>    @name.setter</span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">name</span>(<span class="params">self,value</span>):</span></span><br><span class="line"><span class="meta">... </span>        <span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">isinstance</span>(value,<span class="built_in">str</span>):  <span class="comment">#在设定值之前进行类型检查</span></span><br><span class="line"><span class="meta">... </span>            <span class="keyword">raise</span> TypeError(<span class="string">&#x27;%s must be str&#x27;</span> %value)</span><br><span class="line"><span class="meta">... </span>        self.__NAME=value <span class="comment">#通过类型检查后,将值value存放到真实的位置self.__NAME</span></span><br><span class="line"><span class="meta">... </span>    @name.deleter</span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">name</span>(<span class="params">self</span>):</span></span><br><span class="line"><span class="meta">... </span>        <span class="keyword">raise</span> PermissionError(<span class="string">&#x27;Can not delete&#x27;</span>)</span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f=Foo(<span class="string">&#x27;lili&#x27;</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f.name</span><br><span class="line">lili</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f.name=<span class="string">&#x27;LiLi&#x27;</span> <span class="comment">#触发name.setter装饰器对应的函数name(f,’Egon&#x27;)</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f.name=<span class="number">123</span> <span class="comment">#触发name.setter对应的的函数name(f,123),抛出异常TypeError</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">del</span> f.name <span class="comment">#触发name.deleter对应的函数name(f),抛出异常PermissionError </span></span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2018/11/12/%E5%87%BD%E6%95%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="池劲涛">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="池劲涛的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2018/11/12/%E5%87%BD%E6%95%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">函数的基本使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2018-11-12 07:20:25" itemprop="dateCreated datePublished" datetime="2018-11-12T07:20:25+08:00">2018-11-12</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2018-12-01 12:22:34" itemprop="dateModified" datetime="2018-12-01T12:22:34+08:00">2018-12-01</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Python%E7%B3%BB%E5%88%97/" itemprop="url" rel="index"><span itemprop="name">Python系列</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="内容概要"><a href="#内容概要" class="headerlink" title="内容概要"></a>内容概要</h1><ul>
-<li>定义函数</li>
-<li>调用函数与函数返回值</li>
-</ul>
-<h1 id="内容详细"><a href="#内容详细" class="headerlink" title="内容详细"></a>内容详细</h1><h2 id="定义函数"><a href="#定义函数" class="headerlink" title="定义函数"></a>定义函数</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">函数的使用必须遵循<span class="string">&#x27;先定义，后调用&#x27;</span>的原则</span><br><span class="line"></span><br><span class="line">函数的定义就相当于事先将函数体代码保存起来，然后将内存地址赋值给函数名，函数名就是对这段代码的引用，这和变量的定义是相似的，没有事先定义函数而直接调用，就相当于在引用一个不存在的<span class="string">&#x27;变量名&#x27;</span></span><br><span class="line"></span><br><span class="line">定义函数的语法：</span><br><span class="line"><span class="function"><span class="keyword">def</span> 函数名(<span class="params">参数<span class="number">1</span>,参数<span class="number">2</span>,...</span>):</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;文档描述&#x27;&#x27;&#x27;</span></span><br><span class="line">    函数体</span><br><span class="line">    <span class="keyword">return</span> 值</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">1 def：定义函数的关键字</span></span><br><span class="line"><span class="string">2 函数名：函数名指向函数内存地址，是对函数体代码的引用 函数的命名应该反映出函数的功能</span></span><br><span class="line"><span class="string">3 括号：括号内定义参数，参数是可有可无的，且无需指定参数的类型</span></span><br><span class="line"><span class="string">4 冒号：括号后要加冒号，然后在下一行开始缩进编写函数体的代码</span></span><br><span class="line"><span class="string">5 &#x27;&#x27;&#x27;</span>文档描述<span class="string">&#x27;&#x27;&#x27;：描述函数功能，参数介绍等信息的文档，非必要，但是建议加上，从而增强函数的可读性</span></span><br><span class="line"><span class="string">6 函数体：由语句和表达式组成</span></span><br><span class="line"><span class="string">7 return值：定义函数的返回值，return是可有可无的</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="number">1</span> 参数是函数的调用者向函数体传值的媒介，若函数体代码逻辑依赖外部传来的参数时则需要定义为<span class="string">&#x27;有参函数&#x27;</span>：</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">my_min</span>(<span class="params">x,y</span>):</span></span><br><span class="line">    <span class="keyword">if</span> x &lt; y:</span><br><span class="line">        res = x</span><br><span class="line">    <span class="keyword">else</span>: </span><br><span class="line">        res = y</span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="number">2</span> 否则定义为<span class="string">&#x27;无参函数&#x27;</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">interactive</span>():</span></span><br><span class="line">    user = <span class="built_in">input</span>(<span class="string">&#x27;user: &#x27;</span>).strip()</span><br><span class="line">    pwd = <span class="built_in">input</span>(<span class="string">&#x27;password: &#x27;</span>).strip()</span><br><span class="line">    <span class="keyword">return</span> (user,pwd)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="number">3</span> 函数体为<span class="keyword">pass</span>代表什么都不做，称之为空函数</span><br><span class="line">  定义空函数通常是有用的，因为在程序设计的开始，往往是先想好程序都需要完成什么功能，然后把所有功能都列举出来用<span class="keyword">pass</span>充当函数体<span class="string">&#x27;这里也可以用...代替pass，但是...只能在py3用&#x27;</span>充当函数体<span class="string">&#x27;占位符&#x27;</span>，这将使得程序的体系结构立见，清晰且可读性强</span><br><span class="line">  例如要编写一个ftp程序，我们可能想到的功能有用户认证、下载、上传、浏览、切换目录等功能，可以先做出如下定义：</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">auth_user</span>():</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;user authentication function&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">download_file</span>():</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;download file function&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">upload_file</span>():</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;upload file function&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ls</span>():</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;list contents function&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cd</span>():</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;change directory&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>之后便可以统筹安排编程任务，有选择性的去实现上述功能来替换掉pass，从而提高开发效率</strong></p>
-<h2 id="调用函数与函数返回值"><a href="#调用函数与函数返回值" class="headerlink" title="调用函数与函数返回值"></a>调用函数与函数返回值</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">函数的使用分为定义阶段和调用阶段</span><br><span class="line"><span class="number">1</span> 定义阶段：只检测语法，不执行函数体代码</span><br><span class="line"><span class="number">2</span> 调用阶段：函数名加括号即函数调用，只有调用函数时才会执行函数体代码</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义阶段</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span>():</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;in the foo&#x27;</span>)</span><br><span class="line">    bar()</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bar</span>():</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;in the bar&#x27;</span>)</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 调用阶段</span></span><br><span class="line">foo()</span><br><span class="line"></span><br><span class="line">执行结果：</span><br><span class="line">    <span class="keyword">in</span> the foo</span><br><span class="line">    <span class="keyword">in</span> the bar</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">定义阶段函数foo与bar均无语法错误，而在调用阶段调用foo()时，函数foo与bar都早已经存在于内存中了，所以不会有任何问题</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">按照在程序出现的形式和位置，可将函数的调用形式分为三种：</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1 语句形式：</span></span><br><span class="line">foo()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2 表达式形式</span></span><br><span class="line">m = my_min(<span class="number">1</span>,<span class="number">2</span>) <span class="comment"># 将调用函数的返回值赋值给x</span></span><br><span class="line">n = <span class="number">10</span>*my_min(<span class="number">1</span>,<span class="number">2</span>) <span class="comment"># 将调用函数的返回值乘以10的结果赋值给n</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3 函数调用作为参数的形式：</span></span><br><span class="line"><span class="comment"># my_min(2,3) 作为函数my_min的第二个参数，实现了取1,2,3中的较小者赋值给m</span></span><br><span class="line">m = my_min(<span class="number">1</span>,my_min(<span class="number">2</span>,<span class="number">3</span>))</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">若需要将函数体代码执行的结果返回给调用者，则需要用到<span class="keyword">return</span></span><br><span class="line"><span class="keyword">return</span>后无值或直接省略<span class="keyword">return</span>，则默认返回<span class="literal">None</span>，<span class="keyword">return</span>的返回值无类型限制，且可以将多个返回值放到一个元组内</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span>(<span class="params">x,y,z</span>):</span></span><br><span class="line">    <span class="keyword">return</span> x,y,z <span class="comment"># 等同于return(x,y,z)</span></span><br><span class="line"></span><br><span class="line">res = test(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line"><span class="built_in">print</span>(res)</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span>是一个函数结束的标志，函数内可以有多个<span class="keyword">return</span>，但只执行一次函数就结束了，并把<span class="keyword">return</span>后定义的值作为本次调用的结果返回</span><br></pre></td></tr></table></figure>
       
     </div>
 

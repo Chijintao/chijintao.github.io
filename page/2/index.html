@@ -130,14 +130,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-count">65</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -167,6 +167,103 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/02/11/MySQL%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E4%B8%8E%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="池劲涛">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="池劲涛的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/02/11/MySQL%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E4%B8%8E%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="post-title-link" itemprop="url">MySQL基础之存储引擎与基本数据类型</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-02-11 07:20:25" itemprop="dateCreated datePublished" datetime="2020-02-11T07:20:25+08:00">2020-02-11</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-03-01 12:22:34" itemprop="dateModified" datetime="2020-03-01T12:22:34+08:00">2020-03-01</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/MySQL%E7%B3%BB%E5%88%97/" itemprop="url" rel="index"><span itemprop="name">MySQL系列</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">存储数据的方式不一样</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看所有的存储引擎</span></span><br><span class="line">    show engines;</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 需要知道的四个引擎</span></span><br><span class="line">    <span class="number">1</span> myisam</span><br><span class="line">        -mysql <span class="number">5.5</span> 及之前的版本默认的存储引擎</span><br><span class="line">        -存储数据的速度都非常快，但是功能较少，安全性较低</span><br><span class="line">    </span><br><span class="line">    <span class="number">2</span> innodb</span><br><span class="line">        -mysql <span class="number">5.6</span> 及之后的版本默认的存储引擎</span><br><span class="line">        -存取速度没有myisam快，但是功能更多，安全性更高</span><br><span class="line">    </span><br><span class="line">    <span class="number">3</span> blackhole</span><br><span class="line">        -往里面写入任何数据都会直接消失(黑洞)</span><br><span class="line">        </span><br><span class="line">    <span class="number">4</span> menory</span><br><span class="line">        -用内存存储数据，断电数据消失</span><br><span class="line">        </span><br><span class="line"><span class="comment"># 文件个数不一致</span></span><br><span class="line">    innodb</span><br><span class="line">        .frm  ---  表结构</span><br><span class="line">        .ibd  ---  表数据和索引</span><br><span class="line">    myisam</span><br><span class="line">        .frm  ---  表结构</span><br><span class="line">        .MYD  ---  表数据</span><br><span class="line">        .MYI  ---  索引</span><br><span class="line">    blackhole</span><br><span class="line">        .frm  ---  表结构</span><br><span class="line">    menory</span><br><span class="line">        .frm  ---  表结构</span><br></pre></td></tr></table></figure>
+
+<h1 id="MySQL基本数据类型"><a href="#MySQL基本数据类型" class="headerlink" title="MySQL基本数据类型"></a>MySQL基本数据类型</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> 整型</span><br><span class="line">    tinyint smallint <span class="built_in">int</span> bigint</span><br><span class="line">        <span class="number">1.1</span> 不同的类型能够存储的数字范围不一样</span><br><span class="line"></span><br><span class="line"><span class="comment"># 结论：所有的整型都是自带符号</span></span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">(了解)如果不想让整型有符号：</span></span><br><span class="line"><span class="string">    create table t6(id tinyint unsigned);</span></span><br><span class="line"><span class="string">    insert into t6 values(-129),(256);</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="number">2</span> 浮点型</span><br><span class="line">    <span class="built_in">float</span>(<span class="number">255</span>, <span class="number">30</span>)</span><br><span class="line">        -总共<span class="number">255</span>位，小数占<span class="number">30</span>位</span><br><span class="line">    double(<span class="number">255</span>, <span class="number">30</span>)</span><br><span class="line">        -总共<span class="number">255</span>位，小数占<span class="number">30</span>位</span><br><span class="line">    decimal(<span class="number">65</span>, <span class="number">30</span>)</span><br><span class="line">        -总共<span class="number">65</span>位，小数占<span class="number">30</span>位</span><br><span class="line">        </span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    精确度不一样</span></span><br><span class="line"><span class="string">        float &lt; double &lt; decimal</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">    在实际开发中，很多时候看似需要用数字存储的数据</span></span><br><span class="line"><span class="string">    其实我们可能都是使用的字符串存储</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span> 字符类型</span><br><span class="line">    char(<span class="number">4</span>)</span><br><span class="line">        最大存储四个字符 超出了直接报错 不超过空格填充至四位</span><br><span class="line">    varchar(<span class="number">4</span>)</span><br><span class="line">        最大存储四个字符，超出了直接报错 不超过有几位存几位</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">4</span> 日期类型</span><br><span class="line"></span><br><span class="line">    datetime  ---  年月日 时分秒</span><br><span class="line">    time      ---  时分秒</span><br><span class="line">    date      ---  年月日</span><br><span class="line">    year      ---  年</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5</span> 枚举与集合</span><br><span class="line">    枚举  ---  多选一        ---&gt; (例如性别)</span><br><span class="line">        create table t1(</span><br><span class="line">        <span class="built_in">id</span> <span class="built_in">int</span>,</span><br><span class="line">        name varchar(<span class="number">32</span>)</span><br><span class="line">        gender enum(<span class="string">&#x27;male&#x27;</span>,<span class="string">&#x27;female&#x27;</span>)</span><br><span class="line">        );</span><br><span class="line">    </span><br><span class="line">    集合  ---  多选多(多选一) ---&gt; (例如爱好)</span><br><span class="line">        create table t2(</span><br><span class="line">        <span class="built_in">id</span> <span class="built_in">int</span>,</span><br><span class="line">        name varchar(<span class="number">32</span>)</span><br><span class="line">        hobby <span class="built_in">set</span>(<span class="string">&#x27;read&#x27;</span>,<span class="string">&#x27;study&#x27;</span>,<span class="string">&#x27;music&#x27;</span>)</span><br><span class="line">        )</span><br></pre></td></tr></table></figure>
+
+<h1 id="严格模式"><a href="#严格模式" class="headerlink" title="严格模式"></a>严格模式</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看sql_mode</span></span><br><span class="line">    show variables like <span class="string">&#x27;%mode%&#x27;</span>;</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 修改</span></span><br><span class="line">    get <span class="keyword">global</span> sql_mode=<span class="string">&#x27;strict_trans_tables&#x27;</span>;</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 修改完成后退出客户端重新进入即可</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证char是否自动填充</span></span><br><span class="line">    <span class="built_in">set</span> <span class="keyword">global</span> sql_mode=<span class="string">&#x27;strict_trans_tables,pad_char_to_full_length&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="字符类型对比"><a href="#字符类型对比" class="headerlink" title="字符类型对比"></a>字符类型对比</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">char(<span class="number">4</span>)</span><br><span class="line">    优点：整存整取 速度快</span><br><span class="line">    缺点：浪费硬盘空间</span><br><span class="line">    </span><br><span class="line">varchar(<span class="number">4</span>)</span><br><span class="line">    优点：节省硬盘空间</span><br><span class="line">    缺点：速度没有char快</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 各有优缺点，具体结合实际情况</span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    针对整型字段，括号里面的数字不是用来限制存储长度的而是用来控制显示长度的</span></span><br><span class="line"><span class="string">    ---&gt; 定义整型字段无需自己写括号和数字</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="创建表的完整语法"><a href="#创建表的完整语法" class="headerlink" title="创建表的完整语法"></a>创建表的完整语法</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">create table 表名(</span><br><span class="line">    字段名<span class="number">1</span> 字段类型(宽度) 约束条件<span class="number">1</span> 约束条件<span class="number">2.</span>..，</span><br><span class="line">    字段名<span class="number">2</span> 字段类型(宽度) 约束条件，</span><br><span class="line">    字段名<span class="number">3</span> 字段类型(宽度) 约束条件</span><br><span class="line">)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">易错点：</span></span><br><span class="line"><span class="string">    1 字段名和字段类型是必须的，宽度和约束条件是可选的</span></span><br><span class="line"><span class="string">    2 约束条件可以有多个</span></span><br><span class="line"><span class="string">    3 最后一个字段结尾不能加逗号，否则报错</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -2503,100 +2600,6 @@
 <h3 id="命令行与pycharm创建的区别"><a href="#命令行与pycharm创建的区别" class="headerlink" title="命令行与pycharm创建的区别"></a>命令行与pycharm创建的区别</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1 命令行创建不会自动有templatew文件夹 需要你自己手动创建而pycharm会自动帮你创建并且还会自动在配置文件中配置对应的路径</span></span><br><span class="line"><span class="comment"># pycharm创建</span></span><br><span class="line">TEMPLATES = [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&#x27;BACKEND&#x27;</span>: <span class="string">&#x27;django.template.backends.django.DjangoTemplates&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;DIRS&#x27;</span>: [os.path.join(BASE_DIR, <span class="string">&#x27;templates&#x27;</span>)]</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line"><span class="comment"># 命令行创建</span></span><br><span class="line">TEMPLATES = [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&#x27;BACKEND&#x27;</span>: <span class="string">&#x27;django.template.backends.django.DjangoTemplates&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;DIRS&#x27;</span>: [],</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">也就意味着你在用命令创建django项目的时候不单单需要创建templates文件夹还需要去配置文件中配置路径</span></span><br><span class="line"><span class="string">&#x27;DIRS&#x27;: [os.path.join(BASE_DIR, &#x27;templates&#x27;)]</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="django小白必会三板斧"><a href="#django小白必会三板斧" class="headerlink" title="django小白必会三板斧"></a>django小白必会三板斧</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">HttpResponse</span></span><br><span class="line"><span class="string">    返回字符串类型的数据</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">render</span></span><br><span class="line"><span class="string">    返回html文件的</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">redirect</span></span><br><span class="line"><span class="string">    重定向</span></span><br><span class="line"><span class="string">      return redirect(&#x27;https://www.mzitu.com/&#x27;)</span></span><br><span class="line"><span class="string">    return redirect(&#x27;/home/&#x27;)</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/05/11/Django%E5%9F%BA%E7%A1%80%E4%B9%8Bauth%E6%A8%A1%E5%9D%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="池劲涛">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="池劲涛的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2019/05/11/Django%E5%9F%BA%E7%A1%80%E4%B9%8Bauth%E6%A8%A1%E5%9D%97/" class="post-title-link" itemprop="url">Django基础之auth模块</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-05-11 07:20:25" itemprop="dateCreated datePublished" datetime="2019-05-11T07:20:25+08:00">2019-05-11</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2019-06-01 12:22:34" itemprop="dateModified" datetime="2019-06-01T12:22:34+08:00">2019-06-01</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Django%E7%B3%BB%E5%88%97/" itemprop="url" rel="index"><span itemprop="name">Django系列</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="内容概要"><a href="#内容概要" class="headerlink" title="内容概要"></a>内容概要</h1><ul>
-<li>用户认证模块auth</li>
-<li>auth模块补充</li>
-<li>auth_user表扩展字段</li>
-</ul>
-<h1 id="内容详细"><a href="#内容详细" class="headerlink" title="内容详细"></a>内容详细</h1><h3 id="auth模块"><a href="#auth模块" class="headerlink" title="auth模块"></a>auth模块</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">主要是用来做用户相关的功能</span><br><span class="line">    注册 登录 验证 修改密码 注销</span><br><span class="line"></span><br><span class="line">访问admin需要管理员账号</span><br><span class="line">    该账号数据均来源于数据库迁移之后生成的auth_user表</span><br><span class="line">    </span><br><span class="line">如何创建admin管理员账号</span><br><span class="line">    createsuperuser</span><br></pre></td></tr></table></figure>
-
-<h3 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> auth</span><br><span class="line"></span><br><span class="line"><span class="comment"># 校验用户名密码是否正确</span></span><br><span class="line">auth.authenticate(request,username=username,password=password)</span><br><span class="line"><span class="comment"># 保存用户状态</span></span><br><span class="line">auth.login(request,user_obj)</span><br><span class="line"><span class="comment"># 查看用户是否登录</span></span><br><span class="line">request.user.is_authenticated()</span><br><span class="line"><span class="comment"># 获取用户对象</span></span><br><span class="line">request.user</span><br><span class="line"><span class="comment"># 校验原密码是否正确</span></span><br><span class="line">request.user.check_password()</span><br><span class="line"><span class="comment"># 修改密码</span></span><br><span class="line">request.user.set_password()</span><br><span class="line">request.user.save()</span><br><span class="line"><span class="comment"># 校验是否登录装饰器</span></span><br><span class="line"><span class="keyword">from</span> django.contrib.auth.decorators <span class="keyword">import</span> login_required</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">跳转全局配置</span></span><br><span class="line"><span class="string">    LOGIN_URL = &#x27;/lg/&#x27;</span></span><br><span class="line"><span class="string">跳转局部配置</span></span><br><span class="line"><span class="string">    @login_required(login_url=&#x27;/lg/&#x27;)</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
-
-<h3 id="auth模块补充"><a href="#auth模块补充" class="headerlink" title="auth模块补充"></a>auth模块补充</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1.用户注册</span><br><span class="line">from django.contrib.auth.models import AbstractUser,User</span><br><span class="line">    # 操作auth_user写入数据不能使用create方法 密码不会自动加密</span><br><span class="line">        # User.objects.create(username=username,password=password,email=email)</span><br><span class="line">        # 创建普通用户</span><br><span class="line">        User.objects.create_user(username=username,password=password,email=email)</span><br><span class="line">        # 创建超级用户</span><br><span class="line">        User.objects.create_superuser(username=username, password=password, email=email)</span><br><span class="line">2.用户注销</span><br><span class="line">    auth.logout(request)</span><br></pre></td></tr></table></figure>
-
-<h3 id="auth模块用户表扩展字段"><a href="#auth模块用户表扩展字段" class="headerlink" title="auth模块用户表扩展字段"></a>auth模块用户表扩展字段</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">在auth_user表的基础之上还想增加额外的字段 并且还可以使用auth模块所有的功能</span><br><span class="line"><span class="comment"># 配合文件配置</span></span><br><span class="line"><span class="comment"># 告诉django使用我们自己定义的表来取代auth_user表</span></span><br><span class="line">AUTH_USER_MODEL = <span class="string">&#x27;app01.Userinfo&#x27;</span>  <span class="comment"># 应用名.表名</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 一对一表关联(了解)</span></span><br><span class="line"><span class="comment"># 面向对象继承(掌握)</span></span><br><span class="line"><span class="keyword">from</span> django.contrib.auth.models <span class="keyword">import</span> AbstractUser</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Userinfo</span>(<span class="params">AbstractUser</span>):</span></span><br><span class="line">    <span class="comment"># 扩展AbstractUser表中没有的字段</span></span><br><span class="line">    phone = models.BigIntegerField()</span><br><span class="line">    info = models.CharField(max_length=<span class="number">255</span>)</span><br></pre></td></tr></table></figure>
-
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>：校验用户名与密码</span><br><span class="line"></span><br><span class="line">      auth.authenticate(username=username, ...)</span><br><span class="line"> </span><br><span class="line"><span class="number">2</span>：保存用户信息</span><br><span class="line">      auth.login(request, user_obj)</span><br><span class="line"> </span><br><span class="line"><span class="number">3</span>：判断用户是否登录</span><br><span class="line">      request.user.is_authenticated()</span><br><span class="line"> </span><br><span class="line"><span class="number">4</span>：装饰器</span><br><span class="line">      form django.contrib.auth.decorators <span class="keyword">import</span> login_required</span><br><span class="line">      局部：@login_required(login_url=<span class="string">&#x27;/login/&#x27;</span>) (灵活)</span><br><span class="line">      全局：配置---&gt;LOGIN_URL = <span class="string">&#x27;/login/&#x27;</span> （省事）</span><br><span class="line"> </span><br><span class="line"><span class="number">5</span>：验证原密码(修改密码)</span><br><span class="line">      request.user.check_password(原密码)</span><br><span class="line"> </span><br><span class="line"><span class="number">6</span>：修改密码（两步）</span><br><span class="line">      request.user.set_password(新密码)</span><br><span class="line">      request.user.save()</span><br><span class="line"> </span><br><span class="line"><span class="number">7</span>：创建用户</span><br><span class="line">　　命令行创建：createsupperuser（超级用户）（管理一般不会使用逻辑代码创建）</span><br><span class="line">       <span class="keyword">from</span> django.contrib.auth.models <span class="keyword">import</span> User</span><br><span class="line">　　User.objexts.create()（创建的用户密码是明文）（不推荐）</span><br><span class="line">       User.objexts.create_user()（普通用户）</span><br></pre></td></tr></table></figure>
 
 
       

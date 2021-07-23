@@ -130,14 +130,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-count">65</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -167,6 +167,138 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/17/Git/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="池劲涛">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="池劲涛的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/04/17/Git/" class="post-title-link" itemprop="url">Git</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-04-17 07:20:25" itemprop="dateCreated datePublished" datetime="2021-04-17T07:20:25+08:00">2021-04-17</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-05-01 12:22:34" itemprop="dateModified" datetime="2021-05-01T12:22:34+08:00">2021-05-01</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Git%E7%B3%BB%E5%88%97/" itemprop="url" rel="index"><span itemprop="name">Git系列</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="git"><a href="#git" class="headerlink" title="git"></a>git</h2><h3 id="介绍与安装"><a href="#介绍与安装" class="headerlink" title="介绍与安装"></a>介绍与安装</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span> git，github，gitee，gitlab</span><br><span class="line">	-git：版本管理软件</span><br><span class="line">    -github：网站，全球开源代码，放在上面，我们可以看到，并下载--》本质是一个git的远程仓库</span><br><span class="line">    -gitee：中国版的github，公有，私有（中小型公司的代码放在私有仓库中）</span><br><span class="line">    -gitlab：公司内部的（公司内部的github）</span><br><span class="line">    </span><br><span class="line"><span class="number">1</span> git：软件，实现 版本控制：协同开发（多人合作开发），合并代码</span><br><span class="line"></span><br><span class="line"><span class="number">2</span> 下载：https://git-scm.com/download/win</span><br><span class="line">	一路下一步</span><br><span class="line"></span><br><span class="line"><span class="number">3</span> 装完后，任意位置，鼠标右键，多出</span><br><span class="line">	git gui here：图形化界面</span><br><span class="line">    git bash here：命令行</span><br><span class="line">    </span><br><span class="line"><span class="number">4</span> git和svn</span><br><span class="line">	-git的版本管理不需要服务端（远程仓库）</span><br><span class="line">    -svn要进行版本管理，必须有服务端</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 分为三个地方</span></span><br><span class="line">	<span class="number">1</span> 工作区</span><br><span class="line">    <span class="number">2</span> 暂存区</span><br><span class="line">    <span class="number">3</span> 版本库</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="comment"># 命令</span></span><br><span class="line">	git init    <span class="comment"># 初始化仓库，在当前路径下生成一个.git文件夹，隐藏的</span></span><br><span class="line">    git add .   <span class="comment"># 把工作区的更该（.表示当前路径下所有更改，都提交），提交到暂存区</span></span><br><span class="line">    git status  <span class="comment"># 查看文件状态（绿色表示，在暂存区，不在版本库，红色表示工作区更改了，没有提交到暂存区）</span></span><br><span class="line">    git reset . <span class="comment"># 把提交到暂存区的，拉回到工作区(以后基本不用)</span></span><br><span class="line">    </span><br><span class="line">    git commit -m <span class="string">&#x27;注释&#x27;</span>   <span class="comment"># 把暂存区的所有内容，提交到版本库</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">#在提交到版本库之前，要先配置用户信息 （--global：表示全局，在用户家路径.gitconfig）</span></span><br><span class="line">    git config --<span class="keyword">global</span> user.email <span class="string">&quot;306334678@qq.com&quot;</span></span><br><span class="line">  	git config --<span class="keyword">global</span> user.name <span class="string">&quot;liuqingzheng&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 局部的用户信息，是在仓库的.git文件夹下的config中</span></span><br><span class="line">    git config user.email <span class="string">&quot;33@qq.com&quot;</span></span><br><span class="line">  	git config user.name <span class="string">&quot;egon&quot;</span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    git log   <span class="comment"># 查看版本提交的日志（谁提交的，提交时间，提交的版本号）</span></span><br><span class="line">	git reflog <span class="comment"># 查看版本提交的日志</span></span><br><span class="line">    </span><br><span class="line">    git reset --hard 74c071f922  <span class="comment">#工作区的内容回退到 74c071f922 版本</span></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"> <span class="comment"># 空文件夹，不会被git管理，python中包会：包有 __init__.py</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="git过滤文件"><a href="#git过滤文件" class="headerlink" title="git过滤文件"></a>git过滤文件</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">在仓库目录下新建.gitignore  文件，在文件中写入要忽略的文件，文件夹，模糊匹配</span><br><span class="line"><span class="comment">## 注意：</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">文件或文件夹名：代表所有目录下的同名文件或文件夹都被过滤</span></span><br><span class="line"><span class="string">/文件或文件夹名：代表仓库根目录下的文件或文件夹被过滤</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">eg：</span></span><br><span class="line"><span class="string">a.txt：项目中所有a.txt文件和文件夹都会被过滤</span></span><br><span class="line"><span class="string">/a.txt：项目中只有根目录下a.txt文件和文件夹会被过滤</span></span><br><span class="line"><span class="string">/b/a.txt：项目中只有根目录下的b文件夹下的a.txt文件和文件夹会被过滤</span></span><br><span class="line"><span class="string">*x*：名字中有一个x的都会被过滤（*代表0~n个任意字符）</span></span><br><span class="line"><span class="string">空文件夹不会被提交，空包会被提交，包可以被提交（包中有一个init空文件）</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">eg:</span></span><br><span class="line"><span class="string">	.idea</span></span><br><span class="line"><span class="string">	scripts</span></span><br><span class="line"><span class="string">	*.pyc</span></span><br><span class="line"><span class="string">	__pycache__</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">pycharm软件</span><br><span class="line">	-绿色：在暂存区，没有提交到版本库</span><br><span class="line">	-红色：在工作区新增，没有提交到暂存区</span><br><span class="line">	-蓝色：在工作区修改的，没有提交到暂存区</span><br><span class="line">	-黄色：忽略的</span><br><span class="line">	-白色：已经被git管理的</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="git分支操作"><a href="#git分支操作" class="headerlink" title="git分支操作"></a>git分支操作</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#创建分支</span></span><br><span class="line">git branch 分支名</span><br><span class="line">git checkout -b 分支名   <span class="comment">#创建并切换到新分支</span></span><br><span class="line"><span class="comment">#切换分支</span></span><br><span class="line">git checkout dev</span><br><span class="line"><span class="comment">#查看分支</span></span><br><span class="line">git branch</span><br><span class="line"></span><br><span class="line"><span class="comment">#删除分支</span></span><br><span class="line">git branch -d 分支名</span><br><span class="line"></span><br><span class="line"><span class="comment">#合并分支</span></span><br><span class="line">git merge 分支名 <span class="comment">#把dev分支合并到master分支：切换到master分支，执行合并dev分支的命令</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 分支合并可能会出冲突</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="git远程仓库"><a href="#git远程仓库" class="headerlink" title="git远程仓库"></a>git远程仓库</h3><ul>
+<li>GitHub</li>
+<li>gitee</li>
+<li>gitlab</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> 在远程仓库中新建空仓库</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>	git init						<span class="comment"># 初始化，让项目被git管理</span></span><br><span class="line">	git add .						<span class="comment"># 将所有项目提交到暂存区</span></span><br><span class="line">    git commit -m <span class="string">&#x27;注释&#x27;</span>	   		   <span class="comment"># 将暂存区的项目提交到本地版本库</span></span><br><span class="line">    git remote add 名字 远程仓库地址    <span class="comment">#  增加一个远程仓库(指定目标远程仓库)</span></span><br><span class="line">    git push 远程仓库名字 分支名字	  <span class="comment"># 把本地版本库内容，提交到远程仓库(需要输入账户密码/用ssh连接)</span></span><br><span class="line">    </span><br><span class="line"><span class="number">3</span> 远程仓库操作</span><br><span class="line">	增加</span><br><span class="line">    	git remote add 名字 远程仓库地址</span><br><span class="line">    查看</span><br><span class="line">    	git remote</span><br><span class="line">    删除</span><br><span class="line">    	git remote remove origin</span><br><span class="line">    提交到远程仓库</span><br><span class="line">    	git push origin master</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="采用ssh协议连接远程仓库"><a href="#采用ssh协议连接远程仓库" class="headerlink" title="采用ssh协议连接远程仓库"></a>采用ssh协议连接远程仓库</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> https方式：用户名+密码认证方式</span><br><span class="line"></span><br><span class="line"><span class="number">2</span> ssh方式：公钥私钥方式</span><br><span class="line">	本地生成公钥私钥</span><br><span class="line">    	ssh-keygen -t rsa -C <span class="string">&quot;1965617308@qq.com&quot;</span></span><br><span class="line">        生成的公钥私钥在用户家路径的.ssh文件夹下</span><br><span class="line">        id_rsa		<span class="comment"># 私钥</span></span><br><span class="line">        id_rsa.pub	<span class="comment"># 公钥</span></span><br><span class="line">    把<span class="string">&#x27;公钥&#x27;</span>配置到远程仓库上</span><br><span class="line">    以后再提交代码就不用输入用户名密码</span><br><span class="line">    </span><br><span class="line">    ps：重新配置远程仓库</span><br><span class="line">    	git remote add origin git@gitee.com:chi-jintao/luffy_api.git</span><br><span class="line">        git push origin master  <span class="comment"># 选yes</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="项目创始者与项目开发者"><a href="#项目创始者与项目开发者" class="headerlink" title="项目创始者与项目开发者"></a>项目创始者与项目开发者</h3><ul>
+<li>开发者</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">需要把代码clone到本地</span><br><span class="line"></span><br><span class="line">	<span class="number">1</span> git clone https://gitee.com/liuqingzheng/luffy_api.git</span><br><span class="line">    <span class="number">2</span> 修改代码</span><br><span class="line">    <span class="number">3</span> 提交到远程</span><br><span class="line">   	<span class="number">4</span> git push origin master</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>创始者</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">需要远程新建仓库，本地代码push上去</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="协同开发"><a href="#协同开发" class="headerlink" title="协同开发"></a>协同开发</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> 管理员、开发者(<span class="number">10</span>开发者以上需要充值~)</span><br><span class="line">	能提交代码(增删改查)</span><br><span class="line">    </span><br><span class="line"><span class="number">2</span> 有一个开发者提交了代码</span><br><span class="line"></span><br><span class="line"><span class="number">3</span> 另一个开发者，在提交之前，必须先拉取代码(让本地保持最新)	(有事没事pull一下)</span><br><span class="line"></span><br><span class="line"><span class="number">4</span> 冲突解决(多人在同一个分支开发，导致冲突)</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD  # 冲突的开始</span></span><br><span class="line"><span class="string"># 自己的代码</span></span><br><span class="line"><span class="string">=======  # 分割线</span></span><br><span class="line"><span class="string"># 别人的代码</span></span><br><span class="line"><span class="string">&gt;&gt;&gt;&gt;&gt;&gt;&gt; b63c408abd05b87fc492d40523240561999dba50  # 冲突的结束(版本)</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment"># 解决</span></span><br><span class="line">    	<span class="number">1</span> 该同样的功能出现的冲突，保留好代码，删掉其中一个即可</span><br><span class="line">        </span><br><span class="line">        <span class="number">2</span> 改不同功能出现冲突，两者都留</span><br><span class="line">        </span><br><span class="line">    <span class="comment"># 有事没事pull一下代码</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="线上分支合并"><a href="#线上分支合并" class="headerlink" title="线上分支合并"></a>线上分支合并</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> 本地和远端分支</span><br><span class="line">	本地建立分支，同步到远端</span><br><span class="line">    	git branch dev</span><br><span class="line">        git push origin dev</span><br><span class="line">    </span><br><span class="line">	远端建立分支，同步到本地</span><br><span class="line">    	远端建立分支</span><br><span class="line">        git pull origin dev</span><br><span class="line">        git branch   		<span class="comment"># 看不到</span></span><br><span class="line">        git checkout dev  	<span class="comment"># 切到dev分支，本地就能看到了</span></span><br><span class="line">        </span><br><span class="line"><span class="number">2</span> 提一个pr：pull request(分支合并的请求)</span><br><span class="line"></span><br><span class="line"><span class="number">3</span> 审核通过、测试通过后，合并分支/扁平化合并</span><br><span class="line">	git	变基(git rebase)	---&gt; 扁平化合并(保留分支的各个提交的小版本)(结果好看，但有冲突比较麻烦)</span><br><span class="line">    合并分支					合并分支(不保留分支的各个提交的小版本)(结果乱，有冲突比较好解决)</span><br><span class="line">    </span><br><span class="line"><span class="number">4</span> 远端：dev分支代码和master分支代码完全一致</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="本地分支合并推送到远程"><a href="#本地分支合并推送到远程" class="headerlink" title="本地分支合并推送到远程"></a>本地分支合并推送到远程</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> 由于dev分支和master分支合并时，有冲突，就不能自动合并了，我们需要本地合并完，解决冲突，再提交</span><br><span class="line"></span><br><span class="line"><span class="number">2</span> 把dev合并到master</span><br><span class="line">	git checkout master</span><br><span class="line">    git merge dev</span><br><span class="line">    有冲突，解决冲突</span><br><span class="line">    再提交</span><br><span class="line">    </span><br><span class="line"><span class="number">3</span> 本地的分支提交到远端分支（如果名字不一样）</span><br><span class="line">	git push origin dev111:dev222  <span class="comment"># 不要作死</span></span><br><span class="line">        </span><br><span class="line">ps：</span><br><span class="line">	<span class="number">1</span> git操作出没出冲突，如何解决</span><br><span class="line">    	-第一：多人在同一分支开发</span><br><span class="line">        -第二：分支合并出冲突</span><br><span class="line">        </span><br><span class="line">    <span class="number">2</span> git 变基</span><br><span class="line">    <span class="number">3</span> git fetch 和 git pull的区别</span><br><span class="line">    <span class="number">4</span> git add . 与git add xxx</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -2106,103 +2238,6 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">----------------------------------- 记录的增删改查 -------------------------------------</span><br><span class="line"><span class="comment"># 增</span></span><br><span class="line">insert into 库名.表名 values(<span class="number">1</span>,<span class="string">&#x27;xxx&#x27;</span>); <span class="comment"># 增加单条数据</span></span><br><span class="line">insert into 库名.表名 values(<span class="number">2</span>,<span class="string">&#x27;xxx&#x27;</span>),(<span class="number">3</span>,<span class="string">&#x27;xxx&#x27;</span>),(<span class="number">4</span>,<span class="string">&#x27;xxx&#x27;</span>) <span class="comment"># 增加多条数据</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 改</span></span><br><span class="line">update 库名.表名 <span class="built_in">set</span> name=<span class="string">&#x27;XXX&#x27;</span> where <span class="built_in">id</span> &gt; <span class="number">1</span>; <span class="comment"># 修改名字，条件放在where后</span></span><br><span class="line">update 库名.表名 <span class="built_in">set</span> name=<span class="string">&#x27;XXX&#x27;</span> where <span class="built_in">id</span> = <span class="number">2</span> <span class="keyword">or</span> <span class="built_in">id</span> = <span class="number">3</span>; <span class="comment"># where后可以用逻辑运算符</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查</span></span><br><span class="line">select <span class="built_in">id</span>,name <span class="keyword">from</span> 库名.表名; <span class="comment"># 库名可不指定，默认当前库</span></span><br><span class="line">select * <span class="keyword">from</span> 表名; <span class="comment"># 根据表名查看该表下所有记录</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 删</span></span><br><span class="line">delete <span class="keyword">from</span> 库名.表名 where <span class="built_in">id</span> &gt; <span class="number">3</span>; <span class="comment"># 根据where后的条件判断需要删除哪些记录(数据)</span></span><br><span class="line">delete <span class="keyword">from</span> 库名.表名 where name=<span class="string">&#x27;XXX&#x27;</span>;</span><br><span class="line">delete <span class="keyword">from</span> 库名.表名; <span class="comment"># 删除该表中的所有记录(数据)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 总结：</span></span><br><span class="line">库 == 表：show(查)、alter(改)、create(增)、drop(删)  ps(表：查看当前所在库：select 库名())</span><br><span class="line">(关键字后要带database/table 再+具体库名/表名)</span><br><span class="line"></span><br><span class="line">记录：select(查)、update(改)、insert into(增)、delete(删)</span><br></pre></td></tr></table></figure>
 
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> 数据库发展史：</span><br><span class="line">	bs/cs架构</span><br><span class="line">    </span><br><span class="line">	文件存储(单机) ---&gt; 存储在一个数据库上(不安全) ---&gt; 数据库集群(联机)</span><br><span class="line">    </span><br><span class="line"><span class="number">2</span> 数据库分类</span><br><span class="line">	</span><br><span class="line">    <span class="number">2.1</span> 关系型数据库</span><br><span class="line">    		-固定的表结构，表与表之间可以简历关联</span><br><span class="line">        	-常见软件：mysql、postgresql、oracl、sqlite、db2、sql server access</span><br><span class="line">            </span><br><span class="line">    <span class="number">2.2</span> 非关系型数据库</span><br><span class="line">    		-没有固定的表结构，存储数据按照kv键值对的格式(类似字典)</span><br><span class="line">        	-常见软件：MongoDB、redis、memcache</span><br><span class="line">            </span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">常见软件最好能记住默认端口号</span></span><br><span class="line"><span class="string">	-mysql        -3306</span></span><br><span class="line"><span class="string">	-redis        -6379</span></span><br><span class="line"><span class="string">	-MongoDB      -27017</span></span><br><span class="line"><span class="string">	-Django		  -8000</span></span><br><span class="line"><span class="string">	-flask		  -5000</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="number">3</span> mysql简介</span><br><span class="line">	<span class="comment"># ps：防呆思想</span></span><br><span class="line">    <span class="number">3.1</span> 版本问题</span><br><span class="line">    	-SQL语句的由来</span><br><span class="line">        	-统一思想</span><br><span class="line">            </span><br><span class="line">    <span class="number">3.2</span> 下载与安装</span><br><span class="line"></span><br><span class="line"><span class="number">4</span> 环境变量及系统服务</span><br><span class="line">	</span><br><span class="line">    <span class="number">4.1</span> 先添加环境变量</span><br><span class="line">    </span><br><span class="line">    <span class="number">4.2</span> 命令</span><br><span class="line">    		mysqld --install</span><br><span class="line">        	net start mysql</span><br><span class="line">            net stop mysql</span><br><span class="line">            mysqld --remove</span><br><span class="line">            </span><br><span class="line"><span class="number">5</span> 用户登录及密码相关</span><br><span class="line">	mysql 游客模式</span><br><span class="line">    mysql -u用户名 -p密码</span><br><span class="line">    </span><br><span class="line">    <span class="number">5.1</span> 直接修改</span><br><span class="line">    	mysqladmin -u用户名 -p原密码 password 新密码</span><br><span class="line">    </span><br><span class="line">    <span class="number">5.2</span> 忘记密码</span><br><span class="line">    	...</span><br><span class="line"></span><br><span class="line"><span class="number">6</span> 重要概念</span><br><span class="line">	-库  ---&gt; 文件夹</span><br><span class="line">    -表  ---&gt; 文件</span><br><span class="line">    -数据 ---&gt; 文件内一行行数据</span><br><span class="line"></span><br><span class="line"><span class="number">7</span> 配置文件</span><br><span class="line">	my.ini</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line"><span class="number">8</span> 基本SQL语句</span><br><span class="line">	...</span><br><span class="line">        </span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/02/11/MySQL%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E4%B8%8E%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="池劲涛">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="池劲涛的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/02/11/MySQL%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E4%B8%8E%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="post-title-link" itemprop="url">MySQL基础之存储引擎与基本数据类型</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-02-11 07:20:25" itemprop="dateCreated datePublished" datetime="2020-02-11T07:20:25+08:00">2020-02-11</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-03-01 12:22:34" itemprop="dateModified" datetime="2020-03-01T12:22:34+08:00">2020-03-01</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/MySQL%E7%B3%BB%E5%88%97/" itemprop="url" rel="index"><span itemprop="name">MySQL系列</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">存储数据的方式不一样</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看所有的存储引擎</span></span><br><span class="line">    show engines;</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 需要知道的四个引擎</span></span><br><span class="line">    <span class="number">1</span> myisam</span><br><span class="line">        -mysql <span class="number">5.5</span> 及之前的版本默认的存储引擎</span><br><span class="line">        -存储数据的速度都非常快，但是功能较少，安全性较低</span><br><span class="line">    </span><br><span class="line">    <span class="number">2</span> innodb</span><br><span class="line">        -mysql <span class="number">5.6</span> 及之后的版本默认的存储引擎</span><br><span class="line">        -存取速度没有myisam快，但是功能更多，安全性更高</span><br><span class="line">    </span><br><span class="line">    <span class="number">3</span> blackhole</span><br><span class="line">        -往里面写入任何数据都会直接消失(黑洞)</span><br><span class="line">        </span><br><span class="line">    <span class="number">4</span> menory</span><br><span class="line">        -用内存存储数据，断电数据消失</span><br><span class="line">        </span><br><span class="line"><span class="comment"># 文件个数不一致</span></span><br><span class="line">    innodb</span><br><span class="line">        .frm  ---  表结构</span><br><span class="line">        .ibd  ---  表数据和索引</span><br><span class="line">    myisam</span><br><span class="line">        .frm  ---  表结构</span><br><span class="line">        .MYD  ---  表数据</span><br><span class="line">        .MYI  ---  索引</span><br><span class="line">    blackhole</span><br><span class="line">        .frm  ---  表结构</span><br><span class="line">    menory</span><br><span class="line">        .frm  ---  表结构</span><br></pre></td></tr></table></figure>
-
-<h1 id="MySQL基本数据类型"><a href="#MySQL基本数据类型" class="headerlink" title="MySQL基本数据类型"></a>MySQL基本数据类型</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> 整型</span><br><span class="line">    tinyint smallint <span class="built_in">int</span> bigint</span><br><span class="line">        <span class="number">1.1</span> 不同的类型能够存储的数字范围不一样</span><br><span class="line"></span><br><span class="line"><span class="comment"># 结论：所有的整型都是自带符号</span></span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">(了解)如果不想让整型有符号：</span></span><br><span class="line"><span class="string">    create table t6(id tinyint unsigned);</span></span><br><span class="line"><span class="string">    insert into t6 values(-129),(256);</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="number">2</span> 浮点型</span><br><span class="line">    <span class="built_in">float</span>(<span class="number">255</span>, <span class="number">30</span>)</span><br><span class="line">        -总共<span class="number">255</span>位，小数占<span class="number">30</span>位</span><br><span class="line">    double(<span class="number">255</span>, <span class="number">30</span>)</span><br><span class="line">        -总共<span class="number">255</span>位，小数占<span class="number">30</span>位</span><br><span class="line">    decimal(<span class="number">65</span>, <span class="number">30</span>)</span><br><span class="line">        -总共<span class="number">65</span>位，小数占<span class="number">30</span>位</span><br><span class="line">        </span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    精确度不一样</span></span><br><span class="line"><span class="string">        float &lt; double &lt; decimal</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">    在实际开发中，很多时候看似需要用数字存储的数据</span></span><br><span class="line"><span class="string">    其实我们可能都是使用的字符串存储</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span> 字符类型</span><br><span class="line">    char(<span class="number">4</span>)</span><br><span class="line">        最大存储四个字符 超出了直接报错 不超过空格填充至四位</span><br><span class="line">    varchar(<span class="number">4</span>)</span><br><span class="line">        最大存储四个字符，超出了直接报错 不超过有几位存几位</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">4</span> 日期类型</span><br><span class="line"></span><br><span class="line">    datetime  ---  年月日 时分秒</span><br><span class="line">    time      ---  时分秒</span><br><span class="line">    date      ---  年月日</span><br><span class="line">    year      ---  年</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5</span> 枚举与集合</span><br><span class="line">    枚举  ---  多选一        ---&gt; (例如性别)</span><br><span class="line">        create table t1(</span><br><span class="line">        <span class="built_in">id</span> <span class="built_in">int</span>,</span><br><span class="line">        name varchar(<span class="number">32</span>)</span><br><span class="line">        gender enum(<span class="string">&#x27;male&#x27;</span>,<span class="string">&#x27;female&#x27;</span>)</span><br><span class="line">        );</span><br><span class="line">    </span><br><span class="line">    集合  ---  多选多(多选一) ---&gt; (例如爱好)</span><br><span class="line">        create table t2(</span><br><span class="line">        <span class="built_in">id</span> <span class="built_in">int</span>,</span><br><span class="line">        name varchar(<span class="number">32</span>)</span><br><span class="line">        hobby <span class="built_in">set</span>(<span class="string">&#x27;read&#x27;</span>,<span class="string">&#x27;study&#x27;</span>,<span class="string">&#x27;music&#x27;</span>)</span><br><span class="line">        )</span><br></pre></td></tr></table></figure>
-
-<h1 id="严格模式"><a href="#严格模式" class="headerlink" title="严格模式"></a>严格模式</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看sql_mode</span></span><br><span class="line">    show variables like <span class="string">&#x27;%mode%&#x27;</span>;</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 修改</span></span><br><span class="line">    get <span class="keyword">global</span> sql_mode=<span class="string">&#x27;strict_trans_tables&#x27;</span>;</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 修改完成后退出客户端重新进入即可</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证char是否自动填充</span></span><br><span class="line">    <span class="built_in">set</span> <span class="keyword">global</span> sql_mode=<span class="string">&#x27;strict_trans_tables,pad_char_to_full_length&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="字符类型对比"><a href="#字符类型对比" class="headerlink" title="字符类型对比"></a>字符类型对比</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">char(<span class="number">4</span>)</span><br><span class="line">    优点：整存整取 速度快</span><br><span class="line">    缺点：浪费硬盘空间</span><br><span class="line">    </span><br><span class="line">varchar(<span class="number">4</span>)</span><br><span class="line">    优点：节省硬盘空间</span><br><span class="line">    缺点：速度没有char快</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 各有优缺点，具体结合实际情况</span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    针对整型字段，括号里面的数字不是用来限制存储长度的而是用来控制显示长度的</span></span><br><span class="line"><span class="string">    ---&gt; 定义整型字段无需自己写括号和数字</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="创建表的完整语法"><a href="#创建表的完整语法" class="headerlink" title="创建表的完整语法"></a>创建表的完整语法</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">create table 表名(</span><br><span class="line">    字段名<span class="number">1</span> 字段类型(宽度) 约束条件<span class="number">1</span> 约束条件<span class="number">2.</span>..，</span><br><span class="line">    字段名<span class="number">2</span> 字段类型(宽度) 约束条件，</span><br><span class="line">    字段名<span class="number">3</span> 字段类型(宽度) 约束条件</span><br><span class="line">)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">易错点：</span></span><br><span class="line"><span class="string">    1 字段名和字段类型是必须的，宽度和约束条件是可选的</span></span><br><span class="line"><span class="string">    2 约束条件可以有多个</span></span><br><span class="line"><span class="string">    3 最后一个字段结尾不能加逗号，否则报错</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-
       
     </div>
 
