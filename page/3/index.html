@@ -130,14 +130,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">65</span>
+          <span class="site-state-item-count">66</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -167,6 +167,116 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/05/11/Django%E5%88%9D%E8%AF%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="池劲涛">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="池劲涛的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2019/05/11/Django%E5%88%9D%E8%AF%86/" class="post-title-link" itemprop="url">Django初识</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-05-11 07:20:25" itemprop="dateCreated datePublished" datetime="2019-05-11T07:20:25+08:00">2019-05-11</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2019-06-01 12:22:34" itemprop="dateModified" datetime="2019-06-01T12:22:34+08:00">2019-06-01</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Django%E7%B3%BB%E5%88%97/" itemprop="url" rel="index"><span itemprop="name">Django系列</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="内容概要"><a href="#内容概要" class="headerlink" title="内容概要"></a>内容概要</h1><ul>
+<li>我们自己写一个简易版本的web框架(代码无需掌握，重点在于理解思路)</li>
+<li>django框架</li>
+</ul>
+<h1 id="内容详细"><a href="#内容详细" class="headerlink" title="内容详细"></a>内容详细</h1><h3 id="Django生命周期流程图"><a href="#Django生命周期流程图" class="headerlink" title="Django生命周期流程图"></a>Django生命周期流程图</h3><p> <img src="https://img2020.cnblogs.com/blog/2342210/202106/2342210-20210622080437779-1091380189.png" alt="img"></p>
+<h3 id="软件开发架构"><a href="#软件开发架构" class="headerlink" title="软件开发架构"></a>软件开发架构</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cs架构</span><br><span class="line">bs架构</span><br><span class="line"><span class="comment"># 本质bs也是cs</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="纯手撸web框架"><a href="#纯手撸web框架" class="headerlink" title="纯手撸web框架"></a>纯手撸web框架</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># HTTP协议</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">网络协议</span></span><br><span class="line"><span class="string">HTTP协议                数据传输是明文</span></span><br><span class="line"><span class="string">HTTPS协议                数据传输是密文</span></span><br><span class="line"><span class="string">websocket协议            数据传输是密文</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">四大特性</span></span><br><span class="line"><span class="string">    1.基于请求响应</span></span><br><span class="line"><span class="string">    2.基于TCP、IP作用于应用层之上的协议</span></span><br><span class="line"><span class="string">    3.无状态</span></span><br><span class="line"><span class="string">    4.短/无链接</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">数据格式</span></span><br><span class="line"><span class="string">    请求首行</span></span><br><span class="line"><span class="string">    请求头</span></span><br><span class="line"><span class="string">    \r\n</span></span><br><span class="line"><span class="string">    请求体</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">响应状态码</span></span><br><span class="line"><span class="string">    1XX</span></span><br><span class="line"><span class="string">    2XX            200</span></span><br><span class="line"><span class="string">    3XX            </span></span><br><span class="line"><span class="string">    4XX            403 404</span></span><br><span class="line"><span class="string">    5XX            500</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="comment"># 如何做到后缀的不同返回不同的内容</span></span><br><span class="line">    <span class="comment"># 拿到用户输入的后缀 做判断 </span></span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"><span class="comment"># 不足之处</span></span><br><span class="line">    <span class="number">1.</span>代码重复(服务端代码所有人都要重复写)</span><br><span class="line">      <span class="number">2.</span>手动处理http格式的数据 并且只能拿到url后缀 其他数据获取繁琐(数据格式一样处理的代码其实也大致一样 重复写)</span><br><span class="line">      <span class="number">3.</span>并发的问题</span><br></pre></td></tr></table></figure>
+
+<h3 id="借助于wsgiref模块"><a href="#借助于wsgiref模块" class="headerlink" title="借助于wsgiref模块"></a>借助于wsgiref模块</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">urls.py                            路由与视图函数对应关系</span></span><br><span class="line"><span class="string">views.py                　　　　 视图函数(后端业务逻辑)</span></span><br><span class="line"><span class="string">templates文件夹　　　　　　　　　　　　　　　　　　　　专门用来存储html文件</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="comment"># 按照功能的不同拆分之后 后续添加功能只需要在urls.py书写对应关系然后取views.py书写业务逻辑即可</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="动静态网页"><a href="#动静态网页" class="headerlink" title="动静态网页"></a>动静态网页</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">静态网页</span></span><br><span class="line"><span class="string">    页面上的数据是直接写死的 万年不变</span></span><br><span class="line"><span class="string">动态网页</span></span><br><span class="line"><span class="string">    数据是实时获取的</span></span><br><span class="line"><span class="string">    eg:</span></span><br><span class="line"><span class="string">        1.后端获取当前时间展示到html页面上</span></span><br><span class="line"><span class="string">        2.数据是从数据库中获取的展示到html页面上</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 动态网页制作</span></span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_time</span>(<span class="params">env</span>):</span></span><br><span class="line">    current_time = datetime.datetime.now().strftime(<span class="string">&#x27;%Y-%m-%d %X&#x27;</span>)</span><br><span class="line">    <span class="comment"># 如何将后端获取到的数据&quot;传递&quot;给html文件？</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">r&#x27;templates/03 mytime.html&#x27;</span>,<span class="string">&#x27;r&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        data = f.read()</span><br><span class="line">        <span class="comment"># data就是一堆字符串</span></span><br><span class="line">    data = data.replace(<span class="string">&#x27;dwadasdsadsadasdas&#x27;</span>,current_time)   <span class="comment"># 在后端将html页面处理好之后再返回给前端</span></span><br><span class="line">    <span class="keyword">return</span> data</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将一个字典传递给html文件 并且可以在文件上方便快捷的操作字典数据</span></span><br><span class="line"><span class="keyword">from</span> jinja2 <span class="keyword">import</span> Template</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_dict</span>(<span class="params">env</span>):</span></span><br><span class="line">    user_dic = &#123;<span class="string">&#x27;username&#x27;</span>:<span class="string">&#x27;jason&#x27;</span>,<span class="string">&#x27;age&#x27;</span>:<span class="number">18</span>,<span class="string">&#x27;hobby&#x27;</span>:<span class="string">&#x27;read&#x27;</span>&#125;</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">r&#x27;templates/04 get_dict.html&#x27;</span>,<span class="string">&#x27;r&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        data = f.read()</span><br><span class="line">    tmp = Template(data)</span><br><span class="line">    res = tmp.render(user=user_dic)</span><br><span class="line">    <span class="comment"># 给get_dict.html传递了一个值 页面上通过变量名user就能够拿到user_dict</span></span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"><span class="comment"># 后端获取数据库中数据展示到前端页面</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="模版语法之Jinja2模块"><a href="#模版语法之Jinja2模块" class="headerlink" title="模版语法之Jinja2模块"></a>模版语法之Jinja2模块</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">pip3 install jinja2</span><br><span class="line"><span class="string">&quot;&quot;&quot;模版语法是在后端起作用的&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 模版语法(非常贴近python语法)</span></span><br><span class="line">&#123;&#123; user &#125;&#125;</span><br><span class="line">&#123;&#123; user.get(<span class="string">&#x27;username&#x27;</span>)&#125;&#125;</span><br><span class="line">&#123;&#123; user.age &#125;&#125;</span><br><span class="line">&#123;&#123; user[<span class="string">&#x27;hobby&#x27;</span>] &#125;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#123;% <span class="keyword">for</span> user_dict <span class="keyword">in</span> user_list %&#125;</span><br><span class="line">                        &lt;tr&gt;</span><br><span class="line">                            &lt;td&gt;&#123;&#123; user_dict.<span class="built_in">id</span>&#125;&#125;&lt;/td&gt;</span><br><span class="line">                            &lt;td&gt;&#123;&#123; user_dict.username&#125;&#125;&lt;/td&gt;</span><br><span class="line">                            &lt;td&gt;&#123;&#123; user_dict.password&#125;&#125;&lt;/td&gt;</span><br><span class="line">                            &lt;td&gt;&#123;&#123; user_dict.hobby&#125;&#125;&lt;/td&gt;</span><br><span class="line">                        &lt;/tr&gt;</span><br><span class="line">&#123;% endfor%&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="自定义简易版本web框架请求流程图"><a href="#自定义简易版本web框架请求流程图" class="headerlink" title="自定义简易版本web框架请求流程图"></a>自定义简易版本web框架请求流程图</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">wsgiref模块</span></span><br><span class="line"><span class="string">    1.请求来的时候解析http格式的数据 封装成大字典</span></span><br><span class="line"><span class="string">    2.响应走的时候给数据打包成符合http格式 再返回给浏览器</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="python三大主流web框架"><a href="#python三大主流web框架" class="headerlink" title="python三大主流web框架"></a>python三大主流web框架</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">django</span></span><br><span class="line"><span class="string">    特点:大而全 自带的功能特别特别特别的多 类似于航空母舰</span></span><br><span class="line"><span class="string">    不足之处:</span></span><br><span class="line"><span class="string">        有时候过于笨重</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">flask</span></span><br><span class="line"><span class="string">    特点:小而精  自带的功能特别特别特别的少 类似于游骑兵</span></span><br><span class="line"><span class="string">    第三方的模块特别特别特别的多，如果将flask第三方的模块加起来完全可以盖过django</span></span><br><span class="line"><span class="string">    并且也越来越像django</span></span><br><span class="line"><span class="string">    不足之处:</span></span><br><span class="line"><span class="string">        比较依赖于第三方的开发者</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">tornado</span></span><br><span class="line"><span class="string">    特点:异步非阻塞 支持高并发</span></span><br><span class="line"><span class="string">        牛逼到甚至可以开发游戏服务器</span></span><br><span class="line"><span class="string">    不足之处:</span></span><br><span class="line"><span class="string">        你不会~</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如何让你的计算机能够正常的启动django项目</span></span><br><span class="line">    <span class="number">1.</span>计算机的名称不能有中文</span><br><span class="line">      <span class="number">2.</span>一个pycharm窗口只开一个项目 <span class="comment"># 不要文件夹套文件夹</span></span><br><span class="line">      <span class="number">3.</span>项目里面所有的文件也尽量不要出现中文</span><br><span class="line">      <span class="number">4.</span>python解释器尽量使用<span class="number">3.4</span>~<span class="number">3.6</span>之间的版本</span><br><span class="line">      (如果你的项目报错 你点击最后一个报错信息</span><br><span class="line">    去源码中把逗号删掉)</span><br><span class="line">    </span><br><span class="line"><span class="comment"># django版本问题</span></span><br><span class="line">    <span class="number">1.</span>X <span class="number">2.</span>X <span class="number">3.</span>X(最新版本)</span><br><span class="line">    </span><br><span class="line">      <span class="number">1.</span>X和<span class="number">2.</span>X本身差距也不大 </span><br><span class="line">      公司之前用的<span class="number">1.8</span>  有一些项目用的<span class="number">2.0</span></span><br><span class="line">  </span><br><span class="line">     django版本图</span><br><span class="line">  </span><br><span class="line"><span class="comment"># django安装</span></span><br><span class="line">    pip3 install django==<span class="number">1.11</span><span class="number">.11</span></span><br><span class="line">      如果已经安装了其他版本 无需自己卸载</span><br><span class="line">      直接重新装 会自动卸载安装新的</span><br><span class="line">  </span><br><span class="line">      如果报错 看看是不是timeout 如果是 那么只是网速波动</span><br><span class="line">      重新安装即可</span><br><span class="line"></span><br><span class="line">      验证是否安装成功的方式<span class="number">1</span></span><br><span class="line">        终端输入django-admin看看有没有反应</span><br></pre></td></tr></table></figure>
+
+<h3 id="django基本操作"><a href="#django基本操作" class="headerlink" title="django基本操作"></a>django基本操作</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 命令行操作</span></span><br><span class="line">    <span class="comment"># 1.创建django项目</span></span><br><span class="line">      <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">      你可以先切换到对应的D盘 然后再创建</span></span><br><span class="line"><span class="string">      &quot;&quot;&quot;</span></span><br><span class="line">      django-admin startproject mysite</span><br><span class="line">    </span><br><span class="line">        mysite文件夹</span><br><span class="line">          manage.py</span><br><span class="line">          mysite文件夹</span><br><span class="line">            __init__.py</span><br><span class="line">            settings.py</span><br><span class="line">          urls.py</span><br><span class="line">          wsgi.py</span><br><span class="line"> <span class="comment"># 2.启动django项目</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        一定要先切换到项目目录下    </span></span><br><span class="line"><span class="string">        cd /mysite</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">  python3 manage.py runserver</span><br><span class="line">  <span class="comment"># http://127.0.0.1:8000/</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># 3.创建应用</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Next, start your first app by running python manage.py startapp [app_label].</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">    python manage.py startapp app01</span><br><span class="line">    应用名应该做到见名知意</span><br><span class="line">      user</span><br><span class="line">      order</span><br><span class="line">      web</span><br><span class="line">      ...</span><br><span class="line">      但是我们教学统一就用app01/02/03/04</span><br><span class="line">      </span><br><span class="line">    有很多文件</span><br><span class="line">  </span><br><span class="line"><span class="comment"># pycharm操作</span></span><br><span class="line">    <span class="comment"># 1 new project 选择左侧第二个django即可</span></span><br><span class="line">  </span><br><span class="line">      <span class="comment"># 2 启动</span></span><br><span class="line">          <span class="number">1.</span>还是用命令行启动</span><br><span class="line">        <span class="number">2.</span>点击绿色小箭头即可</span><br><span class="line"></span><br><span class="line">      <span class="comment"># 3 创建应用</span></span><br><span class="line">          <span class="number">1.</span>pycharm提供的终端直接输入完整命令</span><br><span class="line">        <span class="number">2.</span>pycharm </span><br><span class="line">              tools </span><br><span class="line">                run manage.py task提示(前期不要用 给我背完整命令)</span><br><span class="line">     <span class="comment"># 4 修改端口号以及创建server    </span></span><br><span class="line">        edit confi....</span><br></pre></td></tr></table></figure>
+
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">django是一款专门用来开发app的web框架</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">django框架就类似于是一所大学(空壳子)</span></span><br><span class="line"><span class="string">app就类似于大学里面各个学院(具体功能的app)</span></span><br><span class="line"><span class="string">    比如开发淘宝</span></span><br><span class="line"><span class="string">        订单相关</span></span><br><span class="line"><span class="string">        用户相关</span></span><br><span class="line"><span class="string">        投诉相关</span></span><br><span class="line"><span class="string">        创建不同的app对应不同的功能</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    选课系统</span></span><br><span class="line"><span class="string">        学生功能</span></span><br><span class="line"><span class="string">        老师功能</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">一个app就是一个独立的功能模块</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">***********************创建的应用一定要去配置文件中注册**********************</span><br><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="string">&#x27;django.contrib.admin&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;django.contrib.auth&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;django.contrib.contenttypes&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;django.contrib.sessions&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;django.contrib.messages&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;django.contrib.staticfiles&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;app01.apps.App01Config&#x27;</span>,  <span class="comment"># 全写</span></span><br><span class="line">      <span class="string">&#x27;app01&#x27;</span>,             <span class="comment"># 简写</span></span><br><span class="line">]</span><br><span class="line"><span class="comment"># 创建出来的的应用第一步先去配置文件中注册 其他的先不要给我干</span></span><br><span class="line">ps:你在用pycharm创建项目的时候 pycharm可以帮你创建一个app并且自动注册</span><br><span class="line">***********************************************************************</span><br></pre></td></tr></table></figure>
+
+<h3 id="主要文件介绍"><a href="#主要文件介绍" class="headerlink" title="主要文件介绍"></a>主要文件介绍</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">-mysite项目文件夹</span><br><span class="line">    --mysite文件夹</span><br><span class="line">      ---settings.py           配置文件</span><br><span class="line">    ---urls.py              路由与视图函数对应关系(路由层)</span><br><span class="line">    ---wsgi.py              wsgiref模块(不考虑)</span><br><span class="line">  --manage.py              django的入口文件</span><br><span class="line">  --db.sqlite3              django自带的sqlite3数据库(小型数据库 功能不是很多还有bug)</span><br><span class="line">  --app01文件夹</span><br><span class="line">      ---admin.py              django后台管理</span><br><span class="line">    ---apps.py              注册使用</span><br><span class="line">    ---migrations文件夹    数据库迁移记录</span><br><span class="line">    ---models.py          数据库相关的 模型类(orm)</span><br><span class="line">      ---tests.py              测试文件</span><br><span class="line">    ---views.py              视图函数(视图层)</span><br></pre></td></tr></table></figure>
+
+<h3 id="命令行与pycharm创建的区别"><a href="#命令行与pycharm创建的区别" class="headerlink" title="命令行与pycharm创建的区别"></a>命令行与pycharm创建的区别</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1 命令行创建不会自动有templatew文件夹 需要你自己手动创建而pycharm会自动帮你创建并且还会自动在配置文件中配置对应的路径</span></span><br><span class="line"><span class="comment"># pycharm创建</span></span><br><span class="line">TEMPLATES = [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&#x27;BACKEND&#x27;</span>: <span class="string">&#x27;django.template.backends.django.DjangoTemplates&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;DIRS&#x27;</span>: [os.path.join(BASE_DIR, <span class="string">&#x27;templates&#x27;</span>)]</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line"><span class="comment"># 命令行创建</span></span><br><span class="line">TEMPLATES = [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&#x27;BACKEND&#x27;</span>: <span class="string">&#x27;django.template.backends.django.DjangoTemplates&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;DIRS&#x27;</span>: [],</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">也就意味着你在用命令创建django项目的时候不单单需要创建templates文件夹还需要去配置文件中配置路径</span></span><br><span class="line"><span class="string">&#x27;DIRS&#x27;: [os.path.join(BASE_DIR, &#x27;templates&#x27;)]</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="django小白必会三板斧"><a href="#django小白必会三板斧" class="headerlink" title="django小白必会三板斧"></a>django小白必会三板斧</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">HttpResponse</span></span><br><span class="line"><span class="string">    返回字符串类型的数据</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">render</span></span><br><span class="line"><span class="string">    返回html文件的</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">redirect</span></span><br><span class="line"><span class="string">    重定向</span></span><br><span class="line"><span class="string">      return redirect(&#x27;https://www.mzitu.com/&#x27;)</span></span><br><span class="line"><span class="string">    return redirect(&#x27;/home/&#x27;)</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1118,151 +1228,6 @@
 <h3 id="CBV源码"><a href="#CBV源码" class="headerlink" title="CBV源码"></a>CBV源码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 切入点</span></span><br><span class="line">url(<span class="string">r&#x27;^login/&#x27;</span>, views.Mylogin.as_view())</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;类名点名字还加括号  名字要么是绑定给类的方法 要么是无参函数&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="number">1.</span>as_view()绑定给类的方法</span><br><span class="line"><span class="meta">    @classonlymethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">as_view</span>(<span class="params">cls, **initkwargs</span>)</span></span><br><span class="line"><span class="function">2.<span class="title">CBV</span>路由匹配本质与<span class="title">FBV</span>一致</span></span><br><span class="line"><span class="function">    # <span class="title">CBV</span></span></span><br><span class="line"><span class="function">    <span class="title">url</span>(<span class="params"><span class="string">r&#x27;^login/&#x27;</span>, views.Mylogin.as_view(<span class="params"></span>)</span>)</span></span><br><span class="line"><span class="function">    # <span class="title">CBV</span>本质</span></span><br><span class="line"><span class="function">    # <span class="title">url</span>(<span class="params"><span class="string">r&#x27;^login/&#x27;</span>, views.view</span>)</span></span><br><span class="line"><span class="function">3.匹配成功之后执行<span class="title">view</span>函数代码</span></span><br><span class="line"><span class="function">    <span class="title">def</span> <span class="title">view</span>(<span class="params">request, *args, **kwargs</span>):</span></span><br><span class="line">         self = cls(**initkwargs)</span><br><span class="line">         <span class="keyword">return</span> self.dispatch(request, *args, **kwargs)</span><br><span class="line"><span class="number">4.</span>查看dispatch方法(对象查找属性和方法一定要严格按照顺序来)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dispatch</span>(<span class="params">self, request, *args, **kwargs</span>):</span></span><br><span class="line">        <span class="comment"># 判断当前请求方法是否符合八个默认的请求方法中</span></span><br><span class="line">        <span class="comment"># 1.get</span></span><br><span class="line">        <span class="keyword">if</span> request.method.lower() <span class="keyword">in</span> self.http_method_names:</span><br><span class="line">            <span class="comment"># getattr(对象,&#x27;get&#x27;,&#x27;拿不到的报错信息&#x27;)  &gt;&gt;&gt; Mylogin里面的get方法</span></span><br><span class="line">            handler = <span class="built_in">getattr</span>(self, request.method.lower(), self.http_method_not_allowed)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            handler = self.http_method_not_allowed</span><br><span class="line">        <span class="keyword">return</span> handler(request, *args, **kwargs)  <span class="comment"># get(request,...)</span></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
 
 <p><img src="https://img2020.cnblogs.com/blog/2342210/202106/2342210-20210602210244572-1235900068.png" alt="img"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/05/11/pip%E4%B8%8E%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="池劲涛">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="池劲涛的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2019/05/11/pip%E4%B8%8E%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" class="post-title-link" itemprop="url">pip与虚拟环境搭建</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-05-11 07:20:25" itemprop="dateCreated datePublished" datetime="2019-05-11T07:20:25+08:00">2019-05-11</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2019-06-01 12:22:34" itemprop="dateModified" datetime="2019-06-01T12:22:34+08:00">2019-06-01</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%B3%BB%E5%88%97/" itemprop="url" rel="index"><span itemprop="name">杂七杂八系列</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="pip安装源"><a href="#pip安装源" class="headerlink" title="pip安装源"></a>pip安装源</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">1、采用国内源，加速下载模块的速度</span></span><br><span class="line"><span class="string">2、常用pip源：</span></span><br><span class="line"><span class="string">	-- 豆瓣：https://pypi.douban.com/simple</span></span><br><span class="line"><span class="string">	-- 阿里：https://mirrors.aliyun.com/pypi/simple</span></span><br><span class="line"><span class="string">3、加速安装的命令：</span></span><br><span class="line"><span class="string">	-- &gt;: pip install -i https://pypi.douban.com/simple 模块名</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="永久配置安装源"><a href="#永久配置安装源" class="headerlink" title="永久配置安装源"></a>永久配置安装源</h2><ul>
-<li>Windows</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">1、文件管理器文件路径地址栏敲：%APPDATA% 回车，快速进入 C:\Users\电脑用户\AppData\Roaming 文件夹中</span></span><br><span class="line"><span class="string">2、新建 pip 文件夹并在文件夹中新建 pip.ini 配置文件</span></span><br><span class="line"><span class="string">3、新增 pip.ini 配置文件内容</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li>Linux、MacOS</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">1、在用户根目录下 ~ 下创建 .pip 隐藏文件夹，如果已经有了可以跳过</span></span><br><span class="line"><span class="string">	-- mkdir ~/.pip</span></span><br><span class="line"><span class="string">2、进入 .pip 隐藏文件夹并创建 pip.conf 配置文件</span></span><br><span class="line"><span class="string">	-- cd ~/.pip &amp;&amp; touch pip.conf</span></span><br><span class="line"><span class="string">3、启动 Finder(访达) 按 cmd+shift+g 来的进入，输入 ~/.pip 回车进入</span></span><br><span class="line"><span class="string">4、新增 pip.conf 配置文件内容</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li>配置文件内容</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">[global]</span></span><br><span class="line"><span class="string">index-url = http://pypi.douban.com/simple</span></span><br><span class="line"><span class="string">[install]</span></span><br><span class="line"><span class="string">use-mirrors =true</span></span><br><span class="line"><span class="string">mirrors =http://pypi.douban.com/simple/</span></span><br><span class="line"><span class="string">trusted-host =pypi.douban.com</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="虚拟环境搭建"><a href="#虚拟环境搭建" class="headerlink" title="虚拟环境搭建"></a>虚拟环境搭建</h1><ul>
-<li>优点<ul>
-<li>使不同应用开发环境相互独立</li>
-<li>环境升级不影响其他应用，也不会影响全局的python环境</li>
-<li>防止出现包管理混乱及包版本冲突</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>Windows</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 建议使用pip3安装到python3环境下</span></span><br><span class="line">pip3 install virtualenv</span><br><span class="line">pip3 install virtualenvwrapper-win</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置环境变量</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 控制面板 =&gt; 系统和安全 =&gt; 系统 =&gt; 高级系统设置 =&gt; 环境变量 =&gt; 系统变量 =&gt; 点击新建 =&gt; 填入变量名与值</span></span><br><span class="line">变量名：WORKON_HOME  变量值：自定义存放虚拟环境的绝对路径</span><br><span class="line">eg: WORKON_HOME: D:\Virtualenvs</span><br><span class="line"></span><br><span class="line"><span class="comment"># 同步配置信息：</span></span><br><span class="line"><span class="comment"># 去向Python3的安装目录 =&gt; Scripts文件夹 =&gt; virtualenvwrapper.bat =&gt; 双击</span></span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li>Linux、MacOS</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 建议使用pip3安装到python3环境下</span></span><br><span class="line">pip3 install -i https://pypi.douban.com/simple virtualenv</span><br><span class="line">pip3 install -i https://pypi.douban.com/simple virtualenvwrapper</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在 ~/.bash_profile 完成配置，virtualenvwrapper的默认默认存放虚拟环境路径是 ~/.virtualenvs</span></span><br><span class="line"><span class="comment"># WORKON_HOME=自定义存放虚拟环境的绝对路径，需要自定义就解注</span></span><br><span class="line">VIRTUALENVWRAPPER_PYTHON=/usr/local/<span class="built_in">bin</span>/python3</span><br><span class="line">source /usr/local/<span class="built_in">bin</span>/virtualenvwrapper.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在终端让配置生效：</span></span><br><span class="line">	-- source ~/.bash_profile</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li>使用</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在终端工作的命令</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1、创建虚拟环境到配置的WORKON_HOME路径下</span></span><br><span class="line"><span class="comment"># 选取默认Python环境创建虚拟环境：</span></span><br><span class="line">	-- mkvirtualenv 虚拟环境名称</span><br><span class="line"><span class="comment"># 基于某Python环境创建虚拟环境：</span></span><br><span class="line">	-- mkvirtualenv -p python2<span class="number">.7</span> 虚拟环境名称</span><br><span class="line">	-- mkvirtualenv -p python3<span class="number">.6</span> 虚拟环境名称</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2、查看已有的虚拟环境</span></span><br><span class="line">	-- workon</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3、使用某个虚拟环境</span></span><br><span class="line">	-- workon 虚拟环境名称</span><br><span class="line">	</span><br><span class="line"><span class="comment"># 4、进入|退出 该虚拟环境的Python环境</span></span><br><span class="line">	-- python | exit()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5、为虚拟环境安装模块</span></span><br><span class="line">	-- pip或pip3 install 模块名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 6、退出当前虚拟环境</span></span><br><span class="line">	-- deactivate</span><br><span class="line"></span><br><span class="line"><span class="comment"># 7、删除虚拟环境(删除当前虚拟环境要先退出)</span></span><br><span class="line">	-- rmvirtualenv 虚拟环境名称</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li>pycharm的使用</li>
-</ul>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ggqvohby3ij30lr0dlwfe.jpg" alt="img"></p>
-<ul>
-<li>添加环境</li>
-</ul>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ggqvotdttxj30nb0fzdgt.jpg" alt="img"></p>
-<ul>
-<li>使用环境</li>
-</ul>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ggqvoob9gbj30lr0dlab0.jpg" alt="img"></p>
 
       
     </div>

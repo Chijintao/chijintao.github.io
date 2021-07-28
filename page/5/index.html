@@ -130,14 +130,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">65</span>
+          <span class="site-state-item-count">66</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -167,6 +167,107 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/11/12/%E5%87%BD%E6%95%B0%E9%80%92%E5%BD%92/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="池劲涛">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="池劲涛的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/11/12/%E5%87%BD%E6%95%B0%E9%80%92%E5%BD%92/" class="post-title-link" itemprop="url">函数递归</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-11-12 07:20:25" itemprop="dateCreated datePublished" datetime="2018-11-12T07:20:25+08:00">2018-11-12</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2018-12-01 12:22:34" itemprop="dateModified" datetime="2018-12-01T12:22:34+08:00">2018-12-01</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python%E7%B3%BB%E5%88%97/" itemprop="url" rel="index"><span itemprop="name">Python系列</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="内容概要"><a href="#内容概要" class="headerlink" title="内容概要"></a>内容概要</h1><ul>
+<li>函数递归调用介绍</li>
+<li>回溯与递推</li>
+</ul>
+<h1 id="内容详细"><a href="#内容详细" class="headerlink" title="内容详细"></a>内容详细</h1><h2 id="函数递归调用介绍"><a href="#函数递归调用介绍" class="headerlink" title="函数递归调用介绍"></a>函数递归调用介绍</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">函数不仅可以嵌套定义，还可以嵌套调用，即在调用一个函数的过程中，函数内部又调用另一个函数，而函数的递归调用指的是在调用一个函数的过程中又直接或间接的调用该函数本身</span><br><span class="line"></span><br><span class="line">例如：直接调用</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f1</span>():</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;&gt;&gt;&gt; f1&#x27;</span>)</span><br><span class="line">    f1()</span><br><span class="line">f1()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic3.zhimg.com/80/v2-e409210099ed20bf4b6a01fc4f1a7c9e_720w.jpg" alt="img"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">在调用f1的过程中，又调用f2，而在调用f2的过程中又调用f1，这就是间接调用函数f1本身</span><br><span class="line"></span><br><span class="line">例如：间接调用</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f1</span>():</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;from f1&#x27;</span>)</span><br><span class="line">    f2()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f2</span>():</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;from f2&#x27;</span>)</span><br><span class="line">    f1()</span><br><span class="line"></span><br><span class="line">f1()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic4.zhimg.com/80/v2-3190338dfab02a5e59a1f6d099801667_720w.jpg" alt="img"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">从上图可知：这两种情况下的递归调用都是一个无限循环的过程</span><br><span class="line"></span><br><span class="line">但在python中，对函数的递归调用的深度做了限制，因此并不会进入无限循环，而是会抛出异常</span><br><span class="line"></span><br><span class="line">要避免这种情况出现，就必须让递归调用在满足某个特定条件下终止</span><br><span class="line"></span><br><span class="line">ps ：  <span class="comment">#1. 可以使用sys.getrecursionlimit()去查看递归深度，默认值为1000，虽然可以使用sys.setrecursionlimit()去设定该值，但仍受限于主机操作系统栈大小的限制</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">#2. python不是一门函数式编程语言，无法对递归进行尾递归优化。</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="回溯与递推"><a href="#回溯与递推" class="headerlink" title="回溯与递推"></a>回溯与递推</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">例子：</span><br><span class="line"></span><br><span class="line">某公司四个员工坐在一起，问第四个人薪水，他说比第三个人多<span class="number">1000</span>，问第三个人薪水，第他说比第二个人多<span class="number">1000</span>，问第二个人薪水，他说比第一个人多<span class="number">1000</span>，最后第一人说自己每月<span class="number">5000</span>，请问第四个人的薪水是多少？</span><br><span class="line"></span><br><span class="line">思路解析：</span><br><span class="line"></span><br><span class="line">要知道第四个人的月薪，就必须知道第三个人的，第三个人的又取决于第二个人的，第二个人的又取决于第一个人的，而且每一个员工都比前一个多一千，数学表达式即：</span><br><span class="line"></span><br><span class="line">salary(<span class="number">4</span>)=salary(<span class="number">3</span>)+<span class="number">1000</span> </span><br><span class="line">salary(<span class="number">3</span>)=salary(<span class="number">2</span>)+<span class="number">1000</span> </span><br><span class="line">salary(<span class="number">2</span>)=salary(<span class="number">1</span>)+<span class="number">1000</span> </span><br><span class="line">salary(<span class="number">1</span>)=<span class="number">5000</span></span><br><span class="line">总结为： </span><br><span class="line">salary(n)=salary(n-<span class="number">1</span>)+<span class="number">1000</span> (n&gt;<span class="number">1</span>) </span><br><span class="line">salary(<span class="number">1</span>)=<span class="number">5000</span> (n=<span class="number">1</span>) </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">很明显这是一个递归的过程，可以将该过程分为两个阶段：回溯与递推</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1 回溯阶段：</span></span><br><span class="line">    要求第n个员工的薪水，需要回溯得到(n-<span class="number">1</span>)个员工的薪水，以此类推，直到得到第一个员工的薪水，此时，salary(<span class="number">1</span>)已知，因而不必再向前回溯了。</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2 递推阶段：</span></span><br><span class="line">    从第一个员工的薪水可以推算出第二个员工的薪水(<span class="number">6000</span>)，从第二个员工的薪水可以推算出第三个员工的薪水(<span class="number">7000</span>)，以此类推，一直推算出第第四个员工的薪水(<span class="number">8000</span>)为止，递归结束。</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 注意：递归一定要有一个结束条件，这里n=1就是结束条件。</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic3.zhimg.com/80/v2-b8756ae5141d371f4594408e3df84e56_720w.jpg" alt="img"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">代码实现：</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">salary</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="keyword">if</span> n==<span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">5000</span></span><br><span class="line">    <span class="keyword">return</span> salary(n-<span class="number">1</span>)+<span class="number">1000</span></span><br><span class="line"></span><br><span class="line">s=salary(<span class="number">4</span>)</span><br><span class="line"><span class="built_in">print</span>(s)</span><br><span class="line"></span><br><span class="line">执行结果：</span><br><span class="line"></span><br><span class="line"><span class="number">8000</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">程序分析：</span><br><span class="line"></span><br><span class="line">在未满足n == <span class="number">1</span>的条件时，一直进行递归调用，即一直回溯 而在满足n == <span class="number">1</span>的条件时，终止递归调用，即结束回溯，从而进入递推阶段，依次推导直到得到最终的结果。</span><br><span class="line"></span><br><span class="line">递归本质就是在做重复的事情，所以理论上递归可以解决的问题循环也都可以解决，只不过在某些情况下，使用递归会更容易实现，比如有一个嵌套多层的列表，要求打印出所有的元素，代码实现如下</span><br><span class="line"></span><br><span class="line">items=[[<span class="number">1</span>,<span class="number">2</span>],<span class="number">3</span>,[<span class="number">4</span>,[<span class="number">5</span>,[<span class="number">6</span>,<span class="number">7</span>]]]]</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span>(<span class="params">items</span>):</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> items:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">isinstance</span>(i,<span class="built_in">list</span>): <span class="comment">#满足未遍历完items以及if判断成立的条件时，一直进行递归调用</span></span><br><span class="line">            foo(i) </span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(i,end=<span class="string">&#x27; &#x27;</span>)</span><br><span class="line"></span><br><span class="line">foo(items) <span class="comment">#打印结果1 2 3 4 5 6 7</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>使用递归，我们只需要分析出要重复执行的代码逻辑，然后提取进入下一次递归调用的条件或者说递归结束的条件即可，代码实现起来简洁清晰</strong></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1305,111 +1406,6 @@
 <h2 id="python解释器"><a href="#python解释器" class="headerlink" title="python解释器"></a>python解释器</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">	设置文件头的作用是保证运行python程序的前两个阶段不乱码，经过前两个阶段后py文件的内容都会以Unicode格式存放于内存中</span><br><span class="line">    </span><br><span class="line">    在经历第三个阶段时开始识别python语法，当遇到特定的语法name=<span class="string">&#x27;上&#x27;</span>(代码本身也都全部是Unicode格式存的)时，需要申请内存空间来存储字符串<span class="string">&#x27;上&#x27;</span>，这又涉及到应该以什么编码存储<span class="string">&#x27;上&#x27;</span>的问题</span><br><span class="line">    </span><br><span class="line">   	在python3中，字符串类的值都是使用Unicode格式来存储的</span><br><span class="line">    </span><br><span class="line">    在python2中，由于python2的盛行是早于Unicode的，因此在python2中是按照文件头指定的编码来存储字符串类型的值的(如果文件头中没有指定编码，那么解释器会按照它自己默认的编码方式来存储<span class="string">&#x27;上&#x27;</span>)，所以，这就有可能导致乱码问题</span><br><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line"></span><br><span class="line">x = <span class="string">&#x27;上&#x27;</span> <span class="comment"># x的值为untf-8格式的二进制</span></span><br><span class="line"><span class="built_in">print</span>(x)</span><br><span class="line"><span class="comment"># 打印操作是将x的值，即utf-8格式的二进制交给终端，当终端收到后发现并不是unicode（只有unicode才与字符有对应关系），所以终端会执行操作：utf-8二进制---解码--&gt;unicode格式的二进制，解码的过程终端会采用自己默认的编码，而在pycharm的终端默认编码为utf-8、windows下的cmd终端的默认编码为gbk，所以该打印操作在pycharm中显示正常，而在windows下的cmd中则乱码</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在windows下的cmd中运行效果如下</span></span><br><span class="line">C:\Users\Administrator&gt;python2 E:\aaa.py</span><br><span class="line">涓</span><br></pre></td></tr></table></figure>
 
 <h2 id="字符串encode编码与decode解码的使用"><a href="#字符串encode编码与decode解码的使用" class="headerlink" title="字符串encode编码与decode解码的使用"></a>字符串encode编码与decode解码的使用</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1 unicode格式 ------ 编码encode ------&gt; 其他编码格式</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>x = <span class="string">&#x27;上&#x27;</span> <span class="comment"># 在python3中，&#x27;上&#x27;被存成Unicode</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>res = x.encode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>res, <span class="built_in">type</span>(res) <span class="comment"># Unicode编码成了utf-8格式，而编码的结果为bytes类型，可以直接当做二进制去使用</span></span><br><span class="line">(<span class="string">b&#x27;\xe4\xb8\x8a&#x27;</span>, &lt;<span class="class"><span class="keyword">class</span> &#x27;<span class="title">bytes</span>&#x27;&gt;)</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"># 2 其他编码格式 ------ 解码<span class="title">decode</span> ------&gt; Unicode格式</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">&gt;&gt;&gt; res.decode(&#x27;utf-8&#x27;)</span></span><br><span class="line"><span class="class">&#x27;上&#x27;</span></span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2018/11/12/%E5%B0%81%E8%A3%85/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="池劲涛">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="池劲涛的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2018/11/12/%E5%B0%81%E8%A3%85/" class="post-title-link" itemprop="url">封装</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2018-11-12 07:20:25" itemprop="dateCreated datePublished" datetime="2018-11-12T07:20:25+08:00">2018-11-12</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2018-12-01 12:22:34" itemprop="dateModified" datetime="2018-12-01T12:22:34+08:00">2018-12-01</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Python%E7%B3%BB%E5%88%97/" itemprop="url" rel="index"><span itemprop="name">Python系列</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="内容概要"><a href="#内容概要" class="headerlink" title="内容概要"></a>内容概要</h1><ul>
-<li>引入</li>
-<li>隐藏属性</li>
-<li>开放接口</li>
-<li>property</li>
-</ul>
-<h1 id="内容详细"><a href="#内容详细" class="headerlink" title="内容详细"></a>内容详细</h1><h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">面对对象编程有三大特性：</span><br><span class="line">    <span class="number">1</span> 封装</span><br><span class="line">    <span class="number">2</span> 继承</span><br><span class="line">    <span class="number">3</span> 多态</span><br><span class="line">    </span><br><span class="line">其中最重要的一个特性就是封装</span><br><span class="line"></span><br><span class="line">封装指的是：</span><br><span class="line">    把数据与功能整合到一起  &lt;---<span class="string">&quot;整合&quot;</span></span><br><span class="line"></span><br><span class="line">除此之外，针对封装到对象或者类中的属性，我们还可以严格控制对它们的访问，分两步实现：</span><br><span class="line">    <span class="number">1</span> 隐藏属性</span><br><span class="line">    <span class="number">2</span> 开放接口</span><br></pre></td></tr></table></figure>
-
-<h2 id="隐藏属性"><a href="#隐藏属性" class="headerlink" title="隐藏属性"></a>隐藏属性</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">python的Class机制采用双下划线<span class="string">&#x27;开头&#x27;</span>的方式将属性隐藏起来(设置成私有的)，但其实这仅仅是一种变形操作，类中所有的双下划线<span class="string">&#x27;开头&#x27;</span>的属性都会在定义阶段，检测语法时自动变成<span class="string">&#x27;_类名_属性名&#x27;</span>的形式：</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span>:</span></span><br><span class="line">    __N=<span class="number">0</span> <span class="comment"># 变形为_Foo__N</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span> <span class="comment"># 定义函数时，会检测函数语法，所以__开头的属性也会变形</span></span><br><span class="line">        self.__x=<span class="number">10</span> <span class="comment"># 变形为self._Foo__x</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__f1</span>(<span class="params">self</span>):</span> <span class="comment"># 变形为_Foo__f1</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;__f1 run&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">f2</span>(<span class="params">self</span>):</span>  <span class="comment"># 定义函数时，会检测函数语法，所以__开头的属性也会变形</span></span><br><span class="line">        self.__f1() <span class="comment">#变形为self._Foo__f1()</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(Foo.__N) <span class="comment"># 报错AttributeError:类Foo没有属性__N</span></span><br><span class="line"></span><br><span class="line">obj = Foo()</span><br><span class="line"><span class="built_in">print</span>(obbj.__x) <span class="comment"># 报错AttributeError:对象obj没有属性__x</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">这种变形需要注意的问题是：</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>、在类外部无法直接访问双下滑线开头的属性，但知道了类名和属性名就可以拼出名字：_类名__属性，然后就可以访问了，如Foo._A__N，所以说这种操作并没有严格意义上地限制外部访问，仅仅只是一种语法意义上的变形。</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Foo.__dict__</span><br><span class="line">mappingproxy(&#123;..., <span class="string">&#x27;_Foo__N&#x27;</span>: <span class="number">0</span>, ...&#125;)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>obj.__dict__</span><br><span class="line">&#123;<span class="string">&#x27;_Foo__x&#x27;</span>: <span class="number">10</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Foo._Foo__N</span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>obj._Foo__x</span><br><span class="line"><span class="number">10</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>obj._Foo__N</span><br><span class="line"><span class="number">0</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span>、在类内部是可以直接访问双下滑线开头的属性的，比如self.__f1()，因为在类定义阶段类内部双下滑线开头的属性统一发生了变形。</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>obj.f2()</span><br><span class="line">__f1 run</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span>、变形操作只在类定义阶段发生一次,在类定义之后的赋值操作，不会变形。</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Foo.__M=<span class="number">100</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Foo.__dict__</span><br><span class="line">mappingproxy(&#123;..., <span class="string">&#x27;__M&#x27;</span>: <span class="number">100</span>,...&#125;)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Foo.__M</span><br><span class="line"><span class="number">100</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>obj.__y=<span class="number">20</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>obj.__dict__</span><br><span class="line">&#123;<span class="string">&#x27;__y&#x27;</span>: <span class="number">20</span>, <span class="string">&#x27;_Foo__x&#x27;</span>: <span class="number">10</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>obj.__y</span><br><span class="line"><span class="number">20</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="开放接口"><a href="#开放接口" class="headerlink" title="开放接口"></a>开放接口</h2><p> <strong>定义属性就是为了使用，所以隐藏并不是目的</strong></p>
-<h3 id="隐藏数据属性"><a href="#隐藏数据属性" class="headerlink" title="隐藏数据属性"></a>隐藏数据属性</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">将数据隐藏起来就限制了类外部对数据的直接操作，然后类内应该提供相应的接口来允许类外部间接地操作数据，接口之上可以附加额外的逻辑来对数据的操作进行严格地控制：</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Teacher</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,name,age</span>):</span> <span class="comment">#将名字和年纪都隐藏起来</span></span><br><span class="line"><span class="meta">... </span>        self.__name=name</span><br><span class="line"><span class="meta">... </span>        self.__age=age</span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">tell_info</span>(<span class="params">self</span>):</span> <span class="comment">#对外提供访问老师信息的接口</span></span><br><span class="line"><span class="meta">... </span>        <span class="built_in">print</span>(<span class="string">&#x27;姓名:%s,年龄:%s&#x27;</span> %(self.__name,self.__age))</span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">set_info</span>(<span class="params">self,name,age</span>):</span> <span class="comment">#对外提供设置老师信息的接口，并附加类型检查的逻辑</span></span><br><span class="line"><span class="meta">... </span>        <span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">isinstance</span>(name,<span class="built_in">str</span>):</span><br><span class="line"><span class="meta">... </span>            <span class="keyword">raise</span> TypeError(<span class="string">&#x27;姓名必须是字符串类型&#x27;</span>)</span><br><span class="line"><span class="meta">... </span>        <span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">isinstance</span>(age,<span class="built_in">int</span>):</span><br><span class="line"><span class="meta">... </span>            <span class="keyword">raise</span> TypeError(<span class="string">&#x27;年龄必须是整型&#x27;</span>)</span><br><span class="line"><span class="meta">... </span>        self.__name=name</span><br><span class="line"><span class="meta">... </span>        self.__age=age</span><br><span class="line"><span class="meta">... </span></span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>t=Teacher(<span class="string">&#x27;lili&#x27;</span>,<span class="number">18</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>t.set_info(‘LiLi<span class="string">&#x27;,&#x27;</span><span class="number">19</span><span class="string">&#x27;) # 年龄不为整型，抛出异常</span></span><br><span class="line"><span class="string">Traceback (most recent call last):</span></span><br><span class="line"><span class="string">  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</span></span><br><span class="line"><span class="string">  File &quot;&lt;stdin&gt;&quot;, line 11, in set_info</span></span><br><span class="line"><span class="string">TypeError: 年龄必须是整型</span></span><br><span class="line"><span class="string">&gt;&gt;&gt; t.set_info(&#x27;</span>LiLi<span class="string">&#x27;,19) # 名字为字符串类型，年龄为整形，可以正常设置</span></span><br><span class="line"><span class="string">&gt;&gt;&gt; t.tell_info() # 查看老师的信息</span></span><br><span class="line"><span class="string">姓名:LiLi,年龄:19 </span></span><br></pre></td></tr></table></figure>
-
-<h3 id="隐藏函数属性"><a href="#隐藏函数属性" class="headerlink" title="隐藏函数属性"></a>隐藏函数属性</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">目的的是为了隔离复杂度，例如ATM程序的取款功能,该功能有很多其他功能组成，比如插卡、身份认证、输入金额、打印小票、取钱等，而对使用者来说,只需要开发取款这个功能接口即可,其余功能我们都可以隐藏起来</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">ATM</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__card</span>(<span class="params">self</span>):</span> <span class="comment">#插卡</span></span><br><span class="line"><span class="meta">... </span>        <span class="built_in">print</span>(<span class="string">&#x27;插卡&#x27;</span>)</span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__auth</span>(<span class="params">self</span>):</span> <span class="comment">#身份认证</span></span><br><span class="line"><span class="meta">... </span>        <span class="built_in">print</span>(<span class="string">&#x27;用户认证&#x27;</span>)</span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__input</span>(<span class="params">self</span>):</span> <span class="comment">#输入金额</span></span><br><span class="line"><span class="meta">... </span>        <span class="built_in">print</span>(<span class="string">&#x27;输入取款金额&#x27;</span>)</span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__print_bill</span>(<span class="params">self</span>):</span> <span class="comment">#打印小票</span></span><br><span class="line"><span class="meta">... </span>        <span class="built_in">print</span>(<span class="string">&#x27;打印账单&#x27;</span>)</span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__take_money</span>(<span class="params">self</span>):</span> <span class="comment">#取钱</span></span><br><span class="line"><span class="meta">... </span>        <span class="built_in">print</span>(<span class="string">&#x27;取款&#x27;</span>)</span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">withdraw</span>(<span class="params">self</span>):</span> <span class="comment">#取款功能</span></span><br><span class="line"><span class="meta">... </span>        self.__card()</span><br><span class="line"><span class="meta">... </span>        self.__auth()</span><br><span class="line"><span class="meta">... </span>        self.__<span class="built_in">input</span>()</span><br><span class="line"><span class="meta">... </span>        self.__print_bill()</span><br><span class="line"><span class="meta">... </span>        self.__take_money()</span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>obj=ATM()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>obj.withdraw()</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>隐藏属性与开放接口：<br>    本质就是为了明确地区分内外，类内部可以修改封装内的东西而不影响外部调用者的代码；而类外部只需拿到一个接口，只要接口名、参数不变，则无论设计者如何改变内部实现代码，使用者均无需改变代码。这就提供一个良好的合作基础，只要接口这个基础约定不变，则代码的修改不足为虑。</strong></p>
-<h2 id="property"><a href="#property" class="headerlink" title="property"></a>property</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">BMI指数是用来衡量一个人的体重与身高对健康影响的一个指标，计算公式为：</span><br><span class="line">    体质指数（BMI）=体重（kg）÷身高^<span class="number">2</span>（m）</span><br><span class="line">    EX：70kg÷（<span class="number">1.75</span>×<span class="number">1.75</span>）=<span class="number">22.86</span></span><br><span class="line">    </span><br><span class="line">身高或体重是不断变化的，因而每次想查看BMI值都需要通过计算才能得到，但很明显BMI听起来更像是一个特征而非功能，为此Python专门提供了一个装饰器<span class="built_in">property</span>，可以将类中的函数“伪装成”对象的数据属性，对象在访问该特殊属性时会触发功能的执行，然后将返回值作为本次访问的结果，例如：</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">People</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,name,weight,height</span>):</span></span><br><span class="line"><span class="meta">... </span>        self.name=name</span><br><span class="line"><span class="meta">... </span>        self.weight=weight</span><br><span class="line"><span class="meta">... </span>        self.height=height</span><br><span class="line"><span class="meta">... </span>    @<span class="built_in">property</span></span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">bmi</span>(<span class="params">self</span>):</span></span><br><span class="line"><span class="meta">... </span>        <span class="keyword">return</span> self.weight / (self.height**<span class="number">2</span>)</span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>obj=People(<span class="string">&#x27;lili&#x27;</span>,<span class="number">75</span>,<span class="number">1.85</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>obj.bmi <span class="comment">#触发方法bmi的执行，将obj自动传给self，执行后返回值作为本次引用的结果</span></span><br><span class="line"><span class="number">21.913805697589478</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">使用<span class="built_in">property</span>有效地保证了属性访问的一致性。另外<span class="built_in">property</span>还提供设置和删除属性的功能，如下</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Foo</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,val</span>):</span></span><br><span class="line"><span class="meta">... </span>        self.__NAME=val <span class="comment">#将属性隐藏起来</span></span><br><span class="line"><span class="meta">... </span>    @<span class="built_in">property</span></span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">name</span>(<span class="params">self</span>):</span></span><br><span class="line"><span class="meta">... </span>        <span class="keyword">return</span> self.__NAME</span><br><span class="line"><span class="meta">... </span>    @name.setter</span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">name</span>(<span class="params">self,value</span>):</span></span><br><span class="line"><span class="meta">... </span>        <span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">isinstance</span>(value,<span class="built_in">str</span>):  <span class="comment">#在设定值之前进行类型检查</span></span><br><span class="line"><span class="meta">... </span>            <span class="keyword">raise</span> TypeError(<span class="string">&#x27;%s must be str&#x27;</span> %value)</span><br><span class="line"><span class="meta">... </span>        self.__NAME=value <span class="comment">#通过类型检查后,将值value存放到真实的位置self.__NAME</span></span><br><span class="line"><span class="meta">... </span>    @name.deleter</span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">name</span>(<span class="params">self</span>):</span></span><br><span class="line"><span class="meta">... </span>        <span class="keyword">raise</span> PermissionError(<span class="string">&#x27;Can not delete&#x27;</span>)</span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f=Foo(<span class="string">&#x27;lili&#x27;</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f.name</span><br><span class="line">lili</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f.name=<span class="string">&#x27;LiLi&#x27;</span> <span class="comment">#触发name.setter装饰器对应的函数name(f,’Egon&#x27;)</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f.name=<span class="number">123</span> <span class="comment">#触发name.setter对应的的函数name(f,123),抛出异常TypeError</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">del</span> f.name <span class="comment">#触发name.deleter对应的函数name(f),抛出异常PermissionError </span></span><br></pre></td></tr></table></figure>
       
     </div>
 
