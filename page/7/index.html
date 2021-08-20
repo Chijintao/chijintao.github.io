@@ -130,7 +130,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">68</span>
+          <span class="site-state-item-count">70</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -167,6 +167,213 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/11/12/%E7%BB%91%E5%AE%9A%E6%96%B9%E6%B3%95%E4%B8%8E%E9%9D%9E%E7%BB%91%E5%AE%9A%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="池劲涛">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="池劲涛的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/11/12/%E7%BB%91%E5%AE%9A%E6%96%B9%E6%B3%95%E4%B8%8E%E9%9D%9E%E7%BB%91%E5%AE%9A%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">绑定方法与非绑定方法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-11-12 07:20:25" itemprop="dateCreated datePublished" datetime="2018-11-12T07:20:25+08:00">2018-11-12</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2018-12-01 12:22:34" itemprop="dateModified" datetime="2018-12-01T12:22:34+08:00">2018-12-01</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python%E7%B3%BB%E5%88%97/" itemprop="url" rel="index"><span itemprop="name">Python系列</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="内容概要"><a href="#内容概要" class="headerlink" title="内容概要"></a>内容概要</h1><ul>
+<li>绑定方法与非绑定方法</li>
+<li>非绑定方法</li>
+</ul>
+<h1 id="内容详细"><a href="#内容详细" class="headerlink" title="内容详细"></a>内容详细</h1><h2 id="绑定方法与非绑定方法"><a href="#绑定方法与非绑定方法" class="headerlink" title="绑定方法与非绑定方法"></a>绑定方法与非绑定方法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">类中定义的函数分为两大类：</span><br><span class="line">    <span class="number">1</span> 绑定方法</span><br><span class="line">    <span class="number">2</span> 非绑定方法</span><br><span class="line"></span><br><span class="line">其中绑定方法又分为两种：</span><br><span class="line">    <span class="number">1.1</span> 绑定到对象的对象方法</span><br><span class="line">    <span class="number">1.2</span> 绑定到类的类方法</span><br><span class="line">    </span><br><span class="line">在类中正常定义的函数默认是绑定到对象的，而为某个函数加上装饰器@<span class="built_in">classmethod</span>后，该函数就绑定到了类</span><br><span class="line"></span><br><span class="line">类方法通常用来在__init__的基础上提供额外的初始实例化的方式</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置文件settings.py的内容</span></span><br><span class="line">HOST=<span class="string">&#x27;127.0.0.1&#x27;</span></span><br><span class="line">PORT=<span class="number">3306</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 类方法的应用</span></span><br><span class="line"><span class="keyword">import</span> settings</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MySQL</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,host,port</span>):</span></span><br><span class="line">        self.host=host</span><br><span class="line">        self.port=port</span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">from_conf</span>(<span class="params">cls</span>):</span> <span class="comment"># 从配置文件中读取配置进行初始化</span></span><br><span class="line">        <span class="keyword">return</span> cls(settings.HOST,settings.PORT)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>MySQL.from_conf <span class="comment"># 绑定到类的方法</span></span><br><span class="line">&lt;bound method MySQL.from_conf of &lt;<span class="class"><span class="keyword">class</span> ‘<span class="title">__main__</span>.<span class="title">MySQL</span>&#x27;&gt;&gt;</span></span><br><span class="line"><span class="class">&gt;&gt;&gt; <span class="title">conn</span>=<span class="title">MySQL</span>.<span class="title">from_conf</span>() # 调用类方法，自动将类<span class="title">MySQL</span>当作第一个参数传给<span class="title">cls</span></span></span><br></pre></td></tr></table></figure>
+
+<p><strong>绑定到类的方法就是专门给类用的，(虽然对象也可以调用，只不过自动传入的第一个参数仍然是类，也就是说这种调用时没有意义的，且容易引起混淆)</strong></p>
+<p><strong>ps：这也是python的对象系统与其他面向对象语言对象系统的区别之一，比如Smalltalk和Ruby中，绑定到类的方法与绑定到对象的方法是严格区分开的。</strong> </p>
+<h2 id="非绑定方法"><a href="#非绑定方法" class="headerlink" title="非绑定方法"></a>非绑定方法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">为类中某个函数加上装饰器@<span class="built_in">staticmethod</span>后，该函数就变成了非绑定方法，也称为静态方法</span><br><span class="line"></span><br><span class="line">该方法不与类或对象绑定，类与对象都可以来调用它，但它就是一个普通函数而已，没有自动传值的功能</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> uuid</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MySQL</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,host,port</span>):</span></span><br><span class="line">        self.<span class="built_in">id</span>=self.create_id()</span><br><span class="line">        self.host=host</span><br><span class="line">        self.port=port</span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create_id</span>():</span></span><br><span class="line">        <span class="keyword">return</span> uuid.uuid1()</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn=MySQL(‘<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="string">&#x27;,3306)</span></span><br><span class="line"><span class="string">&gt;&gt;&gt; print(conn.id) #100365f6-8ae0-11e7-a51e-0088653ea1ec</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 类或对象来调用create_id发现都是普通函数，而非绑定到谁的方法</span></span><br><span class="line"><span class="string">&gt;&gt;&gt; MySQL.create_id</span></span><br><span class="line"><span class="string">&lt;function MySQL.create_id at 0x1025c16a8&gt;</span></span><br><span class="line"><span class="string">&gt;&gt;&gt; conn.create_id</span></span><br><span class="line"><span class="string">&lt;function MySQL.create_id at 0x1025c16a8&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><strong>若类中需要一个功能，该功能的实现代码中需要引用对象则将其定义成对象方法，需要引用类则将其定义成类方法，无需引用类或对象则将其定义成静态方法</strong> </p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/11/12/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E5%88%86%E7%B1%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="池劲涛">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="池劲涛的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/11/12/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E5%88%86%E7%B1%BB/" class="post-title-link" itemprop="url">编程语言分类</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-11-12 07:20:25" itemprop="dateCreated datePublished" datetime="2018-11-12T07:20:25+08:00">2018-11-12</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2018-12-01 12:22:34" itemprop="dateModified" datetime="2018-12-01T12:22:34+08:00">2018-12-01</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python%E7%B3%BB%E5%88%97/" itemprop="url" rel="index"><span itemprop="name">Python系列</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="机器语言"><a href="#机器语言" class="headerlink" title="机器语言"></a>机器语言</h2><p><strong>机器语言是站在计算机(奴隶)的角度，说计算机能听懂/理解的语言，而计算机能直接理解的就是二进制指令，所以机器语言就是直接用二进制编程，这意味着机器语言是直接操作硬件的，因此机器语言属于低级语言，此处的低级指的是底层、贴近计算机硬件</strong></p>
+<p> <strong>总结</strong><br>     <strong>1、执行效率最高</strong><br>        <strong>编写的程序可以被计算机无障碍理解、直接运行，执行效率高 。</strong></p>
+<pre><code> **2、开发效率最低**
+    **复杂，开发效率低**
+
+ **3、跨平台性差**
+    **贴近\依赖具体的硬件，跨平台性差**
+</code></pre>
+<h2 id="汇编语言"><a href="#汇编语言" class="headerlink" title="汇编语言"></a>汇编语言</h2><p><strong>汇编语言仅仅是用一个英文标签代表一组二进制指令，毫无疑问，比起机器语言，汇编语言是一种进步，但汇编语言的本质仍然是直接操作硬件，因此汇编语言仍是比较低级/底层的语言、贴近计算机硬件</strong></p>
+<p>​     <strong>总结</strong><br>​         <strong>1、执行效率高</strong><br>​            <strong>相对于机器语言，使用英文标签编写程序相对简单，执行效率高，但较之机器语言稍低，</strong></p>
+<p>​        <strong>2、开发效率低：</strong><br>​            <strong>仍然是直接操作硬件，比起机器语言来说，复杂度稍低，但依旧居高不下，所以开发效率依旧较低</strong></p>
+<pre><code>     **3、跨平台性差**
+**同样依赖具体的硬件，跨平台性差**
+</code></pre>
+<h2 id="高级语言"><a href="#高级语言" class="headerlink" title="高级语言"></a>高级语言</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">    高级语言是站在人(奴隶主)的角度，说人话，即用人类的字符去编写程序，而人类的字符是在向操作系统发送指令，而非直接操作硬件，所以高级语言是与操作系统打交道的，此处的高级指的是高层、开发者无需考虑硬件细节，因而开发效率可以得到极大的提升，但正因为高级语言离硬件较远，更贴近人类语言，人类可以理解，而计算机则需要通过翻译才能理解，所以执行效率会低于低级语言。</span><br><span class="line"></span><br><span class="line">按照翻译的方式的不同，高级语言又分为两种：</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="编译型-如C语言"><a href="#编译型-如C语言" class="headerlink" title="编译型(如C语言)"></a>编译型(如C语言)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> <span class="number">1</span>、执行效率高</span><br><span class="line">    编译是指在应用源程序执行之前，就将程序源代码“翻译”成目标代码（即机器语言），</span><br><span class="line">因此其目标程序可以脱离其语言环境独立执行，使用比较方便，执行效率较高。</span><br><span class="line"></span><br><span class="line"> <span class="number">2</span>、开发效率低：</span><br><span class="line">    应用程序一旦需要修改，必须先修改源代码，然后重新编译、生成新的目标文件才能执行，</span><br><span class="line">而在只有目标文件而没有源代码，修改会很不方便。所以开发效率低于解释型</span><br><span class="line"></span><br><span class="line"> <span class="number">3</span>、跨平台性差</span><br><span class="line">    编译型代码是针对某一个平台翻译的，当前平台翻译的结果无法拿到不同的平台使用，针对不同的平台必须重新编译，即跨平台性差</span><br><span class="line"></span><br><span class="line"> 其他</span><br><span class="line">    现在大多数的编程语言都是编译型的。</span><br><span class="line">编译程序将源程序翻译成目标程序后保存在另一个文件中，该目标程序可脱离编译程序直接在计算机上多次运行。</span><br><span class="line">大多数软件产品都是以目标程序形式发行给用户的，不仅便于直接运行，同时又使他人难于盗用其中的技术。</span><br><span class="line">C、C++、Ada、Pascal都是编译实现的</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="解释型-如python"><a href="#解释型-如python" class="headerlink" title="解释型(如python)"></a>解释型(如python)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> <span class="number">1</span>、执行效率低</span><br><span class="line">    解释型语言的实现中，翻译器并不产生目标机器代码，而是产生易于执行的中间代码。</span><br><span class="line">这种中间代码与机器代码是不同的，中间代码的解释是由软件支持的，不能直接使用硬件，</span><br><span class="line">软件解释器通常会导致执行效率较低。</span><br><span class="line"></span><br><span class="line"> <span class="number">2</span>、开发效率高</span><br><span class="line">    用解释型语言编写的程序是由另一个可以理解中间代码的解释程序执行的，与编译程序不同的是，</span><br><span class="line">解释程序的任务是逐一将源程序的语句解释成可执行的机器指令，不需要将源程序翻译成目标代码再执行。</span><br><span class="line">解释程序的优点是当语句出现语法错误时，可以立即引起程序员的注意，而程序员在程序开发期间就能进行校正。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> <span class="number">3</span>、跨平台性强</span><br><span class="line">    代码运行是依赖于解释器，不同平台有对应版本的解释器，所以解释型的跨平台性强</span><br><span class="line"></span><br><span class="line"> 其他</span><br><span class="line">    对于解释型Basic语言，需要一个专门的解释器解释执行Basic程序，每条语句只有在执行时才被翻译，</span><br><span class="line">这种解释型语言每执行一次就翻译一次，因而效率低下。一般地，动态语言都是解释型的，</span><br><span class="line">例如：Tcl、Perl、Ruby、VBScript、JavaScript等</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="PS-混合型语言"><a href="#PS-混合型语言" class="headerlink" title="PS(混合型语言)"></a>PS(混合型语言)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">    Java是一类特殊的编程语言，Java程序也需要编译，但是却没有直接编译为机器语言，而是编译为字节码，</span><br><span class="line">然后在Java虚拟机上以解释方式执行字节码。</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>、执行效率：机器语言&gt;汇编语言&gt;高级语言（编译型&gt;解释型）</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>、开发效率：机器语言&lt;汇编语言&lt;高级语言（编译型&lt;解释型）</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>、跨平台性：解释型具有极强的跨平台型</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="python介绍"><a href="#python介绍" class="headerlink" title="python介绍"></a>python介绍</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">    谈及python，涉及两层意思，一层代表的是python这门语言的语法风格，另外一层代表的则是专门用来解释该语法风格的应用程序：python解释器。</span><br><span class="line"></span><br><span class="line">• python的创始人为吉多·范罗苏姆（Guido van Rossum）。Python这个名字，来自Guido所挚爱的电视剧Monty Python’s Flying Circus，他希望这个新的叫做Python的语言，能符合他的理想：创造一种C和shell之间，语法能够像shell一样简洁，易学易用、可拓展性强，同时兼顾C的强大功能。于是Guido在<span class="number">1989</span>年的圣诞节期间，开始编写能够解释Python语言语法的解释器。</span><br><span class="line"></span><br><span class="line">• Python崇尚优美、清晰、简单，是一个优秀并广泛使用的语言。最新的TIOBE排行榜https://www.tiobe.com/tiobe-index/，Python已飙升至世界第三。</span><br><span class="line"></span><br><span class="line">• Python可以应用于众多领域，如：人工智能、数据分析、爬虫、金融量化、云计算、WEB开发、自动化运维/测试、游戏开发、网络服务、图像处理等众多领域。目前业内几乎所有大中型互联网企业都在使用Python，如：Youtube、Dropbox、BT、Quora（中国知乎）、豆瓣、知乎、Google、Yahoo!、Facebook、NASA、百度、腾讯、汽车之家、美团等。</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Python解释器的发展史"><a href="#Python解释器的发展史" class="headerlink" title="Python解释器的发展史"></a>Python解释器的发展史</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">Granddaddy of Python web frameworks, Zope <span class="number">1</span> was released <span class="keyword">in</span> <span class="number">1999</span></span><br><span class="line"></span><br><span class="line">Python <span class="number">1.0</span> - January <span class="number">1994</span> 增加了 <span class="keyword">lambda</span>, <span class="built_in">map</span>, <span class="built_in">filter</span> <span class="keyword">and</span> reduce.</span><br><span class="line"></span><br><span class="line">Python <span class="number">2.0</span> - October <span class="number">16</span>, <span class="number">2000</span>，加入了内存回收机制，构成了现在Python语言框架的基础</span><br><span class="line"></span><br><span class="line">Python <span class="number">2.4</span> - November <span class="number">30</span>, <span class="number">2004</span>, 同年目前最流行的WEB框架Django 诞生</span><br><span class="line"></span><br><span class="line">Python <span class="number">2.5</span> - September <span class="number">19</span>, <span class="number">2006</span></span><br><span class="line"></span><br><span class="line">Python <span class="number">2.6</span> - October <span class="number">1</span>, <span class="number">2008</span></span><br><span class="line"></span><br><span class="line">Python <span class="number">2.7</span> - July <span class="number">3</span>, <span class="number">2010</span></span><br><span class="line"></span><br><span class="line">Python <span class="number">3.1</span> - June <span class="number">27</span>, <span class="number">2009</span></span><br><span class="line"></span><br><span class="line">Python <span class="number">3.2</span> - February <span class="number">20</span>, <span class="number">2011</span></span><br><span class="line"></span><br><span class="line">Python <span class="number">3.3</span> - September <span class="number">29</span>, <span class="number">2012</span></span><br><span class="line"></span><br><span class="line">Python <span class="number">3.4</span> - March <span class="number">16</span>, <span class="number">2014</span></span><br><span class="line"></span><br><span class="line">Python <span class="number">3.5</span> - September <span class="number">13</span>, <span class="number">2015</span></span><br><span class="line"></span><br><span class="line">Python <span class="number">3.6</span> - <span class="number">2016</span>-<span class="number">12</span>-<span class="number">23</span> 发布python3<span class="number">.6</span><span class="number">.0</span>版</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
